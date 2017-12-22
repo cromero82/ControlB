@@ -6,6 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ControlB.Models;
+using Services.Auth;
+using Persistence;
+using Model;
 
 namespace ControlB
 {

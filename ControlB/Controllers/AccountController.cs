@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ControlB.Models;
+using Services.Auth;
+using Model;
 
 namespace ControlB.Controllers
 {

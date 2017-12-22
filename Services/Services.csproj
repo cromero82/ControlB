@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Auth\ApplicationSignInManager.cs" />
     <Compile Include="Auth\ApplicationUserManager.cs" />
+    <Compile Include="Communications\Medios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +98,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{C29D0F5E-2080-4255-A540-5ED5750FC0AC}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistence\Persistence.csproj">
+      <Project>{1646948F-2548-43A7-B799-9216E16136ED}</Project>
+      <Name>Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

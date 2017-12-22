@@ -5,7 +5,7 @@ namespace Persistence
     public class ApplicationDbContext: IdentityDbContext
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("BdService")
         {
         }
             public static ApplicationDbContext Create()
