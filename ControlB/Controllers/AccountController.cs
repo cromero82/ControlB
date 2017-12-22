@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using ControlB.Models;
 using Services.Auth;
 using Model;
+using Common;
+using Newtonsoft.Json;
 
 namespace ControlB.Controllers
 {
@@ -81,6 +83,20 @@ namespace ControlB.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    // Obtiene usuario logeado
+                    var user = UserManager.FindByEmail(model.Email);
+                    var jUser = JsonConvert.SerializeObject(new CurrentUser
+                    {
+                        Email = user.Email,
+                        Name = user.Name,
+                        LastName = user.LastName,
+                        UserId = user.Id,
+                        UserName = user.UserName
+                    });
+
+                    // Agrego el claim con userData
+                    await UserManager.AddClaimAsync(user.Id, new Claim(ClaimTypes.UserData, jUser));
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -153,7 +169,12 @@ namespace ControlB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name = model.Name,
+                    LastName = model.LastName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -165,7 +186,7 @@ namespace ControlB.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
             }
