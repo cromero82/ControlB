@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace Model
             // Agregar aquí notificaciones personalizadas de usuario
             return userIdentity;
         }
+        public DateTime? BirthDay { get; set; }
     }
 }

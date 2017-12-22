@@ -58,9 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201712220353443_MyInitialize.cs" />
-    <Compile Include="Migrations\201712220353443_MyInitialize.Designer.cs">
-      <DependentUpon>201712220353443_MyInitialize.cs</DependentUpon>
+    <Compile Include="Migrations\201712221256233_Initialize.cs" />
+    <Compile Include="Migrations\201712221256233_Initialize.Designer.cs">
+      <DependentUpon>201712221256233_Initialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221303031_ConCumpleanios.cs" />
+    <Compile Include="Migrations\201712221303031_ConCumpleanios.Designer.cs">
+      <DependentUpon>201712221303031_ConCumpleanios.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,8 +74,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712220353443_MyInitialize.resx">
-      <DependentUpon>201712220353443_MyInitialize.cs</DependentUpon>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{C29D0F5E-2080-4255-A540-5ED5750FC0AC}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712221256233_Initialize.resx">
+      <DependentUpon>201712221256233_Initialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221303031_ConCumpleanios.resx">
+      <DependentUpon>201712221303031_ConCumpleanios.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

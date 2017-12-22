@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Model;
 
 namespace Persistence
 {
@@ -8,7 +10,14 @@ namespace Persistence
             : base("BdService")
         {
         }
-            public static ApplicationDbContext Create()
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>();
+        }
+
+        public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }

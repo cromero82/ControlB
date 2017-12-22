@@ -33,8 +33,8 @@ namespace Services.Auth
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
-                RequireLowercase = true,
-                RequireUppercase = false,
+                RequireLowercase = false,
+                RequireUppercase = false
             };
 
             // Configurar valores predeterminados para bloqueo de usuario
