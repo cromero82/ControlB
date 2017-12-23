@@ -6,6 +6,9 @@ namespace Persistence
 {
     public class ApplicationDbContext: IdentityDbContext
     {
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
+
         public ApplicationDbContext()
             : base("BdService")
         {
@@ -14,7 +17,7 @@ namespace Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationUser>();
+            //modelBuilder.Entity<ApplicationUser>();
         }
 
         public static ApplicationDbContext Create()

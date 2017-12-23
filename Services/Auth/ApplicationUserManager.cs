@@ -6,6 +6,7 @@ using Model;
 using Persistence;
 using Services.Communications;
 using System;
+using System.Threading.Tasks;
 
 namespace Services.Auth
 {
@@ -62,6 +63,11 @@ namespace Services.Auth
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        public Task addToRoleAsync(string id, string role)
+        {
+            throw new NotImplementedException();
         }
     }
 
