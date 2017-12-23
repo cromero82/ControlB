@@ -63,6 +63,7 @@ namespace ControlB.Controllers
 
         public async Task CreateRoles()
         {
+            // Listado de roles genéricos
             var roles = new List<ApplicationRole>
             {
                 new ApplicationRole {Name = "Admin" },
@@ -70,7 +71,8 @@ namespace ControlB.Controllers
                 new ApplicationRole {Name = "User" }
             };
             foreach (var r in roles)
-            {               
+            { 
+                // Si es false, quiere decir que no existe el rol y se debe crear              
                 if(!await _roleManager.RoleExistsAsync(r.Name))
                 {
                     await _roleManager.CreateAsync(r);

@@ -58,9 +58,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Enums\DbContextScopeOption.cs" />
+    <Compile Include="Extensiones\GetDbSet.cs" />
+    <Compile Include="Interfaces\IDbContextCollection.cs" />
+    <Compile Include="Interfaces\IDbContextReadOnlyScope.cs" />
+    <Compile Include="Interfaces\IDbContextScope.cs" />
+    <Compile Include="Interfaces\IDbContextScopeFactory.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Migrations\201712231217364_ConHabilitacionRol.cs" />
     <Compile Include="Migrations\201712231217364_ConHabilitacionRol.Designer.cs">
       <DependentUpon>201712231217364_ConHabilitacionRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712231810110_ConHabilitacionRol2.cs" />
+    <Compile Include="Migrations\201712231810110_ConHabilitacionRol2.Designer.cs">
+      <DependentUpon>201712231810110_ConHabilitacionRol2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,7 +90,11 @@
     <EmbeddedResource Include="Migrations\201712231217364_ConHabilitacionRol.resx">
       <DependentUpon>201712231217364_ConHabilitacionRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712231810110_ConHabilitacionRol2.resx">
+      <DependentUpon>201712231810110_ConHabilitacionRol2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

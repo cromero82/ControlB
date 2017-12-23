@@ -17,7 +17,8 @@ namespace Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<ApplicationUser>();
+            modelBuilder.Entity<ApplicationUser>();
+            modelBuilder.Entity<ApplicationRole>();
         }
 
         public static ApplicationDbContext Create()
