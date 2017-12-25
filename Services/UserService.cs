@@ -6,6 +6,8 @@ using Model.BL;
 using System.Collections.Generic;
 using Persistence.Extensiones;
 using System.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Services
 {
@@ -79,6 +81,27 @@ namespace Services
         {
             throw new NotImplementedException();
         }
+
+
+        // Proviene de otro ejemplo proyecto
+        //public Boolean isAdminUser()
+        //{
+        //    if (IUser.Identity.IsAuthenticated)
+        //    {
+        //        var user = User.Identity;
+        //        var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+        //        var s = UserManager.GetRoles(user.GetUserId());
+        //        if (s[0].ToString() == "Admin")
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         //public object GetAll()
         //{

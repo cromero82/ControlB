@@ -13,6 +13,7 @@ using WebGrease;
 
 namespace ControlB.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         public readonly UserService _userService = new UserService();
@@ -38,13 +39,14 @@ namespace ControlB.Controllers
         public ActionResult Index()
         {
             return View(
-                    _userService.GetAll()
+                //_roleManager.Roles.Where(x => x.Enabled).ToList()
+                _userService.GetAll()
                 );
         }
 
         public ActionResult Get(string id)
         {
-            ViewBag.Roles = _roleManager.Roles.ToList();
+            ViewBag.Roles = _roleManager.Roles.Where(x => x.Enabled).ToList();
             return View(
                 _userService.Get(id)
                 );
@@ -79,6 +81,39 @@ namespace ControlB.Controllers
                 }               
             }
         }
+
+        /// <summary>
+		/// Inserta un nuevo rol
+		/// </summary>
+		/// <returns>Vista para insertar nuevo rol</returns>
+        [Authorize(Roles="Admin")]
+		public async Task  InsRol(ApplicationRole rol)
+        {
+            //if (User.Identity.IsAuthenticated)
+            //{
+
+
+            //    if (!isAdminUser())
+            //    {
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
+            // Si es false, quiere decir que no existe el rol y se debe crear  
+                      
+            if (!await _roleManager.RoleExistsAsync(rol.Name))
+            {                
+                await _roleManager.CreateAsync(
+                    new ApplicationRole { Name = rol.Name}
+                    );
+            }
+        }
+
+        
 
     }
 }
