@@ -121,6 +121,29 @@ namespace Services
             return result;
         }
 
+        public bool TienePermiso(string filterContext)
+        {
+            var permiso = new SegPermisos();
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    permiso = ctx.SegPermisos.Where(x => x.Sigla == filterContext).FirstOrDefault();
+                    if (permiso != null)
+                        return true;
+                    else
+                        return false;
+                }
+
+            }
+            catch (Exception e)
+            {                
+                Console.WriteLine(e.Message);
+                return false;
+            }           
+           
+        }
+
         // Proviene de otro ejemplo proyecto
         //public Boolean isAdminUser()
         //{

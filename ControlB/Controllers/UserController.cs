@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using WebGrease;
 
 namespace ControlB.Controllers
@@ -129,7 +130,8 @@ namespace ControlB.Controllers
 		/// Inserta un nuevo rol
 		/// </summary>
 		/// <returns>Vista para insertar un rol a un usuario</returns>
-        //[Authorize(Roles = "Admin")]        
+        //[Authorize(Roles = "Admin")]  
+        [PermisoAttribute(Permiso ="Per2")]
         public ActionResult InsRolUsuario(string userId)
         {
             var user = new ApplicationUser();
@@ -154,6 +156,29 @@ namespace ControlB.Controllers
         {
             await _userManager.addToRoleAsync(model.UserId, model.RolId);
             return RedirectToAction("Index");
+        }
+    }
+
+
+    public class PermisoAttribute : ActionFilterAttribute
+    {
+        public string Permiso { get; set; }
+        public readonly UserService _userService = new UserService();       
+
+        //public RolesPermisos Permiso { get; set; }
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+
+            if (!_userService.TienePermiso(Permiso))
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+                {
+                    controller = "Home",
+                    action = "Index"
+                }));
+            }
         }
     }
 }

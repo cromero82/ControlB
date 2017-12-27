@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201712261432177_userRole.Designer.cs">
       <DependentUpon>201712261432177_userRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712271734397_SegPermisos.cs" />
+    <Compile Include="Migrations\201712271734397_SegPermisos.Designer.cs">
+      <DependentUpon>201712271734397_SegPermisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712261432177_userRole.resx">
       <DependentUpon>201712261432177_userRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712271734397_SegPermisos.resx">
+      <DependentUpon>201712271734397_SegPermisos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

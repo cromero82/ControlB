@@ -60,6 +60,7 @@
     <Compile Include="ApplicationRole.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="ApplicationUserRole.cs" />
+    <Compile Include="BL\SegPermisos.cs" />
     <Compile Include="BL\UserForGridView.cs" />
     <Compile Include="BL\UserGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
