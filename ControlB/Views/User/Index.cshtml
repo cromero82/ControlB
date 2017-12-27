@@ -1,4 +1,4 @@
-﻿@model List<Model.BL.UserForGridView>
+﻿@model List<Model.BL.UserGrid>
 @{
     ViewBag.Title = "Users";
 }
@@ -6,16 +6,23 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
             <th>Email</th>
-            <th>Roles</th>
+            <th>Rol</th>
+            <th>Accion</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var m in Model)
         {
-            <tr>
-                <td><a href="~/users/get/@m.Id">@m.Email</a></td>
-                <td>@string.Join(", ", m.Roles)</td>
+            <tr>                
+                <td>@m.Name</td>
+                <td>@m.LastName</td>
+                <td>@m.Email</td>
+                <td>@m.Role</td>
+                <td><a href="~/User/InsRolUsuario?userId=@m.Id">Administrar roles</a></td>
+                @*<td>@string.Join(", ", m.Roles)</td>*@
             </tr>
         }
     </tbody>

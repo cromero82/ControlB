@@ -67,8 +67,46 @@ namespace Services.Auth
 
         public Task addToRoleAsync(string id, string role)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.ApplicationUserRoles.Add(new ApplicationUserRole
+                    {
+                        UserId = id,
+                        RoleId = role
+                    });
+                    ctx.SaveChanges();
+                }
+                return Task.FromResult<IdentityResult>(new IdentityResult() { });
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult<IdentityResult>(new IdentityResult(ex.Message) { });
+
+            }
         }
+
+        // public override Task<IdentityResult> AddToRolesAsync(string userId, string roleId) {
+        //    try
+        //    {
+        //        using (var ctx = new ApplicationDbContext())
+        //        {
+        //            ctx.ApplicationUserRoles.Add(new ApplicationUserRole
+        //            {
+        //                UserId = userId,
+        //                RoleId = roleId
+        //            });
+        //            ctx.SaveChanges();
+        //        }
+        //        return Task.FromResult<IdentityResult>(new IdentityResult() { });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Task.FromResult<IdentityResult>(new IdentityResult(ex.Message) { });
+
+        //    }
+        //}
     }
 
 }

@@ -8,62 +8,32 @@ using Persistence.Extensiones;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Persistence;
 
 namespace Services
 {
 
     public class UserService
     {
-        //private static ILogger logger = LogManager.GetCurrentClassLogger();
-        private readonly IDbContextScopeFactory _dbContextScopeFactory;
-        private readonly IRepository<ApplicationUser> _applicationUserRepo;
-
-        public UserService(
-            IDbContextScopeFactory dbContextScopeFactory,
-            IRepository<ApplicationUser> applicationUserRepo
-        )
+        public IEnumerable<UserGrid> GetAll()
         {
-            _dbContextScopeFactory = dbContextScopeFactory;
-            _applicationUserRepo = applicationUserRepo;
-        }
-
-        public UserService()
-        {
-        }
-
-        public IEnumerable<UserForGridView> GetAll()
-        {
-            var result = new List<UserForGridView>();
+            var result = new List<UserGrid>();
 
             try
             {
-                using (var ctx = _dbContextScopeFactory.CreateReadOnly())
+                using (var ctx = new ApplicationDbContext())
                 {
-                    var abc = _applicationUserRepo.GetAll().ToList();
-
-                    var users = ctx.GetEntity<ApplicationUser>();
-                    var roles = ctx.GetEntity<ApplicationRole>();
-                    var usersPerRoles = ctx.GetEntity<ApplicationUserRole>();
-
-                    var queryUsersPerRoles = (
-                        from upr in usersPerRoles
-                        from r in roles.Where(x => x.Id == upr.RoleId)
-                        select new
-                        {
-                            upr.UserId,
-                            r.Name
-                        }
-                    ).AsQueryable();
-
                     result = (
-                        from u in users
-                        select new UserForGridView
+                        from au in ctx.ApplicationUsers
+                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == au.Id)
+                        from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
+                        select new UserGrid
                         {
-                            Id = u.Id,
-                            Email = u.Email,
-                            Roles = queryUsersPerRoles.Where(x =>
-                                x.UserId == u.Id
-                            ).Select(x => x.Name).ToList()
+                            Id = au.Id,
+                            Name = au.Name,
+                            LastName = au.LastName,
+                            Email = au.Email,
+                            Role = ar.Name                            
                         }
                     ).ToList();
                 }
@@ -77,11 +47,79 @@ namespace Services
             return result;
         }
 
-        public object Get(string id)
+        public ApplicationUser Get(string id)
         {
-            throw new NotImplementedException();
+            var user = new ApplicationUser();
+            try
+            {               
+                using (var ctx = new ApplicationDbContext())
+                {
+                    user = ctx.ApplicationUsers.Find(id);
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }                          
+            return user;
+            //throw new NotImplementedException();
         }
 
+
+        public List<GenericEntityList> GetAllUsers()
+        {
+            var result = new List<GenericEntityList>();
+
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    result = (
+                        from au in ctx.ApplicationUsers                       
+                        select new GenericEntityList
+                        {                            
+                            Id = au.Id,
+                            Nombres = String.Concat(au.Name ," ", au.LastName)
+                        }
+                    ).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                //logger.Error(e.Message);
+            }
+
+            return result;
+        }
+
+        public List<GenericEntityList> GetAllRoles()
+        {
+            var result = new List<GenericEntityList>();
+
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    result = (
+                        from au in ctx.ApplicationRoles.Where(x => x.Enabled)
+                        select new GenericEntityList
+                        {
+                            Id = au.Id,
+                            Nombres = au.Name
+                        }
+                    ).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                //logger.Error(e.Message);
+            }
+
+            return result;
+        }
 
         // Proviene de otro ejemplo proyecto
         //public Boolean isAdminUser()

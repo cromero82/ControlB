@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Logging;
 using Model;
+using Model.BL;
 using Services;
 using Services.Auth;
 using System;
@@ -12,8 +13,7 @@ using System.Web.Mvc;
 using WebGrease;
 
 namespace ControlB.Controllers
-{
-    [Authorize]
+{    
     public class UserController : Controller
     {
         public readonly UserService _userService = new UserService();
@@ -35,7 +35,7 @@ namespace ControlB.Controllers
             }
         }
 
-        //GET: User
+        [Authorize]
         public ActionResult Index()
         {
             return View(
@@ -52,17 +52,19 @@ namespace ControlB.Controllers
                 );
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddRoleToUser(string id, string role)
         {
-            var exists = await _userManager.IsInRoleAsync(id, role);
-            if (exists)
-            {
-                throw new Exception("Solo se puede tener un rol por usuario");
-            }
+            //var exists = await _userManager.IsInRoleAsync(id, role);
+            //if (exists)
+            //{
+            //    throw new Exception("Solo se puede tener un rol por usuario");
+            //}
             await _userManager.addToRoleAsync(id, role);
             return RedirectToAction("Index");
         }
 
+        //[Authorize(Roles = "Admin")]
         public async Task CreateRoles()
         {
             // Listado de roles genéricos
@@ -80,6 +82,16 @@ namespace ControlB.Controllers
                     await _roleManager.CreateAsync(r);
                 }               
             }
+        }
+
+        /// <summary>
+		/// Vista para inserta un nuevo rol
+		/// </summary>
+		/// <returns>Vista para insertar nuevo rol</returns>
+        [Authorize(Roles = "Admin")]
+        public ActionResult InsRol()
+        {
+            return View();
         }
 
         /// <summary>
@@ -113,7 +125,35 @@ namespace ControlB.Controllers
             }
         }
 
-        
+        /// <summary>
+		/// Inserta un nuevo rol
+		/// </summary>
+		/// <returns>Vista para insertar un rol a un usuario</returns>
+        //[Authorize(Roles = "Admin")]        
+        public ActionResult InsRolUsuario(string userId)
+        {
+            var user = new ApplicationUser();
+            user = _userService.Get(userId);
+            var model = new AsignacionRolGridVM
+            {
+                UserId = userId,
+                NombreUsuario = user.Name,
+                Roles = _userService.GetAllRoles()
+            };
+            return View(model);
+        }
 
+        /// <summary>
+		/// Inserta un nuevo rol
+		/// </summary>
+		/// <returns>Vista para insertar un rol a un usuario</returns>
+        //[Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> InsRolUsuario(AsignacionRolGridVM model)
+        {
+            await _userManager.addToRoleAsync(model.UserId, model.RolId);
+            return RedirectToAction("Index");
+        }
     }
 }
