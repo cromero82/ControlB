@@ -10,15 +10,19 @@ namespace Model.BL
         public string Email { get; set; }
         public string Role { get; set; }
         public List<string> Roles { get; set; }
-    }
-
-    
+    }    
 
     public class GenericEntityList
     {
-        public string Id { get; set; }
+        public string Id { get; set; }        
         public string Nombres { get; set; }
         public string Aux { get; set; }
+    }
+
+    public class DefaultModel
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
 
     public class AsignacionRolGridVM

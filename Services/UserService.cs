@@ -144,6 +144,55 @@ namespace Services
            
         }
 
+        public bool RolTienePermiso(string nombrePermiso, string userId)
+        {
+            var permiso = new DefaultModel();
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    permiso = (
+
+                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)
+                            //from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
+                        from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
+                        from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId && x.Sigla == nombrePermiso)
+                        select new DefaultModel
+                        {
+                            Id = sper.Id
+                        }
+                    )
+                    .FirstOrDefault()
+                    ;
+
+                    //permiso = (
+
+                    //    from aur in ctx.ApplicationUserRoles.Where(x =>  x.UserId == userId )
+                    //    //from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
+                    //    from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
+                    //    from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId && x.Nombre == nombrePermiso)
+                    //    select new SegPermisos
+                    //    {
+                    //        Id = sper.Id                           
+                    //    }
+                    //)
+                    //.FirstOrDefault()
+                    //;
+                    if (permiso != null)
+                        return true;
+                    else
+                        return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
+        }
+
         // Proviene de otro ejemplo proyecto
         //public Boolean isAdminUser()
         //{

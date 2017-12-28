@@ -30,8 +30,14 @@ namespace Common
                     return null;
                 }
                 var jUser = ((ClaimsIdentity)user.Identity).FindFirst(ClaimTypes.UserData).Value;
-                return JsonConvert.DeserializeObject<CurrentUser>(jUser);
+                var modelCurrentUser = JsonConvert.DeserializeObject<CurrentUser>(jUser);                                
+                return modelCurrentUser;
             }
+        }
+
+        private void init()
+        {
+
         }
     }
 }

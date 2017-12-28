@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Logging;
 using Model;
 using Model.BL;
@@ -101,21 +102,7 @@ namespace ControlB.Controllers
 		/// <returns>Vista para insertar nuevo rol</returns>
         [Authorize(Roles="Admin")]
 		public async Task  InsRol(ApplicationRole rol)
-        {
-            //if (User.Identity.IsAuthenticated)
-            //{
-
-
-            //    if (!isAdminUser())
-            //    {
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-
+        {            
             // Si es false, quiere decir que no existe el rol y se debe crear  
                       
             if (!await _roleManager.RoleExistsAsync(rol.Name))
@@ -131,10 +118,12 @@ namespace ControlB.Controllers
 		/// </summary>
 		/// <returns>Vista para insertar un rol a un usuario</returns>
         //[Authorize(Roles = "Admin")]  
-        [PermisoAttribute(Permiso ="Per2")]
+        //[PermisoAttribute(Permiso ="Per2")]
+        [HassPermission(Permiso = "Per1")]
         public ActionResult InsRolUsuario(string userId)
         {
             var user = new ApplicationUser();
+            //var x = User.Identity.GetUserId();
             user = _userService.Get(userId);
             var model = new AsignacionRolGridVM
             {
@@ -159,10 +148,18 @@ namespace ControlB.Controllers
         }
     }
 
-
     public class PermisoAttribute : ActionFilterAttribute
     {
+        
         public string Permiso { get; set; }
+        public string UserId
+        {
+            //get
+            //{
+            //    return User.Identity.GetUserId();
+            //}
+            get; set;
+        }
         public readonly UserService _userService = new UserService();       
 
         //public RolesPermisos Permiso { get; set; }
@@ -181,4 +178,7 @@ namespace ControlB.Controllers
             }
         }
     }
+
+
+    
 }
