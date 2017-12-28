@@ -10,8 +10,13 @@ namespace Persistence
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
-        public DbSet<SegPermisos> SegPermisos { get; set; }
         
+        //public DbSet<SegUsuarios> SegUsuarios { get; set; }
+        //public DbSet<SegRoles> SegRoles { get; set; }
+        //public DbSet<SegUsuariosRoles> SegUsuariosRoles { get; set; }        
+        public DbSet<SegPermisos> SegPermisos { get; set; }
+        public DbSet<SegRolesPermisos> SegRolesPermisos { get; set; }
+
         public ApplicationDbContext()
             : base("BdService")
         {
