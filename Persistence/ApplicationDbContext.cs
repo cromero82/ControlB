@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Model;
-using Model.BL;
+using Model.Auth;
 
 namespace Persistence
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Model.BL
+namespace Model.General
 {
     public class UserGrid
     {

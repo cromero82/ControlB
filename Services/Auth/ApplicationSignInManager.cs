@@ -2,6 +2,7 @@
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Model;
+using Model.Auth;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

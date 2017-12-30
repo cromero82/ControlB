@@ -2,15 +2,16 @@
 using Persistence.Interfaces;
 using System;
 using Model;
-using Model.BL;
+using Model.General;
 using System.Collections.Generic;
 using Persistence.Extensiones;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Persistence;
+using Model.Auth;
 
-namespace Services
+namespace Services.Common
 {
 
     public class UserService

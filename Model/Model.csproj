@@ -57,20 +57,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationRole.cs" />
-    <Compile Include="ApplicationUser.cs" />
-    <Compile Include="ApplicationUserRole.cs" />
-    <Compile Include="BL\SegPermisos.cs" />
-    <Compile Include="BL\SegRolesPermisos.cs" />
-    <Compile Include="BL\SegUsuarios.cs" />
-    <Compile Include="BL\UserForGridView.cs" />
-    <Compile Include="BL\UserGrid.cs" />
+    <Compile Include="Auth\ApplicationRole.cs" />
+    <Compile Include="Auth\ApplicationUser.cs" />
+    <Compile Include="Auth\ApplicationUserRole.cs" />
+    <Compile Include="Auth\SegPermisos.cs" />
+    <Compile Include="Auth\SegRolesPermisos.cs" />
+    <Compile Include="Auth\SegUsuarios.cs" />
+    <Compile Include="General\UserForGridView.cs" />
+    <Compile Include="General\UserGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

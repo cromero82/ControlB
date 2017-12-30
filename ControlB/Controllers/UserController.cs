@@ -2,9 +2,11 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Logging;
 using Model;
-using Model.BL;
+using Model.General;
+using Model.Auth;
 using Services;
 using Services.Auth;
+using Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,12 +3,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using ControlB.Models;
 using Services.Auth;
 using Persistence;
-using Model;
+using Model.Auth;
 
 namespace ControlB
 {

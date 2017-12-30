@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Services
+namespace Services.Common
 {
     
     /// <summary>

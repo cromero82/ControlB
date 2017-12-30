@@ -1,4 +1,4 @@
-﻿@model List<Model.BL.UserGrid>
+﻿@model List<Model.General.UserGrid>
 @{
     ViewBag.Title = "Users";
 }
@@ -22,10 +22,10 @@
                 <td>@m.Email</td>
                 <td>@m.Role</td>
                 <td>                
-                    @*@if (User.HasPermission("Per1"))
-                    {*@
+                    @if (User.HasPermission("Per1"))
+                    {
                         <a href="~/User/InsRolUsuario?userId=@m.Id">Administrar roles</a>
-                    @*}*@
+                    }
                     
                 </td>                
             </tr>

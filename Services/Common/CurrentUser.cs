@@ -4,9 +4,9 @@ using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Security.Principal;
-using Model.BL;
+using Model.General;
 
-namespace Services
+namespace Services.Common
 {
     /// <summary>
     /// Model de usuario

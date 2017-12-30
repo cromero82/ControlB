@@ -10,9 +10,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ControlB.Models;
 using Services.Auth;
-using Model;
+using Model.Auth;
 using Newtonsoft.Json;
 using Services;
+using Services.Common;
 
 namespace ControlB.Controllers
 {
