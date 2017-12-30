@@ -153,31 +153,15 @@ namespace Services
                 {
                     permiso = (
 
-                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)
-                            //from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
+                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)                            
                         from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
                         from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId && x.Sigla == nombrePermiso)
                         select new DefaultModel
                         {
                             Id = sper.Id
                         }
-                    )
-                    .FirstOrDefault()
-                    ;
-
-                    //permiso = (
-
-                    //    from aur in ctx.ApplicationUserRoles.Where(x =>  x.UserId == userId )
-                    //    //from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
-                    //    from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
-                    //    from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId && x.Nombre == nombrePermiso)
-                    //    select new SegPermisos
-                    //    {
-                    //        Id = sper.Id                           
-                    //    }
-                    //)
-                    //.FirstOrDefault()
-                    //;
+                    ).FirstOrDefault()
+                    ;                   
                     if (permiso != null)
                         return true;
                     else
@@ -191,6 +175,34 @@ namespace Services
                 return false;
             }
 
+        }
+
+        public List<DefaultModel> ListaPermisos( string userId)
+        {
+            var permiso = new List<DefaultModel>() { };
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    permiso = (
+                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)
+                        from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
+                        from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId)
+                        select new DefaultModel
+                        {
+                            Nombre = sper.Sigla
+                        }
+                    ).ToList()
+                    ;
+                    
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);                
+            }
+            return permiso;
         }
 
         // Proviene de otro ejemplo proyecto

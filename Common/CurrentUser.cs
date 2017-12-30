@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using System.Security.Principal;
+using Services;
 
-namespace Common
+namespace Services
 {
     public class CurrentUser
     {
@@ -17,27 +16,44 @@ namespace Common
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public static CurrentUser Get {
+        public static CurrentUser Get
+        {
             get
             {
-                var user = HttpContext.Current.User;
-                if(user == null)
+                // Si nunca se ha guardado la información del usuario, se solicita por primera vez
+                if(User.currentUser == null)
                 {
-                    return null;
-                }
-                else if (string.IsNullOrEmpty(user.Identity.GetUserId()))
-                {
-                    return null;
-                }
-                var jUser = ((ClaimsIdentity)user.Identity).FindFirst(ClaimTypes.UserData).Value;
-                var modelCurrentUser = JsonConvert.DeserializeObject<CurrentUser>(jUser);                                
-                return modelCurrentUser;
+                    var user = HttpContext.Current.User;
+                    if (user == null)
+                    {
+                        return null;
+                    }
+                    else if (string.IsNullOrEmpty(user.Identity.GetUserId()))
+                    {
+                        return null;
+                    }
+                    var jUser = ((ClaimsIdentity)user.Identity).FindFirst(ClaimTypes.UserData).Value;
+                    User.currentUser = JsonConvert.DeserializeObject<CurrentUser>(jUser);
+                }                
+                return User.currentUser;
             }
         }
-
-        private void init()
+        
+    }
+    public static class User
+    {
+        public static CurrentUser currentUser { get; set; }
+        public static List<String> permisos { get; set; }
+        public static bool HasPermission(this IPrincipal user, string permissionsString)
         {
-
+            // Si lista de permisos esta vacia, consulta la lista de permisos
+            if(permisos.Count == 0)
+            {
+                UserService _userService = new UserService();
+            }
+            
+            return true;
         }
     }
+    
 }

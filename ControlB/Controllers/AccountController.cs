@@ -11,8 +11,8 @@ using Microsoft.Owin.Security;
 using ControlB.Models;
 using Services.Auth;
 using Model;
-using Common;
 using Newtonsoft.Json;
+using Services;
 
 namespace ControlB.Controllers
 {
@@ -415,6 +415,7 @@ namespace ControlB.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            UserUtils.clear();
             return RedirectToAction("Index", "Home");
         }
 

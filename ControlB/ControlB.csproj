@@ -270,6 +270,7 @@
     <Content Include="Views\User\InsRol.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\InsRolUsuario.cshtml" />
+    <Content Include="Views\Home\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,10 +284,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{63de8abe-fb91-4732-84e4-b58c855b7a73}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{c29d0f5e-2080-4255-a540-5ed5750fc0ac}</Project>
       <Name>Model</Name>

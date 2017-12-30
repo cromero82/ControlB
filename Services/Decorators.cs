@@ -1,5 +1,4 @@
-﻿using Common;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -24,13 +23,14 @@ namespace Services
                 throw new HttpException(403, "Unauthorized 403");
             if (!_userService.RolTienePermiso(Permiso, CurrentUser.Get.UserId))
             {
-                //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
-                //{
-                //    controller = "Home",
-                //    action = "Index"
-                //}));
-                throw new HttpException(403, "Unauthorized 403");
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+                {
+                    controller = "Home",
+                    action = "Unauthorized"
+                }));                
             }
         }
+
+       
     }
 }

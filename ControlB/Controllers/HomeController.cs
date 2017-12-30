@@ -26,5 +26,12 @@ namespace ControlB.Controllers
 
             return View();
         }
+        public ActionResult Unauthorized()
+        {
+            ViewBag.Message = "Your Unauthorized page.";
+
+            return View();
+        }
+        
     }
 }

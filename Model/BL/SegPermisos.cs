@@ -14,12 +14,6 @@ namespace Model.BL
         public string Nombre { get; set; }
         public string Sigla { get; set; }
         public int Estado { get; set; }
-        public int Estregistro { get; set; }       
-        //// Foreign key 
-        //[Display(Name = "Category")]
-        //public int CategoryId { get; set; }
-
-        //[ForeignKey("Id")]
-        //public virtual ApplicationUser UserId { get; set; }
+        public int Estregistro { get; set; }              
     }
 }

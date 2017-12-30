@@ -6,7 +6,7 @@
     @if (Request.IsAuthenticated)
     {
         <h1>Hola</h1>
-        <p class="lead">Hola @Common.CurrentUser.Get.Name, Bienvenido </p>
+        <p class="lead">Hola @Services.CurrentUser.Get.Name, Bienvenido </p>
     }
     else
     {
