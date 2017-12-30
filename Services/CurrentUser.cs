@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Security.Principal;
-using Services;
-using Persistence;
 using Model.BL;
 
 namespace Services
 {
+    /// <summary>
+    /// Model de usuario
+    /// </summary>
     public class CurrentUser
     {
         public string UserId { get; set; }
@@ -18,13 +18,13 @@ namespace Services
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        /// <summary>
+        /// Funcion que obtiene información del usuario (campos básicos)
+        /// </summary>
         public static CurrentUser Get
-        {
+        {            
             get
-            {
-                // Si nunca se ha guardado la información del usuario, se solicita por primera vez
-                if(UserUtils.currentUser == null || UserUtils.currentUser.UserId == null)
-                {
+            {                 
                     var user = HttpContext.Current.User;
                     if (user == null)
                     {
@@ -35,29 +35,59 @@ namespace Services
                         return null;
                     }
                     var jUser = ((ClaimsIdentity)user.Identity).FindFirst(ClaimTypes.UserData).Value;
-                    session["permisos"] = JsonConvert.DeserializeObject<CurrentUser>(jUser);
-                }                
-                return UserUtils.currentUser;
+                    return  JsonConvert.DeserializeObject<CurrentUser>(jUser);
+               
             }
         }
         
     }
+
+    /// <summary>
+    /// Clase para obtener información del usuario y sus permisos
+    /// </summary>
     public static class UserUtils
     {
-        //public static CurrentUser currentUser { get; set; }
-        //public static List<DefaultModel> permisos { get; set; }
+        /// <summary>
+        /// Funcion que determina si la persona tiene un permiso (Funcion encabezado)
+        /// </summary>
+        /// <param name="user"> Iprincipal usuario actual</param>
+        /// <param name="permissionsString">Codigo del permiso</param>
+        /// <returns>valor booleano que determina si el usuario tiene permiso</returns>
         public static bool HasPermission(this IPrincipal user, string permissionsString)
+        {
+            return HasPermissionBody(permissionsString);
+        }
+
+        /// <summary>
+        /// Funcion que determina si la persona tiene un permiso (Funcion encabezado)
+        /// </summary>
+        /// <param name="user"> Iprincipal usuario actual</param>
+        /// <param name="permissionsString">Codigo del permiso</param>
+        /// <returns>valor booleano que determina si el usuario tiene permiso</returns>
+        public static bool HasPermission(string permissionsString)
+        {
+            return HasPermissionBody(permissionsString);
+        }
+
+        /// <summary>
+        /// Funcion que determina si el usuario tiene permiso (Funcion cuerpo)
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="permissionsString">Codigo del permiso</param>
+        /// <returns></returns>
+        private static  bool HasPermissionBody( string permissionsString)
         {
             // Obtiene permisos de cache
             var session = HttpContext.Current.Session;
-            var permissions = session["permisos"] as IDictionary<string, DefaultModel>;
 
-            // Valida la existencia del objeto
-            if (permissions == null)
+            // si no existe ningún permiso guardado, los consulta por primera vez
+            if (session["permisos"] == null)
             {
                 UserService _userService = new UserService();
-                session["permisos"] = _userService.ListaPermisos( currentUser.UserId);
+                session["permisos"] = _userService.ListaPermisos(CurrentUser.Get.UserId);
             }
+
+            var permissions = (List<DefaultModel>)session["permisos"];
 
             // Valida si tiene algun permiso asignado
             if (permissions.Count == 0)
@@ -65,49 +95,26 @@ namespace Services
                 return false;
             }
 
-            // Covierte permisos en lista
-            string[] permissionsList = permissionsString.Split(Convert.ToChar(","));
-
-            // Valida si tiene alguno de los permisos especificados
-            string permission;
-            for (int i = 0; i < permissionsList.Length; i++)
+            // verifica la lista de permisos con permiso específico a consultar
+            foreach (DefaultModel permiso in permissions)
             {
-                permission = permissionsList[i];
-                if (permissions.ContainsKey(permission))
+                if (permiso.Nombre == permissionsString)
                 {
                     return true;
                 }
             }
 
             return false;
-
-
-            //// Si lista de permisos esta vacia, consulta la lista de permisos
-            //if (permisos == null || permisos.Count ==0)
-            //{
-            //    UserService _userService = new UserService();
-            //    permisos = _userService.ListaPermisos( currentUser.UserId);
-            //}
-
-            //// Busca si el permiso esta en la lista
-            //foreach(DefaultModel permiso in permisos)
-            //{
-            //    if(permiso.Nombre == permissionsString)
-            //    {
-            //        return true;
-            //    }
-            //}
-            
-            //return false;
         }
 
+
+        /// <summary>
+        /// Limpia la lista de permisos del usuario
+        /// </summary>
         public static void clear()
         {
-            UserUtils.currentUser = new CurrentUser();
-            if(permisos != null)
-            {
-                permisos.Clear();
-            }
+            var session = HttpContext.Current.Session;
+            session["permisos"] = null;
         }
     }
     

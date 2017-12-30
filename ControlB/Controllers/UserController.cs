@@ -117,8 +117,7 @@ namespace ControlB.Controllers
 		/// Inserta un nuevo rol
 		/// </summary>
 		/// <returns>Vista para insertar un rol a un usuario</returns>
-        //[Authorize(Roles = "Admin")]  
-        //[PermisoAttribute(Permiso ="Per2")]
+        //[Authorize(Roles = "Admin")]          
         [HassPermission(Permiso = "Per1")]
         public ActionResult InsRolUsuario(string userId)
         {

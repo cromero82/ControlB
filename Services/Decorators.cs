@@ -21,8 +21,9 @@ namespace Services
             base.OnActionExecuting(filterContext);   
             if(CurrentUser.Get.UserId == "")
                 throw new HttpException(403, "Unauthorized 403");
-            if (!_userService.RolTienePermiso(Permiso, CurrentUser.Get.UserId))
+            if (!UserUtils.HasPermission(Permiso))            
             {
+                // aqui codigo de error
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {
                     controller = "Home",

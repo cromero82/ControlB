@@ -22,13 +22,12 @@
                 <td>@m.Email</td>
                 <td>@m.Role</td>
                 <td>                
-                    @if (User.HasPermission("Per1"))
-                    {
+                    @*@if (User.HasPermission("Per1"))
+                    {*@
                         <a href="~/User/InsRolUsuario?userId=@m.Id">Administrar roles</a>
-                    }
+                    @*}*@
                     
-                </td>
-                @*<td>@string.Join(", ", m.Roles)</td>*@
+                </td>                
             </tr>
         }
     </tbody>
