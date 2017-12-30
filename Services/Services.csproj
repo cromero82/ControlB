@@ -117,6 +117,7 @@
     <Compile Include="Auth\ApplicationRoleManager.cs" />
     <Compile Include="Auth\ApplicationSignInManager.cs" />
     <Compile Include="Auth\ApplicationUserManager.cs" />
+    <Compile Include="BL\InstitucionesBL.cs" />
     <Compile Include="Communications\Medios.cs" />
     <Compile Include="Common\CurrentUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

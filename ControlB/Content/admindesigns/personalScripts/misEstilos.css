@@ -1,0 +1,113 @@
+@media (min-width: 780px) {
+  .modal-xl {
+    width: 1024px;
+  }
+}
+
+@media (min-width: 980px) {
+  .modal-xxl {
+    width: 1280px;
+  }
+}
+
+.color_gradienteazul{
+    background: linear-gradient(to bottom right, #E9F2F2, #ffffff);
+}
+
+/**** Reescritura de estilos de plantilla ****/
+.map .pagination .btn { 
+  height: 20px;
+}
+.btn {
+  /*padding: 2px 12px;
+  line-height: 1.5;*/
+  border-radius: 2px;
+}
+
+/*.btnOriginal {
+  padding: 9px 12px;  
+  border-radius: 2px;
+}*/
+
+.pagination {
+  padding: 2px 12px;  
+  border-radius: 2px;
+}
+
+.m-2 {
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+/** Reubicación del boton de configuracion del tema **/
+#skin-toolbox {  
+  z-index: 9999;
+  top: 5px;
+  right: -230px;
+  width: 230px;  
+  padding-bottom: 0px;
+}
+
+#skin-toolbox .panel-heading {
+  width: 274px;
+  height: 40px;
+  right: 44px;
+}
+
+.sidebar-menu > li > ul > li > ul > li.active > a ,
+.sidebar-menu > li.active > a {  
+  color: gold;
+  border-top: 0;
+  background-color: #416079;
+  border-radius: 12px;
+  left: 8px;
+  box-shadow: none;
+}
+
+/** Color de los iconos en el span **/
+.sidebar-menu > li > ul > li > ul > li.active > a > span:nth-child(1),
+.sidebar-menu > li.active > a > span:nth-child(1) {
+    color: #70ca63;
+}
+
+/** Oculta la barra vertical del menu ***/
+.sidebar-menu > li > ul > li > ul > li.active > a:after {
+    background: transparent;
+}
+
+/** Evita que las tablas se salgan del modal (y de su contenedor en particular)***/
+.contenedor_tabla,
+.panel-body{
+  overflow-x: auto;
+}
+
+.alineacionVertical {
+  vertical-align: middle;
+}
+
+/**  Controlar alineación en form wizard*/
+
+
+.admin-form .field-label[class*='col-'] {
+  line-height: 0;
+}
+
+.btnBig {
+  padding: 10px 12px;
+  line-height: 1.5;
+  border-radius: 6px;
+}
+
+/**   Ajustes admin - wizard  **/
+
+.admin-form .panel-title {    
+    text-align: left;
+    font-weight: 300;
+    font-size: 14px; 
+    padding: 0;
+    margin: 0;    
+}
+
+.admin-form .panel-heading {
+  padding: 0px 8px;
+}

@@ -84,6 +84,10 @@
     <Compile Include="Migrations\201712280200254_PermisosRoles.Designer.cs">
       <DependentUpon>201712280200254_PermisosRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712301416286_InsitucionesBasic.cs" />
+    <Compile Include="Migrations\201712301416286_InsitucionesBasic.Designer.cs">
+      <DependentUpon>201712301416286_InsitucionesBasic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712280200254_PermisosRoles.resx">
       <DependentUpon>201712280200254_PermisosRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712301416286_InsitucionesBasic.resx">
+      <DependentUpon>201712301416286_InsitucionesBasic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

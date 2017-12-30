@@ -1,45 +1,239 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <title>Gestión de Servicios de taxi</title>
+    <meta name="keywords" content="Administración de solicitudes de servicio tipo taxi" />
+    <meta name="description" content="Gestión de carreras, monitor de servicios y administrador de vehículos tipo taxi">
+    <meta name="author" content="Carlos Romero - Analista de sistemas / Desarrollo de software">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+
+    
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/kendo/css")
+    @Styles.Render("~/Css/plantillaBasica")
+    
+    @Scripts.Render("~/bundles/jquery")
+    
+    @Scripts.Render("~/bundles/bootstrap")    
+      
+
+    @Scripts.Render("~/JS/plantillaBasica")    
+
+    @Scripts.Render("~/bundles/kendo/js")
+
+    
+    
+    <script src="~/Scripts/misJavascripts.js"></script>
+
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href='{% static "admindesigns/assets/img/favicon.ico" %}'>*@
+
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body class="tables-basic-page" data-spy="scroll" data-target="#nav-spy" data-offset="300">
+    @RenderPage("_ConfigTemaPlantilla.cshtml")
+    <!-- Start: Main -->
+    <div id="main">
+        @RenderPage("_HeaderPlantilla.cshtml")
+        <!-- Start: Sidebar -->
+        <aside id="sidebar_left" class="nano nano-primary">
+            <div class="nano-content">
+                <!-- Start: Sidebar Header -->
+                <header class="sidebar-header">
+                    <div class="user-menu">
+                        <div class="row text-center mbn">
+                            <div class="col-xs-4">
+                                <a href="dashboard.html" class="text-primary" data-toggle="tooltip" data-placement="top" title="Dashboard">
+                                    <span class="glyphicons glyphicons-home"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="pages_messages.html" class="text-info" data-toggle="tooltip" data-placement="top" title="Messages">
+                                    <span class="glyphicons glyphicons-inbox"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="pages_profile.html" class="text-alert" data-toggle="tooltip" data-placement="top" title="Tasks">
+                                    <span class="glyphicons glyphicons-bell"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="pages_timeline.html" class="text-system" data-toggle="tooltip" data-placement="top" title="Activity">
+                                    <span class="glyphicons glyphicons-imac"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="pages_profile.html" class="text-danger" data-toggle="tooltip" data-placement="top" title="Settings">
+                                    <span class="glyphicons glyphicons-settings"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="pages_gallery.html" class="text-warning" data-toggle="tooltip" data-placement="top" title="Cron Jobs">
+                                    <span class="glyphicons glyphicons-restart"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- End: Sidebar Header -->
+                @RenderPage("_SliderMenuIzq.cshtml")
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+        </aside>
+        <!-- Start: Content-Wrapper -->
+        <section id="content_wrapper">
+            <!-- Start: Topbar -->
+            <header id="topbar">
+                <div class="topbar-left">
+                    <ol class="breadcrumb">
+                        @RenderSection("BreadCrumb", false)
+                        @*BRADCRUMB-HERE*@
+                        @*{% block migaPan %}{% endblock %}*@
+                    </ol>
+                </div>
+                <div class="topbar-right">
+                    @RenderSection("BreadCrumbPanel", false)
+                    @*PANEL-MIGA-PAN-HERE*@
+                    @*{% block panelMigaPan %}{% endblock %}*@
+                </div>
+            </header>
+            <!-- Begin: Content -->
+            <section id="content" class="table-layout animated fadeIn">
+                @RenderBody()
+            </section>
+            <!-- End: Content -->
+        </section>
+    </div>
+    <!-- End: Main -->
+    <style>
+        /*demo styles*/
+
+        html,
+        body.admin-modals-page {
+            margin-right: 0 !important;
+        }
+
+        body {
+            min-height: 2000px;
+            overflow: visible;
+        }
+
+        .custom-nav-animation li {
+            display: none;
+        }
+
+            .custom-nav-animation li.animated {
+                display: block;
+            }
+        /* nav fixed settings */
+
+        ul.tray-nav.affix {
+            width: 319px;
+            top: 80px;
+        }
+
+
+        /*INICIO ESTILO NOTIFICACIONES KENDO*/
+        .demo-section p {
+            margin: 3px 0 20px;
+            line-height: 50px;
+        }
+
+        .demo-section .k-button {
+            width: 250px;
+        }
+
+        .k-notification {
+            border: 0;
+        }
+
+        inicio
+        /* Info template */
+        .k-notification-info.k-group {
+            background: rgba(0%,0%,0%,.7);
+            color: #fff;
+        }
+
+        .new-mail {
+            width: 300px;
+            height: 100px;
+        }
+
+            .new-mail h3 {
+                font-size: 1em;
+                padding: 32px 10px 5px;
+            }
+
+            .new-mail img {
+                float: left;
+                margin: 30px 15px 30px 30px;
+            }
+
+        /* Error template */
+        .k-notification-error.k-group {
+            background: rgba(100%,0%,0%,.7);
+            color: #ffffff;
+        }
+
+        .wrong-pass {
+            width: 300px;
+            height: 100px;
+        }
+
+            .wrong-pass h3 {
+                font-size: 1em;
+                padding: 32px 10px 5px;
+            }
+
+            .wrong-pass img {
+                float: left;
+                margin: 30px 15px 30px 30px;
+            }
+
+        /* Success template */
+        .k-notification-upload-success.k-group {
+            background: rgba(0%,60%,0%,.7);
+            color: #fff;
+        }
+
+        .upload-success {
+            width: 240px;
+            height: 100px;
+            padding: 0 30px;
+            line-height: 100px;
+        }
+
+            .upload-success h3 {
+                font-size: 1.7em;
+                font-weight: normal;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .upload-success img {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+
+        /*Fin estilos notificaciones kendo*/
+    </style>
+
+
+    <script src="~/Scripts/inicio.js"></script>
+    <!-- END: PAGE SCRIPTS -->
+    <!-- Admin Form Popup -->
+
+    <div id="myModal" class="modal fade" data-backdrop="static" data-keyboard="false">
+        <div id="modal-box" class="modal-dialog  modal-xl">
+            <div class="modal-content" id="modalContent">
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <a href="#" class="btn btn-success mb10 mr5 notification" data-note-style="success">Success</a>
 </body>
+
 </html>
+

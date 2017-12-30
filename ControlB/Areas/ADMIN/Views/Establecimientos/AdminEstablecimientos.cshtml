@@ -1,0 +1,135 @@
+﻿@using ControlB.Areas.ADMIN.Models
+@{
+    var pageName = ViewContext.RouteData.Values["controller"].ToString();
+    var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
+}
+@section BreadCrumb
+{
+    <li class="crumb-active">
+        <a href="dashboard.html">Dashboard</a>
+    </li>
+    <li class="crumb-icon">
+        <a href="dashboard.html">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </li>
+    <li class="crumb-link">
+        <a href="index.html">Datos básicos</a>
+    </li>
+    <li class="crumb-trail"> Establecimientos</li>
+}
+@section BreadCrumbPanel{}
+<!-- SubMenu Izquierda-->
+<!-- begin: .tray-left -->
+<aside class="tray tray-left tray240 va-t pn" data-tray-height="match">
+    <div class="animated-delay p20" data-animate='["300","fadeIn"]'>
+        <h4 class="mt5 mb20">
+            Administración de establecimientos - <span class="fs14 fw400 text-muted">
+                Vista consulta todos los establecimientos registrados en la plataforma.
+            </span>
+        </h4>
+
+        <ul class="fs14 list-unstyled list-spacing-10 mb10 pl5">
+            <li>
+                <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
+                <b> Información categoria :</b> Aqui puede mostrarse información de interes.
+            </li>
+        </ul>
+
+    </div>
+    <div id="nav-spy">
+        <ul class="nav tray-nav tray-nav-border custom-nav-animation affix-top" data-spy="affix" data-offset-top="240">
+            <li class="animated animated-short zoomIn active">
+                <a href="#p0">
+                    <span class="imoon imoon-user3"></span> Aquí enlaces
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+<!-- end: .tray-left -->
+<!-- FIN - SubMenu Izquierda-->
+<!-- begin: .tray-center -->
+<!--INICIO BODY REAL-->
+<div id="@viewName" class="tray tray-center p5 va-t posr">
+
+    <!-- Scripts base de la página -->
+    <script src="~/Areas/GEN/Scripts/personal/inicioPorPagina.js"></script>
+    <script src="~/Areas/GEN/Scripts/Establecimientos/AdminEstablecimientos.js"></script>
+
+    <!-- Template de botones -->
+    <script id="actionBotones" type="text/x-kendo-template">
+        <div class="text-center">
+            <a data-modal="modal-lg" href='@Url.Action("UpdEstablecimiento", "Establecimientos", new { Area = "GEN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a onclick="AdminEstablecimientos.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+        </div>
+    </script>
+
+    <div class="row" id="spy1">
+        <div class="col-md-12">
+
+            <div class="panel panel-visible" id="spy2">
+                <div class="panel-heading">
+                    <div class="panel-title hidden-xs">
+                        <span class="glyphicon glyphicon-tasks"></span>Establecimientos
+                        <div class="alineacionVertical pull-right">
+
+                            <a data-modal="modal-lg"
+                               href='@Url.Action("InsEstablecimiento", "Establecimientos", new { Area = "GEN" })?producto=5'
+                               class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body pn" id="divLista">
+                    @(Html.Kendo().Grid<EstablecimientosGridVM>()
+                            .Name("establecimientosGrid")
+                            .Columns(columns =>
+                            {
+                                columns.Bound(p => p.Nombre)
+                                    .Width(200)
+                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                                columns.Bound(p => p.Direccion)
+                                   .Width(150)
+                                   .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                                columns.Bound(p => p.Telefono)
+                                    .Width(120)
+                                    .Filterable(false);
+                                columns.Bound(p => p.Id)
+                                        .Title("Acción")
+                                        .Width(140)
+                                        .ClientTemplate("#=AdminEstablecimientos.actionBotones(data)#")
+                                        .Filterable(false);
+                            })
+
+                    .Pageable(p => p.Refresh(true).Messages(m => m.Display("Elementos mostrados {0}-{1}")))
+                        .Scrollable(s => s.Height("auto"))
+                        .NoRecords()
+                        .AutoBind(true)
+                        .Sortable(s => s.Enabled(true))
+                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .PageSize(10)
+                            .Read(read => read.Action("GetListEstablecimientos", "Establecimientos", new { Area = "GEN" })
+                            )
+                        .Events(e => e.Error("handleOnErrorModelState"))
+                        //.ServerOperation(true)
+                        ).Events(events => events.DataBound("handleAjaxModal"))
+
+                    )
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Inicialización script de vista -->
+    <script>
+            @(viewName).init();
+    </script>
+</div>
+
+<!--FIN BODY REAL-->
+<!-- end: .tray-center -->

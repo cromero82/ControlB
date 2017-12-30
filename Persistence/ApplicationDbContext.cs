@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Model;
 using Model.Auth;
+using Model.BL;
 
 namespace Persistence
 {
@@ -14,6 +15,8 @@ namespace Persistence
     
         public DbSet<SegPermisos> SegPermisos { get; set; }
         public DbSet<SegRolesPermisos> SegRolesPermisos { get; set; }
+
+        public DbSet<Instituciones> Instituciones { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")
