@@ -68,7 +68,7 @@ namespace Services.BL
         ///// </summary>
         ///// <param name="model"> Datos del modelo de establecimiento</param>
         ///// <returns> Resultado de la transacción </returns>
-        public Jresult UpdEstablecimiento(Instituciones model)
+        public Jresult UpdInstitucion(Instituciones model)
         {
             var jresult = new Jresult();
             try
@@ -91,7 +91,7 @@ namespace Services.BL
         /// </summary>
         /// <param name="id">id del establecimiento </param>
         /// <returns> Resultado de la transaccion </returns>
-        public Jresult GetEstablecimiento(long id)
+        public Jresult GetInstitucion(long id)
         {
             var jresult = new Jresult();
             try
@@ -125,7 +125,7 @@ namespace Services.BL
 
                 // Salida success
                 jresult.Success = true;
-                jresult.Message = "Institucion eliminado satisfactoriamente.";
+                jresult.Message = "Institucion eliminada satisfactoriamente.";
             }
             catch (Exception ex)
             {

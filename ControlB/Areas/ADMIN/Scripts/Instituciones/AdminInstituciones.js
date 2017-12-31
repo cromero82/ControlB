@@ -1,4 +1,4 @@
-﻿var AdminEstablecimientos = function () {
+﻿var AdminInstituciones = function () {
     "use strict"
     return {
         // ---------------------------------
@@ -15,7 +15,7 @@
         },
 
         handleTemplates: function () {
-            AdminEstablecimientos.actionBotones = kendo.template($('#actionBotones').html());
+            AdminInstituciones.actionBotones = kendo.template($('#actionBotones').html());
         },
 
         // pregunta al usuario la eliminacion del registro
@@ -40,7 +40,7 @@
         eliminar: function (id, nombre) {
             $.ajax({
                 method: "POST",
-                url: "/ADMIN/Establecimientos/DelEstablecimiento",
+                url: "/ADMIN/Instituciones/DelInstitucion",
                 data: {
                     id: id
                     //__RequestVerificationToken: getCookie("__RequestVerificationToken") //window.RequestVerificationToken
@@ -48,8 +48,8 @@
             }).done(function (result) {
                 if (result.Success) {
                     alerta("Resultado de la operación", result.Message, "success");
-                    $('#establecimientosGrid').data('kendoGrid').dataSource.read();
-                    $('#establecimientosGrid').data('kendoGrid').refresh();
+                    $('#institucionesGrid').data('kendoGrid').dataSource.read();
+                    $('#institucionesGrid').data('kendoGrid').refresh();
 
                 } else {
                     alerta("Resultado de la operación", result.Message, "error")

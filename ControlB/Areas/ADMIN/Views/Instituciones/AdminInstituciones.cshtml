@@ -16,7 +16,7 @@
     <li class="crumb-link">
         <a href="index.html">Datos básicos</a>
     </li>
-    <li class="crumb-trail"> Establecimientos</li>
+    <li class="crumb-trail"> Instituciones</li>
 }
 @section BreadCrumbPanel{}
 <!-- SubMenu Izquierda-->
@@ -24,8 +24,8 @@
 <aside class="tray tray-left tray240 va-t pn" data-tray-height="match">
     <div class="animated-delay p20" data-animate='["300","fadeIn"]'>
         <h4 class="mt5 mb20">
-            Administración de establecimientos - <span class="fs14 fw400 text-muted">
-                Vista consulta todos los establecimientos registrados en la plataforma.
+            Administración de instituciones - <span class="fs14 fw400 text-muted">
+                Vista consulta todos los instituciones registrados en la plataforma.
             </span>
         </h4>
 
@@ -53,15 +53,15 @@
 <!--INICIO BODY REAL-->
 <div id="@viewName" class="tray tray-center p5 va-t posr">
 
-    <!-- Scripts base de la página -->
-    <script src="~/Areas/GEN/Scripts/personal/inicioPorPagina.js"></script>
-    <script src="~/Areas/GEN/Scripts/Establecimientos/AdminEstablecimientos.js"></script>
+    <!-- Scripts base de la página -->    
+    <script src="~/Scripts/personal/inicioPorPagina.js"></script>
+    <script src="~/Areas/ADMIN/Scripts/Instituciones/AdminInstituciones.js"></script>
 
     <!-- Template de botones -->
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
-            <a data-modal="modal-lg" href='@Url.Action("UpdEstablecimiento", "Establecimientos", new { Area = "GEN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
-            <a onclick="AdminEstablecimientos.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+            <a data-modal="modal-lg" href='@Url.Action("UpdInstitucion", "Instituciones", new { Area = "ADMIN" })' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a onclick="AdminInstituciones.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
 
@@ -71,11 +71,11 @@
             <div class="panel panel-visible" id="spy2">
                 <div class="panel-heading">
                     <div class="panel-title hidden-xs">
-                        <span class="glyphicon glyphicon-tasks"></span>Establecimientos
+                        <span class="glyphicon glyphicon-tasks"></span>Instituciones educativas
                         <div class="alineacionVertical pull-right">
 
                             <a data-modal="modal-lg"
-                               href='@Url.Action("InsEstablecimiento", "Establecimientos", new { Area = "GEN" })?producto=5'
+                               href='@Url.Action("InsInstitucion", "Instituciones", new { Area = "ADMIN" })?producto=5'
                                class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
 
                         </div>
@@ -83,8 +83,8 @@
                 </div>
 
                 <div class="panel-body pn" id="divLista">
-                    @(Html.Kendo().Grid<EstablecimientosGridVM>()
-                            .Name("establecimientosGrid")
+                    @(Html.Kendo().Grid<InstitucionesGridVM>()
+                            .Name("institucionesGrid")
                             .Columns(columns =>
                             {
                                 columns.Bound(p => p.Nombre)
@@ -99,7 +99,7 @@
                                 columns.Bound(p => p.Id)
                                         .Title("Acción")
                                         .Width(140)
-                                        .ClientTemplate("#=AdminEstablecimientos.actionBotones(data)#")
+                                        .ClientTemplate("#=AdminInstituciones.actionBotones(data)#")
                                         .Filterable(false);
                             })
 
@@ -112,7 +112,7 @@
                         .DataSource(dataSource => dataSource
                             .Ajax()
                             .PageSize(10)
-                            .Read(read => read.Action("GetListEstablecimientos", "Establecimientos", new { Area = "GEN" })
+                            .Read(read => read.Action("GetListInstituciones", "Instituciones", new { Area = "ADMIN" })
                             )
                         .Events(e => e.Error("handleOnErrorModelState"))
                         //.ServerOperation(true)
