@@ -5,6 +5,7 @@ using Kendo.Mvc.Extensions;
 using Services.BL;
 using Model.General;
 using Model.BL;
+using ControlB.Areas.ADMIN.Models;
 
 namespace ControlB.Areas.ADMIN.Controllers
 {
@@ -32,7 +33,9 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando establecimientos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            //return Json(jresult.Result.ToDataSourceResult(request));
+
+            //return Json(((IQueryable<InstitucionesGridVM>)jresult.Result).ToDataSourceResult(request));
+            //return Json(new DataSourceResult { Data = jresult.Result });            
             return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
         }
 

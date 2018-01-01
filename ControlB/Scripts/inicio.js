@@ -70,6 +70,8 @@ function handleAjaxModal() {
 
 }
 
+// agrega cultura español - Colombia
+kendo.culture("es-CO");
 
         jQuery(document).ready(function () {
 

@@ -52,6 +52,7 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Instituciones.ToList();
+                //var listaDatos = db.Instituciones;
                 jresult.Result = listaDatos;
                 jresult.Success = true;
             }

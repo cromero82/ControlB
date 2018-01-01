@@ -98,14 +98,15 @@
                                     .Filterable(false);
                                 columns.Bound(p => p.Id)
                                         .Title("Acción")
-                                        .Width(140)
+                                        .Width(160)
                                         .ClientTemplate("#=AdminInstituciones.actionBotones(data)#")
                                         .Filterable(false);
                             })
 
-                    .Pageable(p => p.Refresh(true).Messages(m => m.Display("Elementos mostrados {0}-{1}")))
-                        .Scrollable(s => s.Height("auto"))
-                        .NoRecords()
+                        .Pageable(p => p.Refresh(true).PageSizes(true)
+                        .Messages(m => m.ItemsPerPage("items por página"))
+                        )                      
+                        .Scrollable(s => s.Height("auto"))                        
                         .AutoBind(true)
                         .Sortable(s => s.Enabled(true))
                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
@@ -115,7 +116,7 @@
                             .Read(read => read.Action("GetListInstituciones", "Instituciones", new { Area = "ADMIN" })
                             )
                         .Events(e => e.Error("handleOnErrorModelState"))
-                        //.ServerOperation(true)
+                        .ServerOperation(false)
                         ).Events(events => events.DataBound("handleAjaxModal"))
 
                     )

@@ -54,8 +54,12 @@ namespace ControlB
             bundles.Add(new ScriptBundle("~/bundles/kendo/js").Include(
                       "~/Scripts/kendo/2016.1.112/kendo.custom.2016-06-23-0247.min.js",
                       "~/Scripts/kendo/2016.1.112/kendo.aspnetmvc.min.js",
-                      "~/Scripts/kendo/2016.1.112/cultures/kendo.culture.es.modified.min.js",
+
+                      //"~/Scripts/kendo/2016.1.112/cultures/kendo.culture.es.modified.min.js",
+                      "~/Scripts/kendo/2016.1.112/cultures/kendo.culture.es-CO.min.js",
+                      "~/Scripts/kendo/2016.1.112/messages/kendo.messages.es-ES.min.js",
                       "~/Scripts/kendo/2016.1.112/messages/kendo.messages.es-ES.modified.min.js",
+                      
                       "~/Scripts/kendo.modernizr.custom.js",
 
                        "~/Scripts/kendo/2016.1.112/kendo.drawing.min.js",
