@@ -3,13 +3,13 @@
 <ul class="nav sidebar-menu">
     <li class="sidebar-label pt20">Administración general</li>
     <li>
-        <a class="accordion-toggle" href="#">
+        <a class="accordion-toggle AdminInstituciones" href="#">
             <span class="imoon imoon-users"></span>
             <span class="sidebar-title">Establecimientos</span>
             <span class="caret"></span>
         </a>
         <ul class="nav sub-nav">            
-            <li>
+            <li class="AdminInstituciones">
                 <a  href="@Url.Action("AdminInstituciones", "Instituciones", new {Area = "ADMIN"})">
                     <span class="glyphicons glyphicons-home"></span> Instituciones
                 </a>                
@@ -25,7 +25,7 @@
         </a>
         <ul class="nav sub-nav">
             <li>
-                <a class="active" href="@Url.Action("AdminAlcancias", "Alcancia", new {Area = "GEN"})" id="AdminAlcancias">
+                <a class="active" href="@Url.Action("AdminAlcancias", "Alcancia", new {Area = "GEN"})" >
                     <span class="glyphicons glyphicons-table"></span> Registro
                 </a>
             </li>
