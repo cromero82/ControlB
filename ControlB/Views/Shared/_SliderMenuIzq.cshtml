@@ -1,22 +1,30 @@
 ﻿<!-- sidebar menu -->
 
 <ul class="nav sidebar-menu">
-    <li class="sidebar-label pt20">Administración general</li>
-    <li>
-        <a class="accordion-toggle" href="#">
-            <span class="imoon imoon-users"></span>
-            <span class="sidebar-title">Establecimientos</span>
-            <span class="caret"></span>
-        </a>
-        <ul class="nav sub-nav">            
-            <li class="AdminInstituciones">
-                <a  href="@Url.Action("AdminInstituciones", "Instituciones", new {Area = "ADMIN"})">
-                    <span class="glyphicons glyphicons-home"></span> Instituciones
-                </a>                
-            </li>           
+@if (Request.IsAuthenticated)
 
-        </ul>
-    </li>
+{
+    if (User.IsInRole("Admin"))
+    {
+        <li class="sidebar-label pt20">Administración general</li>
+        <li>
+            <a class="accordion-toggle AdminInstituciones" href="#">
+                <span class="imoon imoon-users"></span>
+                <span class="sidebar-title">Establecimientos</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li >
+                    <a href="@Url.Action("AdminInstituciones", "Instituciones", new {Area = "ADMIN"})">
+                        <span class="glyphicons glyphicons-home"></span> Instituciones
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+    }
+}   
+    <li class="sidebar-label pt20">Otras</li> 
     <li>
         <a class="accordion-toggle" href="#">
             <span class="imoon imoon-users"></span>

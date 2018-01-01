@@ -40,4 +40,5 @@ function init() {
     }
     // --   add clase menu-open al ultimo menu ( o todos los menus secundarios) que asocien cada acción  
     $('.sidebar-menu').find('.' + accion).addClass('menu-open')
+    $('.sidebar-menu').find('.' + accion).addClass('active')
 }

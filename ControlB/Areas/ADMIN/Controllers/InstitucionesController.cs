@@ -12,6 +12,7 @@ namespace ControlB.Areas.ADMIN.Controllers
     public class InstitucionesController : Controller
     {
         // GET: ADMIN/Institucioness
+        [Authorize(Roles = "Admin")]
         public ActionResult AdminInstituciones()
         {
             return View();
