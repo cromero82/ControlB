@@ -42,7 +42,7 @@
 /** Reubicación del boton de configuracion del tema **/
 #skin-toolbox {  
   z-index: 9999;
-  top: 5px;
+  top: 60px;
   right: -230px;
   width: 230px;  
   padding-bottom: 0px;
