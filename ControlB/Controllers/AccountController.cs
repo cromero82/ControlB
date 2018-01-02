@@ -101,7 +101,8 @@ namespace ControlB.Controllers
                         Name = user.Name,
                         LastName = user.LastName,
                         UserId = user.Id,
-                        UserName = user.UserName
+                        UserName = user.UserName,
+                        ShortName = user.ShortName
                     });
 
                     // Agrego el claim con userData
@@ -427,7 +428,7 @@ namespace ControlB.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             UserUtils.clear();
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("LoginBasic", "Account", new { Area = "" });
         }
 
         //
@@ -484,7 +485,7 @@ namespace ControlB.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

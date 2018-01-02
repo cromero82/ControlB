@@ -121,7 +121,7 @@
                 <span>
                     @if (Request.IsAuthenticated)
                     {
-                        @Utils.PrimerLetra(CurrentUser.Get.Name)  @Utils.PrimerLetra(CurrentUser.Get.LastName)
+                        @CurrentUser.Get.ShortName
                     }                  
                 </span>
                 <span class="caret caret-tp hidden-xs"></span>
@@ -171,7 +171,7 @@
 
                    @if (Request.IsAuthenticated)
                    {
-                    <a href='@Url.Action("LogOff", "Account")' class="fw600 p12 animated animated-short fadeInDown">
+                    <a href='@Url.Action("LogOff", "Account",new { Area = ""})' class="fw600 p12 animated animated-short fadeInDown">
                         <span class="fa fa-power-off pr5"></span> Salir
                     </a>
                     @*@(Html.BeginForm("LogOff", "Account",    FormMethod.Post, new { id = "LogOffForm" }))

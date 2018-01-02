@@ -5,6 +5,8 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Security.Principal;
 using Model.General;
+using System.Threading;
+using System.Linq;
 
 namespace Services.Common
 {
@@ -16,8 +18,14 @@ namespace Services.Common
         public string UserId { get; set; }
         public string UserName { get; set; }
         public string Name { get; set; }
-        public string LastName { get; set; }
+        public string LastName { get; set; }        
         public string Email { get; set; }
+
+
+        /// <summary>
+        /// Nombre que corresponde al primer nombre y primer apellido
+        /// </summary>
+        public string ShortName { get; set; }
         /// <summary>
         /// Funcion que obtiene información del usuario (campos básicos)
         /// </summary>
@@ -33,9 +41,18 @@ namespace Services.Common
                     else if (string.IsNullOrEmpty(user.Identity.GetUserId()))
                     {
                         return null;
-                    }
-                    var jUser = ((ClaimsIdentity)user.Identity).FindFirst(ClaimTypes.UserData).Value;
-                    return  JsonConvert.DeserializeObject<CurrentUser>(jUser);
+                    }      
+                // Obtiene los claims del usuario actual              
+                var claimsUser = ((ClaimsIdentity)user.Identity);
+
+                // Obtiene la posicion del ultimo claim registrado
+                var posUltimo = claimsUser.Claims.Where(c => c.Type == ClaimTypes.UserData).Select(c => c.Value).Count() - 1;
+
+                // Obtiene ese ultimo clain
+                var jUser2 = claimsUser.Claims.Where(c => c.Type == ClaimTypes.UserData).Select(c => c.Value).ElementAt(posUltimo);
+
+                // Retorna el objeto serializado a CurrentUser con informacion del usuario
+                return  JsonConvert.DeserializeObject<CurrentUser>(jUser2);
                
             }
         }

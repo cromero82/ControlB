@@ -10,7 +10,25 @@ namespace ControlB.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }else
+            {
+                return RedirectToAction("LoginBasic", "Account", new { Area = "" });
+            }            
+        }
+
+        public ActionResult Dashboard()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LoginBasic", "Account", new { Area = "" });
+            }
         }
 
         public ActionResult About()
