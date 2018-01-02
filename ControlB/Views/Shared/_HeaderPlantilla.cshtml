@@ -118,7 +118,12 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
                 <img src="~/Content/admindesigns/assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64 mr15">
-                <span>cromero</span>
+                <span>
+                    @if (Request.IsAuthenticated)
+                    {
+                        @Utils.PrimerLetra(CurrentUser.Get.Name)  @Utils.PrimerLetra(CurrentUser.Get.LastName)
+                    }                  
+                </span>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>
             <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
@@ -163,9 +168,23 @@
                     </a>
                 </li>
                 <li class="br-t of-h">
-                    <a href="/cerrar" class="fw600 p12 animated animated-short fadeInDown">
+
+                   @if (Request.IsAuthenticated)
+                   {
+                    <a href='@Url.Action("LogOff", "Account")' class="fw600 p12 animated animated-short fadeInDown">
                         <span class="fa fa-power-off pr5"></span> Salir
                     </a>
+                    @*@(Html.BeginForm("LogOff", "Account",    FormMethod.Post, new { id = "LogOffForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="@Url.Action("LogOff", "Account")"
+                           onclick="$('#LogOffForm').submit();">Logout</a>
+                    }*@
+                   }
+
+                    @*<a href="/cerrar" class="fw600 p12 animated animated-short fadeInDown">
+                        <span class="fa fa-power-off pr5"></span> Salir
+                    </a>*@
                 </li>
             </ul>
         </li>

@@ -1,0 +1,87 @@
+﻿@using ControlB.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "ControlC - Iniciar sesión";
+}
+
+
+<div class="row mb15 table-layout">
+    <div class="col-xs-6 va-m pln">
+        <a href="dashboard.html" title="Return to Dashboard">
+
+            <!--<img src="assets/img/logos/logo-controlC4.png" title="AdminDesigns Logo" class="img-responsive w250">-->
+            <img src="~/Content/admindesigns/assets/img/logos/logo-controlC3.png" title="AdminDesigns Logo" class="img-responsive w250">
+        </a>
+    </div>
+    <div class="col-xs-6 text-right va-b pr5">
+        <div class="login-links">
+            <!--<a href="pages_login.html" class="active" title="Ingrese">Ingresar</a>
+            <span class="text-white"> | </span>-->
+            <a href="pages_register.html" class="" title="Registrese y conozca nuestro sistema">Registrese</a>
+        </div>
+    </div>
+</div>
+<div class="panel panel-info mt10 br-n">
+   
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new {  role = "form" }))
+            {
+        @Html.AntiForgeryToken()
+
+        <div class="panel-body bg-light p30">
+            <div class="row">
+                <div class="col-sm-7 pr30">
+                    <div class="section">
+                        <label for="username" class="field-label text-muted fs18 mb10">Nombre de usuario / Correo electrónico</label>
+                        <label for="username" class="field prepend-icon">
+                            @*<input type="text" name="username" id="username" class="gui-input" placeholder="Enter username">*@
+                            @Html.TextBoxFor(m => m.Email, new { @class = "gui-input", placeholder = "Enter username" })
+
+                            <label for="username" class="field-icon">
+                                <i class="fa fa-user"></i>
+                            </label>
+                        </label>
+                    </div>
+
+                    <div class="section">
+                        <label for="username" class="field-label text-muted fs18 mb10">Contraseña</label>
+                        <label for="password" class="field prepend-icon">
+                            @*<input type="password" name="password" id="password" class="gui-input" placeholder="Enter password">*@
+                            @Html.TextBoxFor(m => m.Password, new { @class = "gui-input", placeholder = "Enter username" })
+                            <label for="password" class="field-icon">
+                                <i class="fa fa-lock"></i>
+                            </label>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col-sm-5 br-l br-grey pl30">
+                    <h3 class="mb25"> Gestión escolar en línea:</h3>
+                    <p class="mb15">
+                        <span class="fa fa-check text-success pr5"></span> Sistema académico sobre decreto 1290
+                    </p>
+                    <p class="mb15">
+                        <span class="fa fa-check text-success pr5"></span> Módulo financiero
+                    </p>
+                    <p class="mb15">
+                        <span class="fa fa-check text-success pr5"></span> Mensajería masiva
+                    </p>
+                    <p class="mb15">
+                        <span class="fa fa-check text-success pr5"></span> Seguimiento personalizado
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer clearfix p10 ph15">            
+            <button type="submit" class="button btn-primary mr10 pull-right">Iniciar sesión</button>
+            @*<label class="switch block switch-primary pull-left input-align mt10">*@
+                
+
+                @*<input type="checkbox" name="RememberMe" id="RememberMe" checked>
+                @Html.CheckBoxFor(m => m.RememberMe, new { @checked = true })
+                <label for="remember" data-on="SI" data-off="NO"></label>
+                <span>Recordar contraseña</span>
+            </label>*@
+        </div>             
+    }    
+</div>

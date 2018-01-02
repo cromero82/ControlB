@@ -3084,6 +3084,9 @@
     <Content Include="Views\Shared\_ConfigTemaPlantilla.cshtml" />
     <Content Include="Views\Shared\_HeaderPlantilla.cshtml" />
     <Content Include="Views\Shared\_SliderMenuIzq.cshtml" />
+    <Content Include="Views\Shared\_LayoutUnregistered.cshtml" />
+    <Content Include="Views\Account\LoginBasic.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
