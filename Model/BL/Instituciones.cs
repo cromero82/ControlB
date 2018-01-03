@@ -25,7 +25,9 @@ namespace Model.BL
         [Required]
         public string Telefono { get; set; }
 
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaFundacion { get; set; }
+
         public int Estregistro { get; set; }
         public Instituciones()
         {

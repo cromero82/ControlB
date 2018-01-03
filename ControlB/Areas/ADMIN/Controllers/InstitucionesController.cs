@@ -83,6 +83,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// </summary>
         /// <param name="id"> id del establecimiento</param>
         /// <returns>Vista con datos del establecimiento</returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult UpdInstitucion(long id)
         {
             // Acceso a la capa de negocio
@@ -91,7 +92,7 @@ namespace ControlB.Areas.ADMIN.Controllers
 
             if (jresult.Success == false)
             {
-                ModelState.AddModelError("Error", "Error consultando vehículos: " + jresult.Message);
+                ModelState.AddModelError("Error", "Error consultando institución: " + jresult.Message);
                 return PartialView(new Instituciones());
             }
 
@@ -107,7 +108,8 @@ namespace ControlB.Areas.ADMIN.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         //public ActionResult UpdConductor(Conductores model)
-        public ActionResult UpdInstitucion([Bind(Include = "Id, Nombres,Telefono,Correo, Contrasena")] Instituciones model)
+        public ActionResult UpdInstitucion(
+            [Bind(Include = " Id, Nombre, Direccion, Telefono,Correo, FechaFundacion, Rector, CodigoDane")]Instituciones model)
         {
             // Inicializaciones
             var jresult = new Jresult();

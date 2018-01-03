@@ -173,18 +173,8 @@
                    {
                     <a href='@Url.Action("LogOff", "Account",new { Area = ""})' class="fw600 p12 animated animated-short fadeInDown">
                         <span class="fa fa-power-off pr5"></span> Salir
-                    </a>
-                    @*@(Html.BeginForm("LogOff", "Account",    FormMethod.Post, new { id = "LogOffForm" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <a href="@Url.Action("LogOff", "Account")"
-                           onclick="$('#LogOffForm').submit();">Logout</a>
-                    }*@
-                   }
-
-                    @*<a href="/cerrar" class="fw600 p12 animated animated-short fadeInDown">
-                        <span class="fa fa-power-off pr5"></span> Salir
-                    </a>*@
+                    </a>                  
+                   }                    
                 </li>
             </ul>
         </li>

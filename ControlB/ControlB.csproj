@@ -216,6 +216,7 @@
   <ItemGroup>
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
+    <Content Include="Areas\ADMIN\Scripts\Instituciones\UpdInstitucion.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\css\admin-forms.css" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\additional-methods.min.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\advanced\steps\jquery.steps.js" />
@@ -2329,6 +2330,7 @@
     <Content Include="Content\admindesigns\vendor\plugins\slick\fonts\slick.eot" />
     <Content Include="Content\admindesigns\vendor\plugins\slick\fonts\slick.ttf" />
     <Content Include="Content\admindesigns\vendor\plugins\slick\fonts\slick.woff" />
+    <Content Include="Areas\ADMIN\Views\Instituciones\UpdInstitucion.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
