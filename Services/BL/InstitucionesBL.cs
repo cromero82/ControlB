@@ -51,8 +51,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Instituciones.ToList();
-                //var listaDatos = db.Instituciones;
+                var listaDatos = db.Instituciones.Where(x => x.Estado == 1).ToList();                
                 jresult.Result = listaDatos;
                 jresult.Success = true;
             }
@@ -115,13 +114,17 @@ namespace Services.BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Resultado de la transacción </returns>
-        public Jresult DelInstitucion(long id)
+        public Jresult DelInstitucion(int id)
         {
             var jresult = new Jresult();
             try
             {
-                Instituciones registro = db.Instituciones.Find(id);
-                db.Instituciones.Remove(registro);
+                var entity = db.Instituciones.SingleOrDefault(b => b.Id == id);
+                if (entity != null)
+                {
+                    entity.Estado = 0;
+                    db.SaveChanges();
+                }                                                
                 db.SaveChanges();
 
                 // Salida success

@@ -24,7 +24,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="request"> Filtros en cliente </param>
         /// <returns>lista de datos</returns>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult GetListInstituciones([DataSourceRequest]DataSourceRequest request)
         {
             var institucionesBL = new InstitucionesBL();
@@ -137,13 +137,13 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="model"></param>
         /// <returns> Resultado de la transacción </returns>
         [HttpPost]
-        public ActionResult DelInstitucion(long id)
+        [Authorize(Roles = "Admin")]
+        public ActionResult DelInstitucion(int id)
         {
             // Inicializaciones
             var jresult = new Jresult();
 
-            // Acceso a la capa de negocio
-
+            // Acceso a la capa de negocio            
             var entityBL = new InstitucionesBL();
             jresult = entityBL.DelInstitucion(id);
 

@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201801020538593_nombreCorto.Designer.cs">
       <DependentUpon>201801020538593_nombreCorto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801031520161_AddEstadoInstituciones.cs" />
+    <Compile Include="Migrations\201801031520161_AddEstadoInstituciones.Designer.cs">
+      <DependentUpon>201801031520161_AddEstadoInstituciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801020538593_nombreCorto.resx">
       <DependentUpon>201801020538593_nombreCorto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801031520161_AddEstadoInstituciones.resx">
+      <DependentUpon>201801031520161_AddEstadoInstituciones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
