@@ -15,6 +15,7 @@ namespace Model.BL
         public string Codigo { get; set; }
 
         [Required]
+        [Display(Name ="Número de orden")]
         public int Numero { get; set; }
 
         [Required]

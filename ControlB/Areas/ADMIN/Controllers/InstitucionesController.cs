@@ -44,6 +44,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// Vista de registro de establecimiento
         /// </summary>
         /// <returns> Vista </returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult InsInstitucion()
         {
             return PartialView(new Instituciones());
