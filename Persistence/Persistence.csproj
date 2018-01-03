@@ -96,6 +96,14 @@
     <Compile Include="Migrations\201801031520161_AddEstadoInstituciones.Designer.cs">
       <DependentUpon>201801031520161_AddEstadoInstituciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801031740211_Tniveles1.cs" />
+    <Compile Include="Migrations\201801031740211_Tniveles1.Designer.cs">
+      <DependentUpon>201801031740211_Tniveles1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801031757418_AddNumeroTniveles.cs" />
+    <Compile Include="Migrations\201801031757418_AddNumeroTniveles.Designer.cs">
+      <DependentUpon>201801031757418_AddNumeroTniveles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801031520161_AddEstadoInstituciones.resx">
       <DependentUpon>201801031520161_AddEstadoInstituciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801031740211_Tniveles1.resx">
+      <DependentUpon>201801031740211_Tniveles1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801031757418_AddNumeroTniveles.resx">
+      <DependentUpon>201801031757418_AddNumeroTniveles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

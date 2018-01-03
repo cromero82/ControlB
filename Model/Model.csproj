@@ -64,6 +64,7 @@
     <Compile Include="Auth\SegRolesPermisos.cs" />
     <Compile Include="Auth\SegUsuarios.cs" />
     <Compile Include="BL\Instituciones.cs" />
+    <Compile Include="BL\Tniveles.cs" />
     <Compile Include="General\Jresult.cs" />
     <Compile Include="General\UserForGridView.cs" />
     <Compile Include="General\UserGrid.cs" />

@@ -17,6 +17,7 @@ namespace Persistence
         public DbSet<SegRolesPermisos> SegRolesPermisos { get; set; }
 
         public DbSet<Instituciones> Instituciones { get; set; }
+        public DbSet<Tniveles> Tniveles { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")

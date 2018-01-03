@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -217,6 +218,7 @@
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\UpdInstitucion.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tniveles\Index.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\css\admin-forms.css" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\additional-methods.min.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\advanced\steps\jquery.steps.js" />
@@ -1875,7 +1877,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\ADMIN\Views\web.config" />
+    <Content Include="Areas\ADMIN\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\ADMIN\Views\_ViewStart.cshtml" />
     <Content Include="Areas\ADMIN\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\ADMIN\Views\Instituciones\AdminInstituciones.cshtml" />
@@ -2331,6 +2335,7 @@
     <Content Include="Content\admindesigns\vendor\plugins\slick\fonts\slick.ttf" />
     <Content Include="Content\admindesigns\vendor\plugins\slick\fonts\slick.woff" />
     <Content Include="Areas\ADMIN\Views\Instituciones\UpdInstitucion.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tniveles\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
