@@ -55,9 +55,7 @@
                     alerta("Resultado de la operación", result.Message, "error")
                 }
             });
-        },
-
-
+        }
     }
 
 }();

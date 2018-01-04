@@ -227,6 +227,7 @@
     <Content Include="Areas\ADMIN\Scripts\Tjornadas\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tjornadas\InsTjornada.js" />
     <Content Include="Areas\ADMIN\Scripts\Tjornadas\UpdTjornada.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tlistas\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\InsTnivel.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\UpdTnivel.js" />
@@ -2355,6 +2356,7 @@
     <Content Include="Areas\ADMIN\Views\Tjornadas\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tjornadas\InsTjornada.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tjornadas\UpdTjornada.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tlistas\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3116,7 +3118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ADMIN\Views\Tlistas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

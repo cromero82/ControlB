@@ -9,7 +9,7 @@
         <li class="sidebar-label pt20">Administración general</li>
         <li>
             <a class="accordion-toggle AdminInstituciones" href="#">
-                <span class="imoon imoon-users"></span>
+                <span class="imoon imoon-home"></span>
                 <span class="sidebar-title">Establecimientos</span>
                 <span class="caret"></span>
             </a>
@@ -26,56 +26,37 @@
 
         <li class="sidebar-label pt20">Parámetros generales</li>
         <li>
-            <a class="accordion-toggle Tniveles Tgrados Tjornadas" href="#">
-                <span class="imoon imoon-users"></span>
+            <a class="accordion-toggle Tniveles Tgrados Tjornadas Tlistas" href="#">
+                <span class="glyphicons glyphicons-cogwheel"></span>
                 <span class="sidebar-title">Configuración educativa</span>
                 <span class="caret"></span>
             </a>
             <ul class="nav sub-nav">
                 <li>
                     <a href="@Url.Action("Index", "Tniveles", new {Area = "ADMIN"})">
-                        <span class="glyphicons glyphicons-home"></span> Niveles académicos
+                        <span class="glyphicons glyphicons-show_lines"></span> Niveles académicos
                     </a>
                 </li>
                 <li>
                     <a href="@Url.Action("Index", "Tgrados", new {Area = "ADMIN"})">
-                        <span class="glyphicons glyphicons-home"></span> Grados
+                        <span class="glyphicons glyphicons-show_thumbnails_with_lines"></span> Grados
                     </a>
                 </li>
                 <li>
                     <a href="@Url.Action("Index", "Tjornadas", new {Area = "ADMIN"})">
-                        <span class="glyphicons glyphicons-home"></span> Jornadas
+                        <span class="glyphicons glyphicons-sun"></span> Jornadas
                     </a>
                 </li>
-
+                <li>
+                    <a href="@Url.Action("Index", "Tlistas", new {Area = "ADMIN"})">
+                        <span class="glyphicons glyphicons-google_maps"></span> Departamentos
+                    </a>
+                </li>
             </ul>
 
         </li>
     }
-}   
-    <li class="sidebar-label pt20">Otras</li> 
-    <li>
-        <a class="accordion-toggle" href="#">
-            <span class="imoon imoon-users"></span>
-            <span class="sidebar-title">Mi Alcancia</span>
-            <span class="caret"></span>
-        </a>
-        <ul class="nav sub-nav">
-            <li>
-                <a class="active" href="@Url.Action("AdminAlcancias", "Alcancia", new {Area = "GEN"})" >
-                    <span class="glyphicons glyphicons-table"></span> Registro
-                </a>
-            </li>
-            <li>
-                <a class="active" href="@Url.Action("Dashboard", "Alcancia", new {Area = "GEN"})">
-                    <span class="glyphicons glyphicons-table"></span> Dashboard
-                </a>
-            </li>
-
-        </ul>
-    </li>
-
- 
+}    
 
 </ul>
 <div class="sidebar-toggle-mini">

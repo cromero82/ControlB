@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201801041615587_Tespecialidades_Tcaracter.Designer.cs">
       <DependentUpon>201801041615587_Tespecialidades_Tcaracter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801042209265_departamentosNew3.cs" />
+    <Compile Include="Migrations\201801042209265_departamentosNew3.Designer.cs">
+      <DependentUpon>201801042209265_departamentosNew3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801041615587_Tespecialidades_Tcaracter.resx">
       <DependentUpon>201801041615587_Tespecialidades_Tcaracter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801042209265_departamentosNew3.resx">
+      <DependentUpon>201801042209265_departamentosNew3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -22,6 +22,7 @@ namespace Persistence
         public DbSet<Tjornadas> Tjornadas { get; set; }
         public DbSet<Tespecialidades> Tespecialidades { get; set; }
         public DbSet<Tcaracter> Tcaracter { get; set; }
+        public DbSet<Tdepartamentos> Tdepartamentos { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")
@@ -32,7 +33,7 @@ namespace Persistence
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>();
-            modelBuilder.Entity<ApplicationRole>();
+            modelBuilder.Entity<ApplicationRole>();           
         }
 
         public static ApplicationDbContext Create()

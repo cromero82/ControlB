@@ -63,7 +63,9 @@
     <Compile Include="Auth\SegPermisos.cs" />
     <Compile Include="Auth\SegRolesPermisos.cs" />
     <Compile Include="Auth\SegUsuarios.cs" />
+    <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
     <Compile Include="BL\Instituciones.cs" />
+    <Compile Include="BL\Tdepartamentos.cs" />
     <Compile Include="BL\Tespecialidades.cs" />
     <Compile Include="BL\Tcaracter.cs" />
     <Compile Include="BL\Tgrados.cs" />
