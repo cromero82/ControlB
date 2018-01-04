@@ -1,6 +1,7 @@
 ﻿using Model.BL;
 using Model.General;
 using Persistence;
+using Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -51,8 +52,24 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Tgrados.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
+                //var listaDatos = db.Tgrados.Where(x => x.Estado == 1).ToList();
+                BindGateway dataResult = new BindGateway();
+                var listaDatos = (
+                        from tn in db.Tniveles
+                        from tg in db.Tgrados.Where(x => x.NivelId == tn.Id)
+                        select new
+                        {
+                            Id = tg.Id,
+                            Nombre = tg.Nombre,
+                            Numero = tg.Numero,
+                            Codigo = tg.Codigo,
+                            NivelAcademico = tn.Nombre
+                        }
+                    );
+                dataResult.Data = listaDatos.ToList();
+                dataResult.Count = listaDatos.ToList().Count();
+                    //.ToList();
+                jresult.Result = dataResult;
                 jresult.Success = true;
             }
             catch (Exception ex)

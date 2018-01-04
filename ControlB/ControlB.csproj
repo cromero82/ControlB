@@ -202,6 +202,7 @@
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TgradosController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
+    <Compile Include="Areas\ADMIN\Models\GradosGridVM.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

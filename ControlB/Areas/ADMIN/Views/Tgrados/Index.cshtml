@@ -87,10 +87,13 @@
                             .Name("tgradosGrid")
                             .Columns(columns =>
                             {
-                                columns.Bound(p => p.NivelId)
+                                columns.Bound(p => p.NivelAcademico)
                                     .Width(120)
                                     .Filterable(false);
                                 columns.Bound(p => p.Nombre)
+                                    .Width(120)
+                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                                columns.Bound(p => p.Numero)
                                     .Width(120)
                                     .Filterable(false);
                                 columns.Bound(p => p.Codigo)

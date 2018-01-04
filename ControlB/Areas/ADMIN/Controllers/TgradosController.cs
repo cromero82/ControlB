@@ -36,7 +36,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando grados: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Result.Data, Total = jresult.Result.Count });
         }
 
         /// <summary>

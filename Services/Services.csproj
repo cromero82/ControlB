@@ -120,6 +120,7 @@
     <Compile Include="BL\InstitucionesBL.cs" />
     <Compile Include="BL\TgradosBL.cs" />
     <Compile Include="BL\TnivelesBL.cs" />
+    <Compile Include="Common\BindGateway.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Communications\Medios.cs" />
     <Compile Include="Common\CurrentUser.cs" />
