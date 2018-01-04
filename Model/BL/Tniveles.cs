@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model.BL
 {
     public class Tniveles
-    {
+    {        
         public int Id { get; set; }
 
         [Required]

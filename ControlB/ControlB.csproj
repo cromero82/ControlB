@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\TgradosController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -218,6 +219,9 @@
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\UpdInstitucion.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tgrados\Index.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tgrados\InsTgrado.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tgrados\UpdTgrado.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\InsTnivel.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\UpdTnivel.js" />
@@ -2340,6 +2344,9 @@
     <Content Include="Areas\ADMIN\Views\Tniveles\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tniveles\UpdTnivel.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tniveles\InsTnivel.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tgrados\Index.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tgrados\InsTgrado.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tgrados\UpdTgrado.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
