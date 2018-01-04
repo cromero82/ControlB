@@ -20,6 +20,8 @@ namespace Persistence
         public DbSet<Tniveles> Tniveles { get; set; }
         public DbSet<Tgrados> Tgrados { get; set; }
         public DbSet<Tjornadas> Tjornadas { get; set; }
+        public DbSet<Tespecialidades> Tespecialidades { get; set; }
+        public DbSet<Tcaracter> Tcaracter { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")

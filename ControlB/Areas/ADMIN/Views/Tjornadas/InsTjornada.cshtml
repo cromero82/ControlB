@@ -29,7 +29,7 @@
                 @Html.LabelFor(m => m.Numero)
                 @Html.Kendo().NumericTextBoxFor(m => m.Numero).HtmlAttributes(new { @style = "width: 100%", autocomplete = "off", @class = "texto-detalle", @placeholder = "Posición" }).Format("#").Min(1).Max(10)
                 @Html.ValidationMessageFor(m => m.Numero)
-            </div>     
+            </div>                       
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Nombre)
