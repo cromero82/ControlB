@@ -116,6 +116,10 @@
     <Compile Include="Migrations\201801032359352_TgradoAddNumero.Designer.cs">
       <DependentUpon>201801032359352_TgradoAddNumero.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801040319542_Tjornadas.cs" />
+    <Compile Include="Migrations\201801040319542_Tjornadas.Designer.cs">
+      <DependentUpon>201801040319542_Tjornadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801032359352_TgradoAddNumero.resx">
       <DependentUpon>201801032359352_TgradoAddNumero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801040319542_Tjornadas.resx">
+      <DependentUpon>201801040319542_Tjornadas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

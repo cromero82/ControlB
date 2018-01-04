@@ -65,6 +65,7 @@
     <Compile Include="Auth\SegUsuarios.cs" />
     <Compile Include="BL\Instituciones.cs" />
     <Compile Include="BL\Tgrados.cs" />
+    <Compile Include="BL\Tjornadas.cs" />
     <Compile Include="BL\Tniveles.cs" />
     <Compile Include="General\Jresult.cs" />
     <Compile Include="General\UserForGridView.cs" />

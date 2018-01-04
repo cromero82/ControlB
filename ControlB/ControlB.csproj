@@ -200,9 +200,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\TjornadasController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TgradosController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\TlistasController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
-    <Compile Include="Areas\ADMIN\Models\GradosGridVM.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -223,6 +224,9 @@
     <Content Include="Areas\ADMIN\Scripts\Tgrados\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tgrados\InsTgrado.js" />
     <Content Include="Areas\ADMIN\Scripts\Tgrados\UpdTgrado.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tjornadas\Index.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tjornadas\InsTjornada.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tjornadas\UpdTjornada.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\InsTnivel.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\UpdTnivel.js" />
@@ -2348,6 +2352,9 @@
     <Content Include="Areas\ADMIN\Views\Tgrados\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tgrados\InsTgrado.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tgrados\UpdTgrado.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tjornadas\Index.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tjornadas\InsTjornada.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tjornadas\UpdTjornada.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3109,6 +3116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\ADMIN\Views\Tlistas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,4 +1,4 @@
-﻿@using ControlB.Areas.ADMIN.Models
+﻿@using Model.BL
 @{
     var pageName = ViewContext.RouteData.Values["controller"].ToString();
     var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
@@ -16,7 +16,7 @@
     <li class="crumb-link">
         <a href="index.html">Datos básicos</a>
     </li>
-    <li class="crumb-trail"> Instituciones</li>
+    <li class="crumb-trail">Tipos de jornadas</li>
 }
 @section BreadCrumbPanel{}
 <!-- SubMenu Izquierda-->
@@ -24,8 +24,8 @@
 <aside class="tray tray-left tray240 va-t pn" data-tray-height="match">
     <div class="animated-delay p20" data-animate='["300","fadeIn"]'>
         <h4 class="mt5 mb20">
-            Administración de instituciones - <span class="fs14 fw400 text-muted">
-                Vista consulta todos los instituciones registrados en la plataforma.
+            Administración de tipos de jornadas  - <span class="fs14 fw400 text-muted">
+                Vista consulta todos los tipos de jornadas registrados en la plataforma.
             </span>
         </h4>
 
@@ -55,13 +55,13 @@
 
     <!-- Scripts base de la página -->    
     <script src="~/Scripts/personal/inicioPorPagina.js"></script>
-    <script src="~/Areas/ADMIN/Scripts/Instituciones/AdminInstituciones.js"></script>
+    <script src="~/Areas/ADMIN/Scripts/Tjornadas/Index.js"></script>
 
     <!-- Template de botones -->
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
-            <a data-modal="modal-lg" href='@Url.Action("UpdInstitucion", "Instituciones", new { Area = "ADMIN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
-            <a onclick="AdminInstituciones.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+            <a data-modal="modal-lg" href='@Url.Action("UpdTjornada", "Tjornadas", new { Area = "ADMIN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a onclick="Index.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
 
@@ -71,11 +71,11 @@
             <div class="panel panel-visible" id="spy2">
                 <div class="panel-heading">
                     <div class="panel-title hidden-xs">
-                        <span class="glyphicon glyphicon-tasks"></span>Instituciones educativas
+                        <span class="glyphicon glyphicon-tasks"></span>Tipos de jornadas
                         <div class="alineacionVertical pull-right">
 
                             <a data-modal="modal-lg"
-                               href='@Url.Action("InsInstitucion", "Instituciones", new { Area = "ADMIN" })'
+                               href='@Url.Action("InsTjornada", "Tjornadas", new { Area = "ADMIN" })'
                                class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
 
                         </div>
@@ -83,37 +83,34 @@
                 </div>
 
                 <div class="panel-body pn" id="divLista">
-                    @(Html.Kendo().Grid<InstitucionesGridVM>()
-                            .Name("institucionesGrid")
+                    @(Html.Kendo().Grid<Tjornadas>()
+                            .Name("tjornadasGrid")
                             .Columns(columns =>
                             {
                                 columns.Bound(p => p.Nombre)
-                                    .Width(200)
-                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
-                                columns.Bound(p => p.Direccion)
-                                   .Width(150)
-                                   .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
-                                columns.Bound(p => p.Telefono)
+                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")))
                                     .Width(120)
                                     .Filterable(false);
+                                columns.Bound(p => p.Numero)
+                                   .Width(200);
                                 columns.Bound(p => p.Id)
                                         .Title("Acción")
                                         .Width(160)
-                                        .ClientTemplate("#=AdminInstituciones.actionBotones(data)#")
+                                        .ClientTemplate("#=Index.actionBotones(data)#")
                                         .Filterable(false);
                             })
 
                         .Pageable(p => p.Refresh(true).PageSizes(true)
                         .Messages(m => m.ItemsPerPage("items por página"))
-                        )                      
-                        .Scrollable(s => s.Height("auto"))                        
+                        )
+                        .Scrollable(s => s.Height("auto"))
                         .AutoBind(true)
                         .Sortable(s => s.Enabled(true))
                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
                         .DataSource(dataSource => dataSource
                             .Ajax()
                             .PageSize(10)
-                            .Read(read => read.Action("GetListInstituciones", "Instituciones", new { Area = "ADMIN" })
+                            .Read(read => read.Action("GetListTjornadas", "Tjornadas", new { Area = "ADMIN" })
                             )
                         .Events(e => e.Error("handleOnErrorModelState"))
                         .ServerOperation(false)

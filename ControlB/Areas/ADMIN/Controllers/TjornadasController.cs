@@ -11,14 +11,14 @@ using System.Web.Mvc;
 
 namespace ControlB.Areas.ADMIN.Controllers
 {
-    public class TgradosController : Controller
+    public class TjornadasController : Controller
     {
-        // GET: ADMIN/Tgrados
+        // GET: ADMIN/Jornadas
         public ActionResult Index()
         {
             return View();
         }
-        
+
         /// <summary>
         /// Obtiene una lista de grados para presentarla en un grid
         /// </summary>
@@ -26,16 +26,16 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult GetListTgrados([DataSourceRequest]DataSourceRequest request)
+        public ActionResult GetListTjornadas([DataSourceRequest]DataSourceRequest request)
         {
-            var institucionesBL = new TgradosBL();
-            var jresult = institucionesBL.GetListTgrados();
+            var institucionesBL = new TjornadasBL();
+            var jresult = institucionesBL.GetListTjornadas();
             if (jresult.Success == false)
             {
                 ModelState.AddModelError("Error", "Error consultando grados: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result.Data, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// </summary>
         /// <returns> Vista </returns>
         [Authorize(Roles = "Admin")]
-        public ActionResult InsTgrado()
+        public ActionResult InsTjornada()
         {
-            return PartialView(new Tgrados());
+            return PartialView(new Tjornadas());
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult InsTgrado(
-           [Bind(Include = "NivelId, Codigo, Nombre, Numero, Estado")]Tgrados model)
+        public ActionResult InsTjornada(
+           [Bind(Include = "Nombre, Numero")]Tjornadas model)
         {
             // Inicializaciones
             var jresult = new Jresult();
@@ -69,8 +69,8 @@ namespace ControlB.Areas.ADMIN.Controllers
             }
 
             // Acceso a la capa de negocio
-            var entityBL = new TgradosBL();
-            jresult = entityBL.InsTgrado(model);
+            var entityBL = new TjornadasBL();
+            jresult = entityBL.InsTjornada(model);
 
             // Salida success
             return Json(jresult);
@@ -82,16 +82,16 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="id"> id del establecimiento</param>
         /// <returns>Vista con datos del establecimiento</returns>
         [Authorize(Roles = "Admin")]
-        public ActionResult UpdTgrado(long id)
+        public ActionResult UpdTjornada(long id)
         {
             // Acceso a la capa de negocio
-            var entityBL = new TgradosBL();
-            var jresult = entityBL.GetTgrado(id);
+            var entityBL = new TjornadasBL();
+            var jresult = entityBL.GetTjornada(id);
 
             if (jresult.Success == false)
             {
                 ModelState.AddModelError("Error", "Error consultando institución: " + jresult.Message);
-                return PartialView(new Tgrados());
+                return PartialView(new Tjornadas());
             }
 
             // Retorna vista parcial con model         
@@ -106,8 +106,8 @@ namespace ControlB.Areas.ADMIN.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         //public ActionResult UpdConductor(Conductores model)
-        public ActionResult UpdTgrado(
-            [Bind(Include = "Id,  NivelId, Codigo, Nombre, Numero, Estado")]Tgrados model)
+        public ActionResult UpdTjornada(
+            [Bind(Include = "Id,  Nombre, Numero")]Tjornadas model)
         {
             // Inicializaciones
             var jresult = new Jresult();
@@ -121,8 +121,8 @@ namespace ControlB.Areas.ADMIN.Controllers
 
             // Acceso a la capa de negocio
 
-            var entityBL = new TgradosBL();
-            jresult = entityBL.UpdTgrado(model);
+            var entityBL = new TjornadasBL();
+            jresult = entityBL.UpdTjornada(model);
 
             // Salida success
             jresult.Success = true;
@@ -136,14 +136,14 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns> Resultado de la transacción </returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult DelTgrado(int id)
+        public ActionResult DelTjornada(int id)
         {
             // Inicializaciones
             var jresult = new Jresult();
 
             // Acceso a la capa de negocio            
-            var entityBL = new TgradosBL();
-            jresult = entityBL.DelTgrado(id);
+            var entityBL = new TjornadasBL();
+            jresult = entityBL.DelTjornada(id);
 
             // Salida           
             return Json(jresult);
