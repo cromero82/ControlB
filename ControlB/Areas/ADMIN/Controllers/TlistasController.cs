@@ -247,7 +247,45 @@ namespace ControlB.Areas.ADMIN.Controllers
         public ActionResult GetListTsisben([DataSourceRequest]DataSourceRequest request)
         {
             var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListEstratosSociales();
+            var jresult = listaBl.GetListSisben();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+        }
+
+        /// <summary>
+        /// Obtiene una lista de tipos de discapacidades de personas
+        /// </summary>
+        /// <param name="request"> Filtros en cliente </param>
+        /// <returns>lista de datos</returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult GetListTdiscapacidades([DataSourceRequest]DataSourceRequest request)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListTiposDiscapacidades();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+        }
+
+        /// <summary>
+        /// Obtiene una lista de tipos de capacidades excepcionales de personas
+        /// </summary>
+        /// <param name="request"> Filtros en cliente </param>
+        /// <returns>lista de datos</returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult GetListTcapacidadesExcepcionales([DataSourceRequest]DataSourceRequest request)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListTiposCapacidadesExcep();
             if (jresult.Success == false)
             {
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);

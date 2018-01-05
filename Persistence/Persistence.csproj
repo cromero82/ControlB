@@ -168,6 +168,14 @@
     <Compile Include="Migrations\201801051803439_tPoblacionVictConflicto.Designer.cs">
       <DependentUpon>201801051803439_tPoblacionVictConflicto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051813120_tDiscapacidades.cs" />
+    <Compile Include="Migrations\201801051813120_tDiscapacidades.Designer.cs">
+      <DependentUpon>201801051813120_tDiscapacidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051824238_tCapacidadesExcepcionales.cs" />
+    <Compile Include="Migrations\201801051824238_tCapacidadesExcepcionales.Designer.cs">
+      <DependentUpon>201801051824238_tCapacidadesExcepcionales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -259,6 +267,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801051803439_tPoblacionVictConflicto.resx">
       <DependentUpon>201801051803439_tPoblacionVictConflicto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051813120_tDiscapacidades.resx">
+      <DependentUpon>201801051813120_tDiscapacidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051824238_tCapacidadesExcepcionales.resx">
+      <DependentUpon>201801051824238_tCapacidadesExcepcionales.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

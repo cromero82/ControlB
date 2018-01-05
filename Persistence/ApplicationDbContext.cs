@@ -30,7 +30,8 @@ namespace Persistence
         public DbSet<Testratos> Testratos { get; set; }
         public DbSet<Tsisben> Tsisben { get; set; }
         public DbSet<TpVictimaConflicto> TpVictimaConflicto { get; set; }
-        
+        public DbSet<Tdiscapacidades> Tdiscapacidades { get; set; }
+        public DbSet<TcapExcepcionales> TcapExcepcionales { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")

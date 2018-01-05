@@ -315,5 +315,47 @@ namespace Services.BL
             }
             return jresult;
         }
+
+        /// <summary>
+        /// Obtiene lista de tipos de discapacidades de personas
+        /// </summary>        
+        /// <returns> lista de datos</returns>
+        public Jresult GetListTiposDiscapacidades()
+        {
+            var jresult = new Jresult();
+            try
+            {
+                var listaDatos = db.Tdiscapacidades.Where(x => x.Estado == 1).ToList();
+                jresult.Result = listaDatos;
+                jresult.Success = true;
+            }
+            catch (Exception ex)
+            {
+                jresult.Message = ex.Message;
+                Console.WriteLine(ex.Message);
+            }
+            return jresult;
+        }
+
+        /// <summary>
+        /// Obtiene lista de tipos de discapacidades de personas
+        /// </summary>        
+        /// <returns> lista de datos</returns>
+        public Jresult GetListTiposCapacidadesExcep()
+        {
+            var jresult = new Jresult();
+            try
+            {
+                var listaDatos = db.TcapExcepcionales.Where(x => x.Estado == 1).ToList();
+                jresult.Result = listaDatos;
+                jresult.Success = true;
+            }
+            catch (Exception ex)
+            {
+                jresult.Message = ex.Message;
+                Console.WriteLine(ex.Message);
+            }
+            return jresult;
+        }
     }
 }
