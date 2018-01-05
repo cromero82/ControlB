@@ -9,37 +9,35 @@ using System.Threading.Tasks;
 
 namespace Model.BL
 {
-    public class GenSedes
+    public class GenNivelesAprobados
     {
+        [Key]
         public int Id { get; set; }
-        public string CodigoDaneSede { get; set; }
-
-        [Required]
-        [Index("UQ_sede", IsUnique = true)]
-        [MaxLength(200)]
-        public string NombreSede { get; set; }
 
         /// <summary>
         /// Definicion FK (GenInstituciones) nombre en el model actual
-        /// </summary>
+        /// </summary>         
+        [Index("Ix_InstitucionId", 1, IsUnique = true)]
         public int InstitucionId { get; set; }
 
         /// <summary>
         /// Definicion FK InstitucionId foránea al model (GenInstituciones)
-        /// </summary>
+        /// </summary>        
         [ForeignKey("InstitucionId")]
         public virtual GenInstituciones GenInstituciones { get; set; }
 
-        public string RectorResponsable { get; set; }
 
-        [Required]
-        public string Direccion { get; set; }
+        /// <summary>
+        /// Definicion FK (Tniveles) nombre en el model actual
+        /// </summary>        
+        [Index("Ix_NivelId", 2, IsUnique = true)]
+        public int NivelId { get; set; }
 
-        [Required]
-        public string Correo { get; set; }
-
-        [Required]
-        public string Telefono { get; set; }        
+        /// <summary>
+        /// Definicion FK InstitucionId foránea al model (Tniveles)
+        /// </summary>
+        [ForeignKey("NivelId")]
+        public virtual Tniveles Niveles { get; set; }
 
         /// <summary>
         /// Estado del registro
@@ -51,7 +49,7 @@ namespace Model.BL
         /// </summary>
         public int Estregistro { get; set; } = 1;
 
-        public GenSedes()
+        public GenNivelesAprobados()
         {
             Estregistro = 1;           
         }

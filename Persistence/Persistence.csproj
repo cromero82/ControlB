@@ -192,6 +192,14 @@
     <Compile Include="Migrations\201801052139071_GenInstituciones.Designer.cs">
       <DependentUpon>201801052139071_GenInstituciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801052147511_GenSedes.cs" />
+    <Compile Include="Migrations\201801052147511_GenSedes.Designer.cs">
+      <DependentUpon>201801052147511_GenSedes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801052228108_NivelesAprobados.cs" />
+    <Compile Include="Migrations\201801052228108_NivelesAprobados.Designer.cs">
+      <DependentUpon>201801052228108_NivelesAprobados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -301,6 +309,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801052139071_GenInstituciones.resx">
       <DependentUpon>201801052139071_GenInstituciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801052147511_GenSedes.resx">
+      <DependentUpon>201801052147511_GenSedes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801052228108_NivelesAprobados.resx">
+      <DependentUpon>201801052228108_NivelesAprobados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
