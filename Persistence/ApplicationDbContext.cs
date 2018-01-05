@@ -28,6 +28,7 @@ namespace Persistence
         public DbSet<Tmetodologias> Tmetodologias { get; set; }
         public DbSet<Tdocumentos> Tdocumentos { get; set; }
         public DbSet<Testratos> Testratos { get; set; }
+        public DbSet<Tsisben> Tsisben { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")

@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201801051651586_tEstrato2.Designer.cs">
       <DependentUpon>201801051651586_tEstrato2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051720250_tSisben.cs" />
+    <Compile Include="Migrations\201801051720250_tSisben.Designer.cs">
+      <DependentUpon>201801051720250_tSisben.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -245,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801051651586_tEstrato2.resx">
       <DependentUpon>201801051651586_tEstrato2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051720250_tSisben.resx">
+      <DependentUpon>201801051720250_tSisben.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

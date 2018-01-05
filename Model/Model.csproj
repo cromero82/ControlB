@@ -65,6 +65,7 @@
     <Compile Include="Auth\SegUsuarios.cs" />
     <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
     <Compile Include="BL\Instituciones.cs" />
+    <Compile Include="BL\Tsisben.cs" />
     <Compile Include="BL\Testratos.cs" />
     <Compile Include="BL\Tdepartamentos.cs" />
     <Compile Include="BL\Tespecialidades.cs" />
