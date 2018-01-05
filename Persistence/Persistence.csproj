@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201801051359093_tDocumentosAddNumero.Designer.cs">
       <DependentUpon>201801051359093_tDocumentosAddNumero.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051651586_tEstrato2.cs" />
+    <Compile Include="Migrations\201801051651586_tEstrato2.Designer.cs">
+      <DependentUpon>201801051651586_tEstrato2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -238,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801051359093_tDocumentosAddNumero.resx">
       <DependentUpon>201801051359093_tDocumentosAddNumero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051651586_tEstrato2.resx">
+      <DependentUpon>201801051651586_tEstrato2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
