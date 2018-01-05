@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Model;
+using Model.BL.Tipos;
 using Model.Auth;
 using Model.BL;
 

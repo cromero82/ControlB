@@ -1,4 +1,4 @@
-﻿@using Model.BL
+﻿@using Model.BL.Tipos
 @model Tjornadas
 
 @{
@@ -31,12 +31,6 @@
                 @Html.LabelFor(m => m.Nombre)
                 @(Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", autocomplete = "off" }))
                 @Html.ValidationMessageFor(m => m.Nombre)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Codigo)
-                @(Html.TextBoxFor(m => m.Codigo, new { @class = "form-control", autocomplete = "off" }))
-                @Html.ValidationMessageFor(m => m.Codigo)
             </div>
 
             <div class="form-group">

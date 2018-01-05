@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
-    /// <summary>
-    /// Representa el estrato social: Estrato 1, estrato 2, etc.
-    /// </summary>
-    public class Tsisben
+    public class Tcaracter
     {
         [Key]
         public int Id { get; set; }
-        
-        [MaxLength(50)]
+
+        /// <summary>
+        /// Representa el nombre del grado: Transición, Primero, etc.
+        /// </summary>
+        [MaxLength(100)]
         [Required]
         public string Nombre { get; set; }
 
@@ -27,12 +27,19 @@ namespace Model.BL
         public int Estado { get; set; }
 
         /// <summary>
-        /// Representa número oficial 1 (Estrato 1), 2 (Estrato 2)
+        /// Representa número oficial 1 (Academica), 2 (Tecnica)
         /// </summary>
         [MaxLength(5)]
-        public string Numero { get; set; }       
+        public string Numero { get; set; }
 
-        public Tsisben()
+        /// <summary>
+        /// es una variable auxiliar para guardar el valor del numero de configuracion con la intension de convertirlo a string y asignarlo al campo 'Numero'
+        /// </summary>
+        [NotMapped]
+        [Required]
+        public int NumeroAux { get; set; }
+
+        public Tcaracter()
         {
             Estado = 1;
             Numero = "00";

@@ -6,37 +6,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
     /// <summary>
-    /// Representa los tipos de poblacion victimas de conflicto: 1 (En situación de desplazamiento)
+    /// Representa la metodología de enseñanza del establecimiento: educacion tradicional, escuela nueva, etc.
     /// </summary>
-    public class TpVictimaConflicto
+    public class Tdocumentos
     {
         [Key]
         public int Id { get; set; }
-        
-        [MaxLength(50)]
+
+        /// <summary>
+        /// Representa el número que aparece en formato DANE C600
+        /// </summary>
         [Required]
+        public int Numero { get; set; }
+
+        [Required]
+        [Index("UQ_tipodocumento", IsUnique = true)]
+        [Display(Name = "Metodología")]
+        [MaxLength(80)] 
         public string Nombre { get; set; }
 
         /// <summary>
         /// Representa el estado del registro
         /// </summary>
         [Required]
-        public int Estado { get; set; }
+        public int Estado { get; set; } = 1;
 
-        /// <summary>
-        /// Representa número oficial 1 (Estrato 1), 2 (Estrato 2)
-        /// </summary>
-        [MaxLength(5)]
-        [Index("UQ_victimaconfl_num", IsUnique = true)]
-        public string Numero { get; set; }       
-
-        public TpVictimaConflicto()
+        public Tdocumentos()
         {
             Estado = 1;
-            Numero = "00";
         }
     }
 }

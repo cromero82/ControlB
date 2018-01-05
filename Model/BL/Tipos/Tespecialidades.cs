@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
-    public class Tcaracter
+    public class Tespecialidades
     {
         [Key]
         public int Id { get; set; }
@@ -29,7 +29,7 @@ namespace Model.BL
         /// <summary>
         /// Representa número oficial 1 (Academica), 2 (Tecnica)
         /// </summary>
-        [MaxLength(5)]
+        [MaxLength(5)]        
         public string Numero { get; set; }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Model.BL
         [Required]
         public int NumeroAux { get; set; }
 
-        public Tcaracter()
+        public Tespecialidades()
         {
             Estado = 1;
             Numero = "00";

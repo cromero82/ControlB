@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
-    public class Tpaises
-    {
-        [Key]
+    public class Tniveles
+    {        
         public int Id { get; set; }
 
-        /// <summary>
-        /// Representa el codigo del pais: co (Colombia),  es (España), etc.
-        /// </summary>
         [Required]
-        [Index("UQ_pais_codigo", IsUnique = true)]
-        [MaxLength(4)]
         public string Codigo { get; set; }
 
         [Required]
-        [Display(Name = "Pais")]        
+        [Display(Name ="Número de orden")]
+        public int Numero { get; set; }
+
+        [Required]
         public string Nombre { get; set; }
 
         /// <summary>
@@ -31,7 +27,7 @@ namespace Model.BL
         [Required]
         public int Estado { get; set; } = 1;
 
-        public Tpaises()
+        public Tniveles()
         {
             Estado = 1;
         }

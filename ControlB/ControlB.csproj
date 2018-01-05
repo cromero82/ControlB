@@ -2357,6 +2357,7 @@
     <Content Include="Areas\ADMIN\Views\Tjornadas\InsTjornada.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tjornadas\UpdTjornada.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tlistas\Index.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Instituciones\InsInstitucionWizard.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

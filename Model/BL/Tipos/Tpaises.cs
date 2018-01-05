@@ -6,26 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
-    /// <summary>
-    /// Representa la metodología de enseñanza del establecimiento: educacion tradicional, escuela nueva, etc.
-    /// </summary>
-    public class Tmetodologias
+    public class Tpaises
     {
         [Key]
         public int Id { get; set; }
 
         /// <summary>
-        /// Representa el numero que aparece en anexo c600 del DANE
+        /// Representa el codigo del pais: co (Colombia),  es (España), etc.
         /// </summary>
-        [Required]                
-        public int  Numero { get; set; }
-        
         [Required]
-        [Index("UQ_nombre", IsUnique = true)]
-        [Display(Name = "Metodología")]
-        [MaxLength(25)] 
+        [Index("UQ_pais_codigo", IsUnique = true)]
+        [MaxLength(4)]
+        public string Codigo { get; set; }
+
+        [Required]
+        [Display(Name = "Pais")]        
         public string Nombre { get; set; }
 
         /// <summary>
@@ -34,7 +31,7 @@ namespace Model.BL
         [Required]
         public int Estado { get; set; } = 1;
 
-        public Tmetodologias()
+        public Tpaises()
         {
             Estado = 1;
         }

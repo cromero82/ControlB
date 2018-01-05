@@ -1,10 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-namespace Model.BL
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Model.BL.Tipos
 {
     /// <summary>
-    /// Representa el tipo de discapacidad de personas: 1 Sordera, 9, Sindrome de down, etc.
+    /// Representa el estrato social: Estrato 1, estrato 2, etc.
     /// </summary>
-    public class TcapExcepcionales
+    public class Testratos
     {
         [Key]
         public int Id { get; set; }
@@ -25,7 +32,7 @@ namespace Model.BL
         [MaxLength(5)]
         public string Numero { get; set; }       
 
-        public TcapExcepcionales()
+        public Testratos()
         {
             Estado = 1;
             Numero = "00";

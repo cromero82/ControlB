@@ -6,37 +6,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
     /// <summary>
-    /// Representa la metodología de enseñanza del establecimiento: educacion tradicional, escuela nueva, etc.
+    /// Representa el estrato social: Estrato 1, estrato 2, etc.
     /// </summary>
-    public class Tdocumentos
+    public class Tsisben
     {
         [Key]
         public int Id { get; set; }
-
-        /// <summary>
-        /// Representa el número que aparece en formato DANE C600
-        /// </summary>
+        
+        [MaxLength(50)]
         [Required]
-        public int Numero { get; set; }
-
-        [Required]
-        [Index("UQ_tipodocumento", IsUnique = true)]
-        [Display(Name = "Metodología")]
-        [MaxLength(80)] 
         public string Nombre { get; set; }
 
         /// <summary>
         /// Representa el estado del registro
         /// </summary>
         [Required]
-        public int Estado { get; set; } = 1;
+        public int Estado { get; set; }
 
-        public Tdocumentos()
+        /// <summary>
+        /// Representa número oficial 1 (Estrato 1), 2 (Estrato 2)
+        /// </summary>
+        [MaxLength(5)]
+        public string Numero { get; set; }       
+
+        public Tsisben()
         {
             Estado = 1;
+            Numero = "00";
         }
     }
 }

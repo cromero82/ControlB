@@ -6,42 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL
+namespace Model.BL.Tipos
 {
-    public class Tmunicipios
+    public class Tdepartamentos
     {
         [Key]
         public int Id { get; set; }
 
         /// <summary>
-        /// Definicion FK nombre en el model actual
+        /// Representa el codigo de departamento (Campo único)
         /// </summary>
-        public int DepartamentoId { get; set; }
-
-        /// <summary>
-        /// Definicion FK NivelId foránea al model Tniveles
-        /// </summary>
-        [ForeignKey("DepartamentoId")]
-        public virtual Tdepartamentos Departamento { get; set; }
-
-        [NotMapped]
-        [Display(Name ="Departamento")]
-        public string NombreDepartamento { get; set; }
-
-        /// <summary>
-        /// Representa el codigo de municipio (Campo único)
-        /// </summary>
-        [Index("UQ_mun_cod", IsUnique = true)]
+        [Index("UQ_dep_cod", IsUnique = true)]
         [MaxLength(5)]
-        [Display(Name ="Código")]
         public string Cod { get; set; }
 
         /// <summary>
-        /// Representa el nombre del municipio: Antioquia, Meta, etc.
+        /// Representa el nombre del departamento: Antioquia, Meta, etc.
         /// </summary>
         [MaxLength(80)]
         [Required]
-        [Display(Name = "Municipio")]
         public string Nombre { get; set; }
 
         /// <summary>
@@ -60,9 +43,9 @@ namespace Model.BL
         /// </summary>        
         public double Longitud { get; set; }
 
-        public Tmunicipios()
+        public Tdepartamentos()
         {
-            Estado = 1;
+            Estado = 1;           
         }
     }
 }
