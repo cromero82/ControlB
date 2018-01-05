@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201801051824238_tCapacidadesExcepcionales.Designer.cs">
       <DependentUpon>201801051824238_tCapacidadesExcepcionales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051956083_tEtnias.cs" />
+    <Compile Include="Migrations\201801051956083_tEtnias.Designer.cs">
+      <DependentUpon>201801051956083_tEtnias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801051824238_tCapacidadesExcepcionales.resx">
       <DependentUpon>201801051824238_tCapacidadesExcepcionales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051956083_tEtnias.resx">
+      <DependentUpon>201801051956083_tEtnias.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

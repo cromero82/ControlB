@@ -65,6 +65,7 @@
     <Compile Include="Auth\SegUsuarios.cs" />
     <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
     <Compile Include="BL\Instituciones.cs" />
+    <Compile Include="BL\Tetnias.cs" />
     <Compile Include="BL\TcapExcepcionales.cs" />
     <Compile Include="BL\TpVictimaConflicto.cs" />
     <Compile Include="BL\Tdiscapacidades.cs" />
