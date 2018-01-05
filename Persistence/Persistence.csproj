@@ -128,6 +128,14 @@
     <Compile Include="Migrations\201801042209265_departamentosNew3.Designer.cs">
       <DependentUpon>201801042209265_departamentosNew3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801050305087_tMunicipios.cs" />
+    <Compile Include="Migrations\201801050305087_tMunicipios.Designer.cs">
+      <DependentUpon>201801050305087_tMunicipios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801050419310_tMunicipiosUpd.cs" />
+    <Compile Include="Migrations\201801050419310_tMunicipiosUpd.Designer.cs">
+      <DependentUpon>201801050419310_tMunicipiosUpd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -189,6 +197,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801042209265_departamentosNew3.resx">
       <DependentUpon>201801042209265_departamentosNew3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050305087_tMunicipios.resx">
+      <DependentUpon>201801050305087_tMunicipios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801050419310_tMunicipiosUpd.resx">
+      <DependentUpon>201801050419310_tMunicipiosUpd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

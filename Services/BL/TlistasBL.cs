@@ -2,6 +2,7 @@
 using Model.BL;
 using Model.General;
 using Persistence;
+using Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,8 +61,8 @@ namespace Services.BL
         /// <summary>
         /// Inserta lista de departamentos
         /// </summary>
-        /// <param name="model"> Modelo de tnivel</param>
-        /// <returns> boolean producto transacción</returns>
+        /// <param name="model"> Modelo de datos abiertos con listado de departamentos</param>
+        /// <returns> Resultado de la transacción</returns>
         public Jresult InsDepartamentos(DatosAbiertosImport model)
         {
             var jresult = new Jresult();
@@ -110,5 +111,84 @@ namespace Services.BL
             }
             return jresult;
         }
+
+        /// <summary>
+        /// Inserta lista de departamentos
+        /// </summary>
+        /// <param name="model"> Modelo de datos abiertos con listado de departamentos</param>
+        /// <returns> Resultado de la transacción</returns>
+        public Jresult InsListaMunicipios(DatosAbiertosImport model)
+        {
+            var jresult = new Jresult();
+            var idDep = 0;
+            try
+            {
+                foreach (DatosAbiertosMunicipios item in model.MunicipiosList)
+                {
+                    // consulta el id del departamento
+                    idDep = db.Tdepartamentos.Where(x => x.Cod == item.cod_depto).FirstOrDefault().Id;
+
+                    // prepara el model y registra
+                    var itemModel = new Tmunicipios();
+                    itemModel.DepartamentoId = idDep; //int.Parse(item.cod_depto);
+                    itemModel.Cod = item.cod_mpio;                    
+                    itemModel.Nombre = item.nom_mpio;
+                    db.Tmunicipios.Add(itemModel);
+                }
+
+                db.SaveChanges();
+                jresult.Success = true;
+                jresult.Message = "Municipios registrados satisfactoriamente";
+
+            }
+            catch (Exception ex)
+            {
+                jresult.MensajeError(ex);
+                Console.WriteLine(ex.Message);
+            }
+            return jresult;
+        }
+
+        /// <summary>
+        /// Obtiene lista de municipios 
+        /// </summary>        
+        /// <returns> lista de datos</returns>
+        public Jresult GetListMunicipios()
+        {
+            var jresult = new Jresult();
+            try
+            {
+                // Model intermedio
+                BindGateway dataResult = new BindGateway();
+
+                // Consulta básica
+                var listaDatos = (
+                        from d in db.Tdepartamentos
+                        from m in db.Tmunicipios.Where(x => x.DepartamentoId == d.Id)
+                        select new
+                        {
+                            Id = m.Id,
+                            Nombre = m.Nombre,                            
+                            Cod = m.Cod,
+                            NombreDepartamento = d.Nombre
+                        }
+                    );
+
+                // asigna a model de bindeo
+                dataResult.Data = listaDatos.ToList();
+                dataResult.Count = listaDatos.ToList().Count();
+
+                // asigna model de bindeo a Jresult
+                jresult.Result = dataResult;
+                jresult.Success = true;
+            }
+            catch (Exception ex)
+            {
+                jresult.Message = ex.Message;
+                Console.WriteLine(ex.Message);
+            }
+            return jresult;
+        }
+
     }
 }

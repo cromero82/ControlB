@@ -51,8 +51,7 @@ namespace Services.BL
         {
             var jresult = new Jresult();
             try
-            {
-                //var listaDatos = db.Tgrados.Where(x => x.Estado == 1).ToList();
+            {                
                 BindGateway dataResult = new BindGateway();
                 var listaDatos = (
                         from tn in db.Tniveles

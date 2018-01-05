@@ -12,6 +12,7 @@ namespace Model.BL
     {
         [Key]
         public int Id { get; set; }
+        
         /// <summary>
         /// Definicion FK nombre en el model actual
         /// </summary>

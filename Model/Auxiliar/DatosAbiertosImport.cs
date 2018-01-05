@@ -16,6 +16,7 @@ namespace Model.Auxiliar
         /// </summary>
         public string DatosStringJson { get; set; }
         public IEnumerable<DatosAbiertosDepartamentos> DepartamentosList { get; set; }
+        public IEnumerable<DatosAbiertosMunicipios> MunicipiosList { get; set; }
     }
 
     public class DatosAbiertosDepartamentos
@@ -24,5 +25,12 @@ namespace Model.Auxiliar
         public string nomdepto { get; set; }
         public double deptolatitud { get; set; }
         public double deptolongitud { get; set; }
+    }
+
+    public class DatosAbiertosMunicipios
+    {
+        public string cod_depto { get; set; }
+        public string cod_mpio { get; set; }
+        public string nom_mpio { get; set; }        
     }
 }

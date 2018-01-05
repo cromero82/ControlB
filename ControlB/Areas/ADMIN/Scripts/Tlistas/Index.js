@@ -16,6 +16,7 @@
 
         handleTemplates: function () {
             Index.actionBotonesDep = kendo.template($('#actionBotonesDep').html());
+            Index.actionBotonesMun = kendo.template($('#actionBotonesMun').html());
         },
 
         // pregunta al usuario la eliminacion del registro
@@ -109,7 +110,45 @@
                     alerta("Resultado de la operación", result.Message, "error")
                 }
             });
+        },
+
+        // Consulta datos de municipios consumiendo servicio web
+        datosAbiertosMunicipios: function () {
+            $.ajax({
+                url: "https://www.datos.gov.co/api/id/5q56-d6fe.json",
+                type: "GET",
+                data: {
+                    "$limit": 1500,
+                    "$$app_token": "KLhKnhKZUVbEIcGgYN1XH8P73"
+                }
+            }).done(function (data) {
+                Index.insertarMunicipios(data)
+            });
+            //enviarPost("registrar");
+        },
+
+        // inserta municipios  en el sistema
+        insertarMunicipios: function (data) {
+            var DatosStringJson = JSON.stringify(data);
+            $.ajax({
+                method: "POST",
+                url: "/ADMIN/Tlistas/InsListaMunicipios",
+                data: {
+                    DatosStringJson: DatosStringJson
+                    //, __RequestVerificationToken: getCookie("__RequestVerificationToken") //window.RequestVerificationToken
+                }
+            }).done(function (result) {
+                if (result.Success) {
+                    alerta("Resultado de la operación", result.Message, "success");
+                    $('#tmunicipiosGrid').data('kendoGrid').dataSource.read();
+                    $('#tmunicipiosGrid').data('kendoGrid').refresh();
+
+                } else {
+                    alerta("Resultado de la operación", result.Message, "error")
+                }
+            });
         }
+
     }
 
 }();

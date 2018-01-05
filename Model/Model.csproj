@@ -70,6 +70,7 @@
     <Compile Include="BL\Tcaracter.cs" />
     <Compile Include="BL\Tgrados.cs" />
     <Compile Include="BL\Tjornadas.cs" />
+    <Compile Include="BL\Tmunicipios.cs" />
     <Compile Include="BL\Tniveles.cs" />
     <Compile Include="General\Jresult.cs" />
     <Compile Include="General\UserForGridView.cs" />

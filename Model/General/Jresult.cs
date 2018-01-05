@@ -34,10 +34,19 @@ namespace Model.General
         public void AsignarError(Exception ex)
         {
             //var log = new AppLoggerBL();
-            //log.InsLog(ex, null);
+            //log.InsLog(ex, null);            
+        }
 
-            Message = ex.Message;
-            Console.WriteLine(ex.Message);
+        public void MensajeError(Exception ex)
+        {
+            if (ex.Message.Equals("Error al actualizar las entradas. Vea la excepción interna para obtener detalles."))
+            {
+                Message = ex.InnerException.InnerException.Message;
+            }
+            else
+            {
+                Message = ex.Message;
+            }
         }
     }
 }
