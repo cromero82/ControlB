@@ -47,7 +47,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult InsInstitucion()
         {
-            return PartialView(new Instituciones());
+            return PartialView(new GenInstituciones());
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult InsInstitucion(
-            [Bind(Include = " Nombre, Direccion, Telefono,Correo, FechaFundacion, Rector, CodigoDane")]Instituciones model)
+            [Bind(Include = " Nombre, Direccion, Telefono,Correo, FechaFundacion, Rector, CodigoDane")]GenInstituciones model)
         {
             // Inicializaciones
             var jresult = new Jresult();
@@ -94,7 +94,7 @@ namespace ControlB.Areas.ADMIN.Controllers
             if (jresult.Success == false)
             {
                 ModelState.AddModelError("Error", "Error consultando institución: " + jresult.Message);
-                return PartialView(new Instituciones());
+                return PartialView(new GenInstituciones());
             }
 
             // Retorna vista parcial con model         
@@ -110,7 +110,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         [HttpPost]
         //public ActionResult UpdConductor(Conductores model)
         public ActionResult UpdInstitucion(
-            [Bind(Include = " Id, Nombre, Direccion, Telefono,Correo, FechaFundacion, Rector, CodigoDane")]Instituciones model)
+            [Bind(Include = " Id, Nombre, Direccion, Telefono,Correo, FechaFundacion, Rector, CodigoDane")]GenInstituciones model)
         {
             // Inicializaciones
             var jresult = new Jresult();

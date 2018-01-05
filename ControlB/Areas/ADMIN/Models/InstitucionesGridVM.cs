@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ControlB.Areas.ADMIN.Models
 {
-    public class InstitucionesGridVM: Instituciones
+    public class InstitucionesGridVM: GenInstituciones
     {
         
     }

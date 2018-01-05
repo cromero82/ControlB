@@ -90,9 +90,9 @@
                                 columns.Bound(p => p.Nombre)
                                     .Width(200)
                                     .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
-                                columns.Bound(p => p.Direccion)
-                                   .Width(150)
-                                   .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                                //columns.Bound(p => p.Direccion)
+                                //   .Width(150)
+                                //   .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
                                 columns.Bound(p => p.Telefono)
                                     .Width(120)
                                     .Filterable(false);
@@ -105,8 +105,8 @@
 
                         .Pageable(p => p.Refresh(true).PageSizes(true)
                         .Messages(m => m.ItemsPerPage("items por página"))
-                        )                      
-                        .Scrollable(s => s.Height("auto"))                        
+                        )
+                        .Scrollable(s => s.Height("auto"))
                         .AutoBind(true)
                         .Sortable(s => s.Enabled(true))
                         .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))

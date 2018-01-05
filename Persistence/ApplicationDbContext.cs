@@ -16,7 +16,7 @@ namespace Persistence
         public DbSet<SegPermisos> SegPermisos { get; set; }
         public DbSet<SegRolesPermisos> SegRolesPermisos { get; set; }
 
-        public DbSet<Instituciones> Instituciones { get; set; }
+        public DbSet<GenInstituciones> GenInstituciones { get; set; }
         public DbSet<Tniveles> Tniveles { get; set; }
         public DbSet<Tgrados> Tgrados { get; set; }
         public DbSet<Tjornadas> Tjornadas { get; set; }

@@ -19,15 +19,15 @@ namespace Services.BL
         /// </summary>
         /// <param name="model"> Modelo de establecimiento</param>
         /// <returns> boolean producto transacción</returns>
-        public Jresult InsInstitucion(Instituciones model)
+        public Jresult InsInstitucion(GenInstituciones model)
         {
             var jresult = new Jresult();
             try
             {
-                //var mod = new Instituciones() { Nombre = model.Nombre, CodigoDane = model.CodigoDane, NombreRector = model.NombreRector, NumSedes = model.NumSedes };
+                //var mod = new GenInstituciones() { Nombre = model.Nombre, CodigoDane = model.CodigoDane, NombreRector = model.NombreRector, NumSedes = model.NumSedes };
 
-                model.Id = db.Instituciones.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
-                db.Instituciones.Add(model);
+                model.Id = db.GenInstituciones.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
+                db.GenInstituciones.Add(model);
                 db.SaveChanges();
                 jresult.Success = true;
                 jresult.Message = "Institucion registrado satisfactoriamente";
@@ -51,7 +51,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Instituciones.Where(x => x.Estado == 1).ToList();                
+                var listaDatos = db.GenInstituciones.Where(x => x.Estado == 1).ToList();                
                 jresult.Result = listaDatos;
                 jresult.Success = true;
             }
@@ -68,7 +68,7 @@ namespace Services.BL
         ///// </summary>
         ///// <param name="model"> Datos del modelo de establecimiento</param>
         ///// <returns> Resultado de la transacción </returns>
-        public Jresult UpdInstitucion(Instituciones model)
+        public Jresult UpdInstitucion(GenInstituciones model)
         {
             var jresult = new Jresult();
             try
@@ -96,7 +96,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var establecimiento = db.Instituciones.Find(id);
+                var establecimiento = db.GenInstituciones.Find(id);
                 jresult.Result = establecimiento;
                 jresult.Success = true;
             }
@@ -119,7 +119,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var entity = db.Instituciones.SingleOrDefault(b => b.Id == id);
+                var entity = db.GenInstituciones.SingleOrDefault(b => b.Id == id);
                 if (entity != null)
                 {
                     entity.Estado = 0;

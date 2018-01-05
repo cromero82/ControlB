@@ -180,6 +180,18 @@
     <Compile Include="Migrations\201801051956083_tEtnias.Designer.cs">
       <DependentUpon>201801051956083_tEtnias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801052121268_InstitucioneAddMunicipioDelDireccion.cs" />
+    <Compile Include="Migrations\201801052121268_InstitucioneAddMunicipioDelDireccion.Designer.cs">
+      <DependentUpon>201801052121268_InstitucioneAddMunicipioDelDireccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801052123148_InstitucioneAddFkMunicipio.cs" />
+    <Compile Include="Migrations\201801052123148_InstitucioneAddFkMunicipio.Designer.cs">
+      <DependentUpon>201801052123148_InstitucioneAddFkMunicipio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801052139071_GenInstituciones.cs" />
+    <Compile Include="Migrations\201801052139071_GenInstituciones.Designer.cs">
+      <DependentUpon>201801052139071_GenInstituciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -280,6 +292,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801051956083_tEtnias.resx">
       <DependentUpon>201801051956083_tEtnias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801052121268_InstitucioneAddMunicipioDelDireccion.resx">
+      <DependentUpon>201801052121268_InstitucioneAddMunicipioDelDireccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801052123148_InstitucioneAddFkMunicipio.resx">
+      <DependentUpon>201801052123148_InstitucioneAddFkMunicipio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801052139071_GenInstituciones.resx">
+      <DependentUpon>201801052139071_GenInstituciones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

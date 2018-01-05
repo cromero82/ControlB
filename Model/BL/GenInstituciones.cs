@@ -1,23 +1,39 @@
-﻿using System;
+﻿using Model.BL.Tipos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model.BL
 {
-    public class Instituciones
+    public class GenInstituciones
     {
         public int Id { get; set; }
         public string CodigoDane { get; set; }
 
         [Required]
+        [Index("UQ_institucion_codigo", IsUnique = true)]
+        [MaxLength(150)]
         public string Nombre { get; set; }
+
+        /// <summary>
+        /// Definicion FK nombre en el model actual
+        /// </summary>
+        public int TmunicipioId { get; set; }
+
+        /// <summary>
+        /// Definicion FK NivelId foránea al model Tmunicipios
+        /// </summary>
+        [ForeignKey("TmunicipioId")]
+        public virtual Tmunicipios Municipio { get; set; }
+
         public string Rector { get; set; }
 
-        [Required]
-        public string Direccion { get; set; }
+        //[Required]
+        //public string Direccion { get; set; }
 
         [Required]
         public string Correo { get; set; }
@@ -37,9 +53,10 @@ namespace Model.BL
         /// </summary>
         public int Estregistro { get; set; } = 1;
 
-        public Instituciones()
+        public GenInstituciones()
         {
             Estregistro = 1;
+            TmunicipioId = 814;
         }
     }
 }
