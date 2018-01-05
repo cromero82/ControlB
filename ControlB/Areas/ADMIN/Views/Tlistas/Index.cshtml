@@ -80,7 +80,6 @@
                                         .ClientTemplate("#=Index.actionBotonesDep(data)#")
                                         .Filterable(false);
                             })
-
                         .Pageable(p => p.Refresh(true).PageSizes(true)
                         .Messages(m => m.ItemsPerPage("items por página"))
                         )
@@ -96,7 +95,6 @@
                         .Events(e => e.Error("handleOnErrorModelState"))
                         .ServerOperation(false)
                         ).Events(events => events.DataBound("handleAjaxModal"))
-
                     )
 
                 </div>

@@ -212,7 +212,7 @@ namespace Services.BL
         }
 
         /// <summary>
-        /// Obtiene lista de paises 
+        /// Obtiene lista de metodologías 
         /// </summary>        
         /// <returns> lista de datos</returns>
         public Jresult GetListMetodologias()
@@ -254,7 +254,7 @@ namespace Services.BL
         }
 
         /// <summary>
-        /// Obtiene lista de tipos de documentos 
+        /// Obtiene lista de estratos sociales
         /// </summary>        
         /// <returns> lista de datos</returns>
         public Jresult GetListEstratosSociales()
@@ -275,7 +275,7 @@ namespace Services.BL
         }
 
         /// <summary>
-        /// Obtiene lista de tipos de documentos 
+        /// Obtiene lista de tipos de SISBEN
         /// </summary>        
         /// <returns> lista de datos</returns>
         public Jresult GetListSisben()
@@ -295,5 +295,25 @@ namespace Services.BL
             return jresult;
         }
 
+        /// <summary>
+        /// Obtiene lista de tipos de victimas del conflicto
+        /// </summary>        
+        /// <returns> lista de datos</returns>
+        public Jresult GetListTiposVictimasConfl()
+        {
+            var jresult = new Jresult();
+            try
+            {
+                var listaDatos = db.TpVictimaConflicto.Where(x => x.Estado == 1).ToList();
+                jresult.Result = listaDatos;
+                jresult.Success = true;
+            }
+            catch (Exception ex)
+            {
+                jresult.Message = ex.Message;
+                Console.WriteLine(ex.Message);
+            }
+            return jresult;
+        }
     }
 }
