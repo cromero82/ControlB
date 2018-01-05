@@ -46,7 +46,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="request"> Filtros en cliente </param>
         /// <returns>lista de datos</returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult GetListTespecialidades([DataSourceRequest]DataSourceRequest request)
         {
             var listaBl = new TlistasBL();
@@ -65,7 +65,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="request"> Filtros en cliente </param>
         /// <returns>lista de datos</returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult GetListTdepartamentos([DataSourceRequest]DataSourceRequest request)
         {
             var listaBl = new TlistasBL();
@@ -148,7 +148,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="request"> Filtros en cliente </param>
         /// <returns>lista de datos</returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request)
         {
             var listaBl = new TlistasBL();
@@ -159,6 +159,25 @@ namespace ControlB.Areas.ADMIN.Controllers
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
             return Json(new DataSourceResult { Data = jresult.Result.Data, Total = jresult.Result.Count });
+        }
+
+        /// <summary>
+        /// Obtiene una lista de paises  para presentarla en un grid
+        /// </summary>
+        /// <param name="request"> Filtros en cliente </param>
+        /// <returns>lista de datos</returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult GetListTpaises([DataSourceRequest]DataSourceRequest request)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListPaises();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
         }
 
     }

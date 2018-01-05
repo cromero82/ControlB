@@ -136,6 +136,10 @@
     <Compile Include="Migrations\201801050419310_tMunicipiosUpd.Designer.cs">
       <DependentUpon>201801050419310_tMunicipiosUpd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051315202_tPaises.cs" />
+    <Compile Include="Migrations\201801051315202_tPaises.Designer.cs">
+      <DependentUpon>201801051315202_tPaises.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -203,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801050419310_tMunicipiosUpd.resx">
       <DependentUpon>201801050419310_tMunicipiosUpd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051315202_tPaises.resx">
+      <DependentUpon>201801051315202_tPaises.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

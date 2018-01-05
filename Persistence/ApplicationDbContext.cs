@@ -24,6 +24,7 @@ namespace Persistence
         public DbSet<Tcaracter> Tcaracter { get; set; }
         public DbSet<Tdepartamentos> Tdepartamentos { get; set; }
         public DbSet<Tmunicipios> Tmunicipios { get; set; }
+        public DbSet<Tpaises> Tpaises { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")

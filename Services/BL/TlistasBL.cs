@@ -190,5 +190,26 @@ namespace Services.BL
             return jresult;
         }
 
+        /// <summary>
+        /// Obtiene lista de paises 
+        /// </summary>        
+        /// <returns> lista de datos</returns>
+        public Jresult GetListPaises()
+        {
+            var jresult = new Jresult();
+            try
+            {
+                var listaDatos = db.Tpaises.Where(x => x.Estado == 1).ToList();
+                jresult.Result = listaDatos;
+                jresult.Success = true;
+            }
+            catch (Exception ex)
+            {
+                jresult.Message = ex.Message;
+                Console.WriteLine(ex.Message);
+            }
+            return jresult;
+        }
+
     }
 }
