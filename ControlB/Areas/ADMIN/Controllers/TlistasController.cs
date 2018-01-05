@@ -180,5 +180,43 @@ namespace ControlB.Areas.ADMIN.Controllers
             return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
         }
 
+        /// <summary>
+        /// Obtiene una lista de metodologías para presentarlas en un grid
+        /// </summary>
+        /// <param name="request"> Filtros en cliente </param>
+        /// <returns>lista de datos</returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult GetListTmetodologias([DataSourceRequest]DataSourceRequest request)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListMetodologias();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+        }
+
+        /// <summary>
+        /// Obtiene una lista de tipos de documentos para presentarlas en un grid
+        /// </summary>
+        /// <param name="request"> Filtros en cliente </param>
+        /// <returns>lista de datos</returns>
+        [HttpPost]
+        [Authorize]
+        public ActionResult GetListTdocumentos([DataSourceRequest]DataSourceRequest request)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListTiposDocumentos();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+        }
+
     }
 }

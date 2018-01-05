@@ -140,6 +140,22 @@
     <Compile Include="Migrations\201801051315202_tPaises.Designer.cs">
       <DependentUpon>201801051315202_tPaises.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051337420_tMetodologia.cs" />
+    <Compile Include="Migrations\201801051337420_tMetodologia.Designer.cs">
+      <DependentUpon>201801051337420_tMetodologia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051347392_tDocumentos.cs" />
+    <Compile Include="Migrations\201801051347392_tDocumentos.Designer.cs">
+      <DependentUpon>201801051347392_tDocumentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051356552_tDocumentosUpdLongNombre.cs" />
+    <Compile Include="Migrations\201801051356552_tDocumentosUpdLongNombre.Designer.cs">
+      <DependentUpon>201801051356552_tDocumentosUpdLongNombre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051359093_tDocumentosAddNumero.cs" />
+    <Compile Include="Migrations\201801051359093_tDocumentosAddNumero.Designer.cs">
+      <DependentUpon>201801051359093_tDocumentosAddNumero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -210,6 +226,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801051315202_tPaises.resx">
       <DependentUpon>201801051315202_tPaises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051337420_tMetodologia.resx">
+      <DependentUpon>201801051337420_tMetodologia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051347392_tDocumentos.resx">
+      <DependentUpon>201801051347392_tDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051356552_tDocumentosUpdLongNombre.resx">
+      <DependentUpon>201801051356552_tDocumentosUpdLongNombre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051359093_tDocumentosAddNumero.resx">
+      <DependentUpon>201801051359093_tDocumentosAddNumero.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

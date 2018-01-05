@@ -70,6 +70,8 @@
     <Compile Include="BL\Tcaracter.cs" />
     <Compile Include="BL\Tgrados.cs" />
     <Compile Include="BL\Tjornadas.cs" />
+    <Compile Include="BL\Tdocumento.cs" />
+    <Compile Include="BL\Tmetodologias.cs" />
     <Compile Include="BL\Tmunicipios.cs" />
     <Compile Include="BL\Tniveles.cs" />
     <Compile Include="BL\Tpaises.cs" />
