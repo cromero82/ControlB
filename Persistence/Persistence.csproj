@@ -200,6 +200,14 @@
     <Compile Include="Migrations\201801052228108_NivelesAprobados.Designer.cs">
       <DependentUpon>201801052228108_NivelesAprobados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802020326410_GenCore.cs" />
+    <Compile Include="Migrations\201802020326410_GenCore.Designer.cs">
+      <DependentUpon>201802020326410_GenCore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802020334220_GenCore2.cs" />
+    <Compile Include="Migrations\201802020334220_GenCore2.Designer.cs">
+      <DependentUpon>201802020334220_GenCore2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -315,6 +323,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801052228108_NivelesAprobados.resx">
       <DependentUpon>201801052228108_NivelesAprobados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802020326410_GenCore.resx">
+      <DependentUpon>201802020326410_GenCore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802020334220_GenCore2.resx">
+      <DependentUpon>201802020334220_GenCore2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

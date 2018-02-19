@@ -1,4 +1,6 @@
-﻿@using Model.BL.Tipos
+﻿@using ControlB.Areas.ADMIN.Models
+@using Model.BL
+@model InstitucionWizardVM
 @{
     var pageName = ViewContext.RouteData.Values["controller"].ToString();
     var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
@@ -26,90 +28,272 @@
 
     <!-- Scripts base de la página -->
     <script src="~/Scripts/personal/inicioPorPagina.js"></script>
-    <script src="~/Areas/ADMIN/Scripts/Tlistas/Index.js"></script>
+    <script src="~/Areas/ADMIN/Scripts/Instituciones/InsInstitucionWizard.js"></script>
 
     <!-- Template de botones departamentos -->
-    <script id="actionBotonesDep" type="text/x-kendo-template">
+    <script id="actionBotonesseleccionarInstitucion" type="text/x-kendo-template">
         <div class="text-center">
             <a data-modal="modal-lg" href='@Url.Action("UpdTjornada", "Tlistas", new { Area = "ADMIN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
-            <a onclick="Index.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+            <a onclick="InsInstitucionWizard.seleccionarInstitucion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
 
-    <!-- Template de botones municipios -->
-    <script id="actionBotonesMun" type="text/x-kendo-template">
-        <div class="text-center">
-            <a data-modal="modal-lg" href='@Url.Action("UpdTjornada", "Tlistas", new { Area = "ADMIN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
-            <a onclick="Index.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
-        </div>
-    </script>
+    <p class="lead mb20 text-center">Formulario de registro ultrarápido de establecimiento educativo.</p>
+    <!-- Begin: Content -->
+    <!--<h2 class="lh30 mt15 text-center"><b class="text-primary">Registro de establecimiento</b> y compruebe lo fácil que es adminitrar tu colegio</h2>-->
 
-    <div class="row" id="spy1">
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-10 center-block">
 
-            
-        </div>
+            <!-- Form Wizard -->
+            <div class="admin-form">
+                <form method="post" action="/" id="form-wizard">
+                    <div class="wizard  steps-bg steps-tabs steps-justified steps-show-icons">
+                        <!-- Wizard step 1 -->
+                        <h4 class="wizard-section-title">1. Importar datos <i class="glyphicons glyphicons-cloud-download pr5"></i></h4>
+                        <section class="wizard-section">
+                            <div class="section">
+                                <div class="alert alert-default light alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <strong>Proceso de Importar datos. </strong> Favor ingrese el <strong>código del establecimiento </strong>                    y haga clic en el botón <strong>buscar</strong> para consultar datos del establecimiento. Esta información
+                                    proviene del sitio oficial <a href="https://www.datos.gov.co/">https://www.datos.gov.co/</a> y fue registrada
+                                    por la secretaría local y demás entes que supervisan y controlan el tema administrativo de establecimientos
+                                    oficiales y no oficiales en Colombia.
+                                </div>
+                                <div class="panel-body form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Código DANE</label>
+                                        <div class="col-lg-3">
+                                            @Html.LabelFor(m => m.Institucion.CodigoDane)
+                                            @(Html.TextBoxFor(m => m.Institucion.CodigoDane, new { @class = "form-control", autocomplete = "off" }))
+                                            @Html.ValidationMessageFor(m => m.Institucion.CodigoDane)
+                                            @*<label class="field select">
+                                                </label>*@
+                                        </div>
+                                        <div class="col-md-3 ">
+                                            <button type="button" onclick="clicBuscarDatosCo()" class="btn btn-primary">Buscar Datos</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel  " id="divDatosConsultados">
+                                    <table class="table table-striped table-hover dataTable no-footer" id="datosConsultados" describedby="datatable_info" cellspacing="0"
+                                           width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Municipio</th>
+                                                <th>Nombre del Rector (a)</th>
+                                                <th>Tipo de establecimiento</th>
+                                                <th>Departamento</th>
+                                                <th>zona</th>
+                                                <th>Dirección</th>
+                                                <th>telefono</th>
+                                                <th>Etnias</th>
+                                                <th>Sector</th>
+                                                <th>Genero</th>
+                                                <th>Niveles</th>
+                                                <th>Jornadas</th>
+                                                <th>Caracter</th>
+                                                <th>Especialidad</th>
+                                                <th>Grados</th>
+                                                <th>Modelos Educativos</th>
+                                                <th>Capacidades Excepcionales</th>
+                                                <th>Discapacidades</th>
+                                                <th>Idiomas</th>
+                                                <th>Número de sedes</th>
+                                                <th>Estado del establecimiento</th>
+                                                <th>Prestador de servicio</th>
+                                                <th>propiedad planta física</th>
+                                                <th>Resguardo</th>
+                                                <th>Matricula contratada</th>
+                                                <th>Calendario</th>
+                                                <th>Internado</th>
+                                                <th>Estrado socio económico</th>
+                                                <th>Correo eletrónico</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!-- end .smart-widget section -->
+                            </div>
+                            <!-- end section -->
+                        </section>
+                        <!-- Wizard step 2 -->
+                        <h4 class="wizard-section-title">2. Datos generales <i class="glyphicon glyphicon-home pr5"></i></h4>
+                        <section class="wizard-section">
 
+                            <div class="section">
+                                <div class="panel-body form-horizontal">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                @Html.LabelFor(m => m.Institucion.Nombre)
+                                                @(Html.TextBoxFor(m => m.Institucion.Nombre, new { @class = "form-control", autocomplete = "off" }))
+                                                @Html.ValidationMessageFor(m => m.Institucion.Nombre)
+                                            </div>                                       
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                @Html.LabelFor(m => m.Institucion.Rector)
+                                                @(Html.TextBoxFor(m => m.Institucion.Rector, new { @class = "form-control", autocomplete = "off" }))
+                                                @Html.ValidationMessageFor(m => m.Institucion.Rector)
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                @Html.LabelFor(m => m.Institucion.TdepartamentoId)
+                                                @(Html.Kendo().DropDownListFor(model => model.Institucion.TdepartamentoId)
+                                                  .Name("DepartamentoId")
+                                                  .DataTextField("Nombre")
+                                                  .DataValueField("Id")
+                                                  .OptionLabel("Seleccione...")
+                                                  .DataSource(source =>
+                                                  {
+                                                      source.Custom().Type("aspnetmvc-ajax")
+                                                          .Transport(t =>
+                                                          {
+                                                              t.Read(r => r.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN" }));
+                                                          })
+                                                          .ServerFiltering(false)
+                                                          .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                                                          .Events(e => e.Error("handleOnErrorModelState"));
+                                                  })
+                                                .HtmlAttributes(new { style = "width:100%;", @class = "itemComponente" })
+                                                )
+                                                @Html.ValidationMessageFor(m => m.Institucion.TdepartamentoId)
+                                            </div>
+                                            <div class="col-sm-6">
+                                                @Html.LabelFor(m => m.Institucion.TmunicipioId)
+                                                @(Html.Kendo().DropDownListFor(model => model.Institucion.TmunicipioId)
+                                                  .Name("DepartamentoId")
+                                                  .DataTextField("Nombre")
+                                                  .DataValueField("Id")
+                                                  .CascadeFrom("DepartamentoId")
+                                                  .OptionLabel("Seleccione...")
+                                                  .DataSource(source =>
+                                                  {
+                                                      source.Custom().Type("aspnetmvc-ajax")
+                                                          .Transport(t =>
+                                                          {
+                                                              t.Read(r => r.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN" }));
+                                                          })
+                                                          .ServerFiltering(false)
+                                                          .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                                                          .Events(e => e.Error("handleOnErrorModelState"));
+                                                  })
+                                                .HtmlAttributes(new { style = "width:100%;", @class = "itemComponente" })
+                                                )
+                                                @Html.ValidationMessageFor(m => m.Institucion.TdepartamentoId)
+                                            </div>
+                                        </div>
 
-        <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                @Html.LabelFor(m => m.Institucion.FechaFundacion)
+                                                @(Html.TextBoxFor(m => m.Institucion.FechaFundacion, new { @class = "form-control", autocomplete = "off" }))
+                                                @Html.ValidationMessageFor(m => m.Institucion.FechaFundacion)
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group">
+                                            <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
+                                                <div class="fileupload-preview thumbnail mb15">
+                                                    <label for="account-name" class="field">
+                                                        <img src="urldefault" class="h-170">
+                                                        aqui escudo
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>*@
 
-            <div class="panel panel-visible" id="spy2">
-                <div class="panel-heading">
-                    <div class="panel-title hidden-xs">
-                        <span class="glyphicon glyphicon-tasks"></span>Municipios
-                        <div class="alineacionVertical pull-right">
-                            <a onclick="Index.datosAbiertosMunicipios()"
-                               class="btn btn-success " style="width: 200px;"><span class="fa fa-angle-down pr5"></span>Importar municipios</a>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- end section -->
+                        </section>
+                        <!-- Wizard step 3 -->
+                        <h4 class="wizard-section-title">3. Aspecto legal <i class="glyphicons glyphicons-suitcase pr5"></i></h4>
+                        <section class="wizard-section">                            
+                            <div class="section">
+                                <label for="email" class="field prepend-icon">
+                                    <input type="email" name="email" id="email" class="gui-input" placeholder="Email address">
+                                    <label for="email" class="field-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </label>
+                                </label>
+                            </div>
+                            <!-- end section -->
+                            <div class="section">
+                                <!--ADMINISTRADOR DE   S E D E S  - J O R N A D A S-->
+                                <div class="col-sm-12">
+                                    <div class="panel panel-visible" id="spy2">
+                                        <div class="panel-heading">
+                                            <div class="panel-title hidden-xs">
+                                                <span class="glyphicon glyphicon-tasks"></span> Sedes y jornadas
+                                                <div class="alineacionVertical pull-right">
+                                                    <a data-modal="modal-lg"
+                                                       href='@Url.Action("InsSede", "Instituciones", new { Area = "ADMIN" })'
+                                                       class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        </div>
+                                        <div class="panel-body pn" id="divLista">
+                                            @(Html.Kendo().Grid<GenSedes>()
+                                                .Name("sedesGrid")
+                                                .Columns(columns =>
+                                                {
+                                                    columns.Bound(p => p.NombreSede)
+                                                        .Width(200)
+                                                        .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                                                    columns.Bound(p => p.Telefono)
+                                                        .Width(120)
+                                                        .Filterable(false);
+                                                    columns.Bound(p => p.RectorResponsable)
+                                                       .Width(150)
+                                                       .Filterable(false);                                                    
+                                                    columns.Bound(p => p.Id)
+                                                            .Title("Acción")
+                                                            .Width(160)
+                                                            .ClientTemplate("#=AdminInstituciones.actionBotones(data)#")
+                                                            .Filterable(false);
+                                                })
+                                            .Pageable(p => p.Refresh(true).PageSizes(true)
+                                            .Messages(m => m.ItemsPerPage("items por página"))
+                                            )
+                                            .Scrollable(s => s.Height("auto"))
+                                            .AutoBind(true)
+                                            .Sortable(s => s.Enabled(true))
+                                            .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
+                                            .DataSource(dataSource => dataSource
+                                                .Ajax()
+                                                .PageSize(10)
+                                                .Read(read => read.Action("GetListInstituciones", "Instituciones", new { Area = "ADMIN" })
+                                                )
+                                            .Events(e => e.Error("handleOnErrorModelState"))
+                                            .ServerOperation(false)
+                                            ).Events(events => events.DataBound("handleAjaxModal"))
+                                        )
+                                        </div>
+
+                                    </div>
+                                </div>                                
+
+                            </div>
+                            <!-- end section 3. Aspecto legal -->
+                        </section>
                     </div>
-                </div>
-
-                <div class="panel-body pn" id="divLista">
-                    @(Html.Kendo().Grid<Tmunicipios>()
-                            .Name("tmunicipiosGrid")
-                            .Columns(columns =>
-                            {
-                                columns.Bound(p => p.NombreDepartamento)
-                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")))
-                                    .Width(140);
-                                columns.Bound(p => p.Nombre)
-                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")))
-                                    .Width(180);
-                                columns.Bound(p => p.Cod)
-                                   .Width(90);
-
-                                columns.Bound(p => p.Id)
-                                        .Title("Acción")
-                                        .Width(200)
-                                        .ClientTemplate("#=Index.actionBotonesMun(data)#")
-                                        .Filterable(false);
-                            })
-
-                        .Pageable(p => p.Refresh(true).PageSizes(true)
-                        .Messages(m => m.ItemsPerPage("items por página"))
-                        )
-                        .Scrollable(s => s.Height("auto"))
-                        .AutoBind(true)
-                        .Sortable(s => s.Enabled(true))
-                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
-                        .DataSource(dataSource => dataSource
-                            .Ajax()
-                            .PageSize(10)
-                            .Read(read => read.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" })
-                            )
-                        .Events(e => e.Error("handleOnErrorModelState"))
-                        .ServerOperation(false)
-                        ).Events(events => events.DataBound("handleAjaxModal"))
-
-                    )
-
-                </div>
-
+                    <!-- End: Wizard -->
+                </form>
+                <!-- End Account2 Form -->
             </div>
+            <!-- end: .admin-form -->
+            <!-- end: .Form Wizard -->
         </div>
-
     </div>
+
+
+
     <!-- Inicialización script de vista -->
     <script>
             @(viewName).init();

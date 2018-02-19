@@ -205,6 +205,7 @@
     <Compile Include="Areas\ADMIN\Controllers\TlistasController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
+    <Compile Include="Areas\ADMIN\Models\InstitucionWizardVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -219,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
+    <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucionWizard.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\UpdInstitucion.js" />
     <Content Include="Areas\ADMIN\Scripts\Tgrados\Index.js" />

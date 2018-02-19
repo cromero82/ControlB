@@ -35,6 +35,7 @@ namespace Persistence
         public DbSet<Tetnias> Tetnias { get; set; }
         public DbSet<GenSedes> GenSedes { get; set; }
         public DbSet<GenNivelesAprobados> GenNivelesAprobados { get; set; }
+        public DbSet<GenCore> GenCore { get; set; }
 
         public ApplicationDbContext()
             : base("BdService")

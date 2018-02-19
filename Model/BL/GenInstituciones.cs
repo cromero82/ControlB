@@ -23,6 +23,13 @@ namespace Model.BL
         /// Definicion FK nombre en el model actual
         /// </summary>
         public int TmunicipioId { get; set; }
+        
+
+        /// <summary>
+        /// Representa departamento, se utiliza como dato dependiente de municipio (ciudad) por ese motivo no se mapea en BD
+        /// </summary>
+        [NotMapped]
+        public int TdepartamentoId { get; set; }
 
         /// <summary>
         /// Definicion FK NivelId foránea al model Tmunicipios

@@ -64,8 +64,10 @@
     <Compile Include="Auth\SegRolesPermisos.cs" />
     <Compile Include="Auth\SegUsuarios.cs" />
     <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
+    <Compile Include="BL\GenCore.cs" />
     <Compile Include="BL\GenInstituciones.cs" />
     <Compile Include="BL\GenNivelesAprobados.cs" />
+    <Compile Include="BL\GenPersona.cs" />
     <Compile Include="BL\GenSedes.cs" />
     <Compile Include="BL\Tipos\Tetnias.cs" />
     <Compile Include="BL\Tipos\TcapExcepcionales.cs" />

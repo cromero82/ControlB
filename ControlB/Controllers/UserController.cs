@@ -50,7 +50,7 @@ namespace ControlB.Controllers
 
         public ActionResult Get(string id)
         {
-            ViewBag.Roles = _roleManager.Roles.Where(x => x.Enabled).ToList();
+            ViewBag.Roles = _roleManager.Roles.ToList();
             return View(
                 _userService.Get(id)
                 );
