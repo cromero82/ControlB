@@ -1,0 +1,104 @@
+﻿@using Model.BL.Tipos
+@{
+    var pageName = ViewContext.RouteData.Values["controller"].ToString();
+    var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
+}
+@section BreadCrumb
+{
+    <li class="crumb-active">
+        <a href="dashboard.html">Dashboard</a>
+    </li>
+    <li class="crumb-icon">
+        <a href="dashboard.html">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </li>
+    <li class="crumb-link">
+        <a href="index.html">Datos básicos</a>
+    </li>
+    <li class="crumb-trail"> Etnias</li>
+}
+@section BreadCrumbPanel{}
+
+<!-- begin: .tray-center -->
+<!--INICIO BODY REAL-->
+<div id="@viewName" class="tray tray-center p5 va-t posr">
+
+    <!-- Scripts base de la página -->
+    <script src="~/Scripts/personal/inicioPorPagina.js"></script>
+    <script src="~/Areas/ADMIN/Scripts/Tetnias.js"></script>
+    <!-- Template de botones -->
+    <script id="actionBotones" type="text/x-kendo-template">
+        <div class="text-center">
+            <a data-modal="modal-lg" href='@Url.Action("UpdTetnia", "Tetnias", new { Area = "ADMIN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a onclick="Tetnias.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+        </div>
+    </script>
+
+    <div class="row" id="spy1">
+        <div class="col-md-12">
+
+            <div class="panel panel-visible" id="spy2">
+                <div class="panel-heading">
+                    <div class="panel-title hidden-xs">
+                        <span class="glyphicon glyphicon-tasks"></span>Etnias
+                        <div class="alineacionVertical pull-right">
+
+                            <a data-modal="modal-lg"
+                               href='@Url.Action("InsTetnia", "Tetnias", new { Area = "ADMIN" })'
+                               class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body pn" id="divLista">
+                    @(Html.Kendo().Grid<TetniasVM>()
+                            .Name("tetniasGrid")
+                            .Columns(columns =>
+                            {
+                                columns.Bound(p => p.Nombre)
+                                    .Width(120)
+                                    .Filterable(false);
+                                columns.Bound(p => p.Numero)
+                                    .Width(120)
+                                    .Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));
+                                columns.Bound(p => p.Estado).Hidden(true);
+                                columns.Bound(p => p.Id)
+                                        .Title("Acción")
+                                        .Width(160)
+                                        .ClientTemplate("#=Tetnias.actionBotones(data)#")
+                                        .Filterable(false);
+                            })
+
+                        .Pageable(p => p.Refresh(true).PageSizes(true)
+                        .Messages(m => m.ItemsPerPage("items por página"))
+                        )
+                        .Scrollable(s => s.Height("auto"))
+                        .AutoBind(true)
+                        .Sortable(s => s.Enabled(true))
+                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .PageSize(10)
+                            .Read(read => read.Action("GetList", "Tetnias", new { Area = "ADMIN" })
+                            )
+                        .Events(e => e.Error("handleOnErrorModelState"))
+                        .ServerOperation(false)
+                        ).Events(events => events.DataBound("handleAjaxModal"))
+
+                    )
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Inicialización script de vista -->
+    <script>
+        Tetnias.initIndex();
+    </script>
+</div>
+
+<!--FIN BODY REAL-->
+<!-- end: .tray-center -->

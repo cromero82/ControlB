@@ -69,6 +69,7 @@
     <Compile Include="BL\GenNivelesAprobados.cs" />
     <Compile Include="BL\GenPersona.cs" />
     <Compile Include="BL\GenSedes.cs" />
+    <Compile Include="BL\Tipos\TetniasVM.cs" />
     <Compile Include="BL\Tipos\Tetnias.cs" />
     <Compile Include="BL\Tipos\TcapExcepcionales.cs" />
     <Compile Include="BL\Tipos\TpVictimaConflicto.cs" />

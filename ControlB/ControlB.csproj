@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\TetniasController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TjornadasController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TgradosController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TlistasController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\ADMIN\Scripts\Tetnias.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucionWizard.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
@@ -2360,6 +2362,7 @@
     <Content Include="Areas\ADMIN\Views\Tjornadas\UpdTjornada.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tlistas\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Instituciones\InsInstitucionWizard.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tetnias\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
