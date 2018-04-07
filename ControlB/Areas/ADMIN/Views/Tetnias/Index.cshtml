@@ -15,7 +15,7 @@
     <!-- Template de botones -->
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
-            <a data-modal="modal-lg" href='@Url.Action("UpdTetnia", "Tetnias", new { Area = "ADMIN" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a data-modal="modal-lg" href='@Url.Action("TetniaView", "Tetnias", new { Area = "ADMIN", accionCrud = "Editar" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
             <a onclick="Tetnias.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
@@ -30,7 +30,7 @@
                         <div class="alineacionVertical pull-right">
 
                             <a data-modal="modal-lg"
-                               href='@Url.Action("InsTetnia", "Tetnias", new { Area = "ADMIN" })'
+                               href='@Url.Action("TetniaView", "Tetnias", new { Area = "ADMIN", accionCrud = "Insertar"  })'
                                class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
 
                         </div>

@@ -1,5 +1,6 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Model.BL.Tipos;
 using Model.General;
 using Services.BL;
 using System;
@@ -34,6 +35,46 @@ namespace ControlB.Areas.ADMIN.Controllers
             json = Json(result);
             json.MaxJsonLength = Int32.MaxValue;
             return json;
+        }
+
+        /// <summary>
+        /// Vista de registro de establecimiento
+        /// </summary>
+        /// <returns> Vista </returns>
+        [Authorize(Roles = "Admin")]
+        public ActionResult TetniaView(int? id, string accionCrud)
+        {
+            // Aqui continuar !!!!!!!!!!!!!!
+            ViewBag.Accion = "Insertar";
+            return PartialView("TetniaView", new Tetnias());
+        }
+
+        /// <summary>
+        /// Inserta establecimiento   
+        /// </summary>  
+        /// <param name="model">Instituciones model</param>
+        /// <returns></returns>
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult InsTetnia(
+           [Bind(Include = "NivelId, Codigo, Nombre, Numero, Estado")]Tetnias model)
+        {
+            // Inicializaciones
+            var jresult = new Jresult();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                jresult.Message = string.Join("; ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+                return Json(jresult);
+            }
+
+            // Acceso a la capa de negocio
+            var entityBL = new TgradosBL();
+            jresult = entityBL.InsTgrado(model);
+
+            // Salida success
+            return Json(jresult);
         }
     }
 }
