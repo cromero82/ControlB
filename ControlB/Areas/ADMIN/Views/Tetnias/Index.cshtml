@@ -1,32 +1,17 @@
-﻿@using Model.BL.Tipos
+﻿@using ControlB.Models
+@using Model.BL.Tipos
 @{
-    var pageName = ViewContext.RouteData.Values["controller"].ToString();
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
     var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
 }
-@section BreadCrumb
-{
-    <li class="crumb-active">
-        <a href="dashboard.html">Dashboard</a>
-    </li>
-    <li class="crumb-icon">
-        <a href="dashboard.html">
-            <span class="glyphicon glyphicon-home"></span>
-        </a>
-    </li>
-    <li class="crumb-link">
-        <a href="index.html">Datos básicos</a>
-    </li>
-    <li class="crumb-trail"> Etnias</li>
-}
-@section BreadCrumbPanel{}
+@section BreadCrumb { @Html.Partial("~/Views/Shared/_BreadCrumb.cshtml", new BreadcrumModel { PaginaActual = "Index", PaginaPrincipal = "Etnias", UrlPaginaPrincipal = "Index.html" })}  @section BreadCrumbPanel{}
 
-<!-- begin: .tray-center -->
-<!--INICIO BODY REAL-->
 <div id="@viewName" class="tray tray-center p5 va-t posr">
 
     <!-- Scripts base de la página -->
     <script src="~/Scripts/personal/inicioPorPagina.js"></script>
-    <script src="~/Areas/ADMIN/Scripts/Tetnias.js"></script>
+    <script src="@Url.Content("~/Areas/ADMIN/Scripts/" + controllerName +".js")"></script>
+    
     <!-- Template de botones -->
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
@@ -94,11 +79,9 @@
             </div>
         </div>
     </div>
+
     <!-- Inicialización script de vista -->
     <script>
         Tetnias.initIndex();
     </script>
 </div>
-
-<!--FIN BODY REAL-->
-<!-- end: .tray-center -->
