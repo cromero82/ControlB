@@ -8,9 +8,9 @@
 
 <div id="@viewName">
     @if (ViewBag.Accion == "Insertar")     {
-        form = Ajax.BeginForm("InsTetnia", "Tetnias", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccess" }, new { enable_placeholder = "" });  }
+        form = Ajax.BeginForm("InsTetnia", "Tetnias", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure="onFailureGenerico" }, new { enable_placeholder = "" });  }
     else {
-        form = Ajax.BeginForm("UpdTetnia", "Tetnias", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccess" }, new { enable_placeholder = "" });
+        form = Ajax.BeginForm("UpdTetnia", "Tetnias", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
     }
     
     using (form)

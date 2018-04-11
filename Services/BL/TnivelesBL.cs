@@ -2,11 +2,8 @@
 using Model.General;
 using Persistence;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.BL
 {
@@ -14,7 +11,12 @@ namespace Services.BL
     {
         // Contexto de base de datos (EF)
         private ApplicationDbContext db = new ApplicationDbContext();
+        Jresult jresult = new Jresult();
 
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+
+        //}
         /// <summary>
         /// Inserta tnivel
         /// </summary>
@@ -22,23 +24,11 @@ namespace Services.BL
         /// <returns> boolean producto transacción</returns>
         public Jresult InsTnivel(Tniveles model)
         {
-            var jresult = new Jresult();
-            try
-            {
-                //var mod = new Tniveles() { Nombre = model.Nombre, CodigoDane = model.CodigoDane, NombreRector = model.NombreRector, NumSedes = model.NumSedes };
-
-                model.Id = db.Tniveles.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
-                db.Tniveles.Add(model);
-                db.SaveChanges();
-                jresult.Success = true;
-                jresult.Message = "Nivel académico registrado satisfactoriamente";
-
-            }
-            catch (Exception ex)
-            {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-            }
+            model.Id = db.Tniveles.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
+            db.Tniveles.Add(model);
+            db.SaveChanges();
+            jresult.Success = true;
+            jresult.Message = "Nivel académico registrado satisfactoriamente";
             return jresult;
         }
 
@@ -49,18 +39,9 @@ namespace Services.BL
         /// <returns> lista de datos</returns>
         public Jresult GetListTniveles()
         {
-            var jresult = new Jresult();
-            try
-            {
-                var listaDatos = db.Tniveles.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
-            }
-            catch (Exception ex)
-            {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-            }
+            var listaDatos = db.Tniveles.Where(x => x.Estado == 1).ToList();
+            jresult.Result = listaDatos;
+            jresult.Success = true;
             return jresult;
         }
 

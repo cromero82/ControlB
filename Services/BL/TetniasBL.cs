@@ -2,65 +2,64 @@
 using Model.BL.Tipos;
 using Model.General;
 using Persistence;
+using Services.BL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kendo.Mvc.UI;
 
 namespace Services.BL
 {
-    public class TetniasBL
+    public class TetniasBL: ClaseBL
     {
         // Contexto de base de datos (EF)
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        Jresult jresult = new Jresult();
+        private string entidad = "Etnia";
         /// <summary>
-        /// Inserta tnivel
+        /// Inserta tetnia
         /// </summary>
-        /// <param name="model"> Modelo de tnivel</param>
+        /// <param name="model"> Modelo de tetnia</param>
         /// <returns> boolean producto transacción</returns>
-        public Jresult InsTnivel(Tetnias model)
+        public Jresult InsTetnia(Tetnias model)
         {
             var jresult = new Jresult();
-            try
-            {
-                //var mod = new Tetnias() { Nombre = model.Nombre, CodigoDane = model.CodigoDane, NombreRector = model.NombreRector, NumSedes = model.NumSedes };
-
-                model.Id = db.Tetnias.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
-                db.Tetnias.Add(model);
-                db.SaveChanges();
-                jresult.Success = true;
-                jresult.Message = "Nivel académico registrado satisfactoriamente";
-
-            }
-            catch (Exception ex)
-            {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-            }
+            model.Id = db.Tetnias.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
+            db.Tetnias.Add(model);
+            db.SaveChanges();
+            jresult.Success = true;            
+            jresult.Message = "Registro de " + entidad + " ejecutado de forma satisfactoria ";
             return jresult;
         }
 
-        public Kendo.Mvc.UI.DataSourceResult GetListTetnias(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
+        public Jresult GetListTetnias(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
         {
-            var queryable = db.Tetnias.Where(f=>f.Estado == 1).Select(r => new TetniasVM
+            try
             {
-                    Id= r.Id,                    
-                    Nombre = r.Nombre,                    
+                var queryable = db.Tetnias.Where(f => f.Estado == 1).Select(r => new TetniasVM
+                {
+                    Id = r.Id,
+                    Nombre = r.Nombre,
                     Numero = r.Numero,
                     Estado = r.Estado
-            });            
-
-            // Se aplican filtros de kendo               
-            var datos = queryable.ToDataSourceResult(filtrosComponenteKendo);
-            return datos;
+                });
+                
+                #region Aplicacion Filtro kendo
+                return AplicadorFiltrosKendo(jresult, filtrosComponenteKendo, queryable);
+                #endregion
+            }
+            #region Manejador Excepcion
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            #endregion
         }
 
 
+
         /// <summary>
-        /// Obtiene lista de tnivels
+        /// Obtiene lista de tetnias
         /// </summary>        
         /// <returns> lista de datos</returns>
         public Jresult GetListTetnias()
@@ -81,19 +80,19 @@ namespace Services.BL
         }
 
         ///// <summary>
-        ///// Actualiza datos básicos del tnivel
+        ///// Actualiza datos básicos del tetnia
         ///// </summary>
-        ///// <param name="model"> Datos del modelo de tnivel</param>
+        ///// <param name="model"> Datos del modelo de tetnia</param>
         ///// <returns> Resultado de la transacción </returns>
-        public Jresult UpdTnivel(Tetnias model)
+        public Jresult UpdTetnia(Tetnias model)
         {
             var jresult = new Jresult();
             try
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                jresult.Success = true;
-                jresult.Message = "Información del nivel académico modificada satisfactoriamente";
+                jresult.Success = true;                
+                jresult.Message = "Modificación de " + entidad + " ejecutado de forma satisfactoria ";
             }
             catch (Exception ex)
             {
@@ -104,17 +103,17 @@ namespace Services.BL
         }
 
         /// <summary>
-        /// Obtiene un tnivel
+        /// Obtiene un tetnia
         /// </summary>
-        /// <param name="id">id del tnivel </param>
+        /// <param name="id">id del tetnia </param>
         /// <returns> Resultado de la transaccion </returns>
-        public Jresult GetTnivel(long id)
+        public Jresult GetTetnia(long id)
         {
             var jresult = new Jresult();
             try
             {
-                var tnivel = db.Tetnias.Find(id);
-                jresult.Result = tnivel;
+                var tetnia = db.Tetnias.Find(id);
+                jresult.Result = tetnia;
                 jresult.Success = true;
             }
             catch (Exception ex)
@@ -127,11 +126,11 @@ namespace Services.BL
         }
 
         /// <summary>
-        /// Elimina tnivel
+        /// Elimina tetnia
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Resultado de la transacción </returns>
-        public Jresult DelTnivel(int id)
+        public Jresult DelTetnia(int id)
         {
             var jresult = new Jresult();
             try
@@ -146,7 +145,7 @@ namespace Services.BL
 
                 // Salida success
                 jresult.Success = true;
-                jresult.Message = "Nivel académico eliminada satisfactoriamente.";
+                jresult.Message = "se ha eliminado satisfactoriamente " + entidad;
             }
             catch (Exception ex)
             {

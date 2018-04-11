@@ -1,4 +1,6 @@
-﻿using Kendo.Mvc.Extensions;
+﻿#region include
+using ControlB.Utilidades;
+using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Model.BL.Tipos;
 using Model.General;
@@ -8,11 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+#endregion
 
 namespace ControlB.Areas.ADMIN.Controllers
 {
-    public class TetniasController : Controller
+    public class TetniasController : UtilController
     {
+        #region Definiciones generales
         Jresult jresult = new Jresult();
         TetniasBL etniasBL = new TetniasBL();
         JsonResult json;
@@ -21,6 +25,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         {
             return View();
         }
+        #endregion
 
         /// <summary>
         /// Obtiene una lista de establecimientos para presentarla en un grid
@@ -30,11 +35,10 @@ namespace ControlB.Areas.ADMIN.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult GetList([DataSourceRequest]DataSourceRequest request)
-        {
-            var result = etniasBL.GetListTetnias(request);            
-            json = Json(result);
-            json.MaxJsonLength = Int32.MaxValue;
-            return json;
+        {           
+            var institucionesBL = new TnivelesBL();
+            var jresult = etniasBL.GetListTetnias(request);
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando establecimientos: ");
         }
 
         /// <summary>
@@ -45,7 +49,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         public ActionResult TetniaView(int? id, string accionCrud)
         {
             // Aqui continuar !!!!!!!!!!!!!!
-            ViewBag.Accion = "Insertar";
+            ViewBag.Accion = accionCrud;
             return PartialView("TetniaView", new Tetnias());
         }
 
@@ -70,8 +74,8 @@ namespace ControlB.Areas.ADMIN.Controllers
             }
 
             // Acceso a la capa de negocio
-            var entityBL = new TgradosBL();
-            jresult = entityBL.InsTgrado(model);
+            var entityBL = new TetniasBL();
+            jresult = entityBL.InsTetnia(model);
 
             // Salida success
             return Json(jresult);

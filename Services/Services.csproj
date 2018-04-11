@@ -120,6 +120,7 @@
     <Compile Include="Auth\ApplicationRoleManager.cs" />
     <Compile Include="Auth\ApplicationSignInManager.cs" />
     <Compile Include="Auth\ApplicationUserManager.cs" />
+    <Compile Include="BL\ClaseBL.cs" />
     <Compile Include="BL\InstitucionesBL.cs" />
     <Compile Include="BL\TgradosBL.cs" />
     <Compile Include="BL\TjornadasBL.cs" />
