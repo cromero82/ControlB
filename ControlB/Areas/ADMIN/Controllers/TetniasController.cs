@@ -46,7 +46,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// </summary>
         /// <returns> Vista </returns>
         [Authorize(Roles = "Admin")]
-        public ActionResult TetniaView(int? id, string accionCrud)
+        public ActionResult TetniasView(int? id, string accionCrud)
         {
             // Aqui continuar !!!!!!!!!!!!!!
             ViewBag.Accion = accionCrud;

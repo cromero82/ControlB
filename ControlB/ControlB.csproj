@@ -222,7 +222,7 @@
     <Compile Include="Utilidades\UtilController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\ADMIN\Scripts\Tetnias.js" />
+    <Content Include="Areas\ADMIN\Scripts\TetniasView.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucionWizard.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
@@ -2365,7 +2365,7 @@
     <Content Include="Areas\ADMIN\Views\Tlistas\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Instituciones\InsInstitucionWizard.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tetnias\Index.cshtml" />
-    <Content Include="Areas\ADMIN\Views\Tetnias\TetniaView.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tetnias\TetniasView.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

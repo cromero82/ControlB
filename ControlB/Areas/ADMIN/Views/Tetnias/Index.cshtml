@@ -2,7 +2,7 @@
 @using Model.BL.Tipos
 @{
     var controllerName = ViewContext.RouteData.Values["controller"].ToString();
-    var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
+    var viewName = Path.GetFileNameWithoutExtension(VirtualPath); var jsViewName = controllerName +"View";
 }
 @section BreadCrumb { @Html.Partial("~/Views/Shared/_BreadCrumb.cshtml", new BreadcrumModel { PaginaActual = "Index", PaginaPrincipal = "Etnias", UrlPaginaPrincipal = "Index.html" })}  @section BreadCrumbPanel{}
 
@@ -10,12 +10,12 @@
 
     <!-- Scripts base de la página -->
     <script src="~/Scripts/personal/inicioPorPagina.js"></script>
-    <script src="@Url.Content("~/Areas/ADMIN/Scripts/" + controllerName +".js")"></script>
+    <script src="@Url.Content("~/Areas/ADMIN/Scripts/" + jsViewName +".js")"></script>
     
     <!-- Template de botones -->
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
-            <a data-modal="modal-lg" href='@Url.Action("TetniaView", "Tetnias", new { Area = "ADMIN", accionCrud = "Editar" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a data-modal="modal-lg" href='@Url.Action("TetniasView", "Tetnias", new { Area = "ADMIN", accionCrud = "Editar" })?id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
             <a onclick="Tetnias.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
@@ -29,8 +29,7 @@
                         <span class="glyphicon glyphicon-tasks"></span>Etnias
                         <div class="alineacionVertical pull-right">
 
-                            <a data-modal="modal-lg"
-                               href='@Url.Action("TetniaView", "Tetnias", new { Area = "ADMIN", accionCrud = "Insertar"  })'
+                            <a data-modal="modal-lg" href='@Url.Action("TetniasView", "Tetnias", new { Area = "ADMIN", accionCrud = "Insertar"  })' 
                                class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
 
                         </div>
@@ -39,7 +38,7 @@
 
                 <div class="panel-body pn" id="divLista">
                     @(Html.Kendo().Grid<TetniasVM>()
-                            .Name("tetniasGrid")
+                            .Name("grid")
                             .Columns(columns =>
                             {
                                 columns.Bound(p => p.Nombre)
@@ -80,8 +79,9 @@
         </div>
     </div>
 
-    <!-- Inicialización script de vista -->
+    <!-- Inicialización script de vista - INDEX -->
     <script>
-        Tetnias.initIndex();
+        //Tetnias.initIndex();
+        @(jsViewName).initIndex();
     </script>
 </div>

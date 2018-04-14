@@ -48,8 +48,8 @@
             }).done(function (result) {
                 if (result.Success) {
                     alerta("Resultado de la operación", result.Message, "success");
-                    $('#tnivelesGrid').data('kendoGrid').dataSource.read();
-                    $('#tnivelesGrid').data('kendoGrid').refresh();
+                    $('#grid').data('kendoGrid').dataSource.read();
+                    $('#grid').data('kendoGrid').refresh();
 
                 } else {
                     alerta("Resultado de la operación", result.Message, "error")
