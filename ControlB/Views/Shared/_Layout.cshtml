@@ -101,6 +101,20 @@
             <!-- End: Content -->
         </section>
     </div>
+
+    @(Html.Kendo().Window()
+    .Name("winModal")
+    .Title("About Alvar Aalto")
+    .Content(@<text>
+        <div id="contenidoVentana"></div>
+    </text>)
+    .Draggable()
+    .Resizable()
+    .Width(600)
+    .Actions(actions => actions.Pin().Close())
+    .Visible(false)
+    //.Events(ev => ev.Close("onClose"))
+    )
     <!-- End: Main -->
     <style>
         /*demo styles*/

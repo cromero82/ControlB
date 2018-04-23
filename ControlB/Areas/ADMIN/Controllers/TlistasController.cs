@@ -37,7 +37,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result.Data, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetListTetnias([DataSourceRequest]DataSourceRequest request)
+        public ActionResult GetListTetnia([DataSourceRequest]DataSourceRequest request)
         {
             var listaBl = new TlistasBL();
             var jresult = listaBl.GetListTiposEtnias();
@@ -310,7 +310,7 @@ namespace ControlB.Areas.ADMIN.Controllers
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
     }    

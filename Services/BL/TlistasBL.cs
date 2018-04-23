@@ -26,8 +26,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tcaracter.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -47,8 +47,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tespecialidades.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace Services.BL
                 }
                 
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Departamentos registrados satisfactoriamente";
 
             }
@@ -101,8 +101,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tdepartamentos.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -137,13 +137,13 @@ namespace Services.BL
                 }
 
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Municipios registrados satisfactoriamente";
 
             }
             catch (Exception ex)
             {
-                jresult.MensajeError(ex);
+                //jresult.SetError(ex);
                 Console.WriteLine(ex.Message);
             }
             return jresult;
@@ -179,8 +179,8 @@ namespace Services.BL
                 dataResult.Count = listaDatos.ToList().Count();
 
                 // asigna model de bindeo a Jresult
-                jresult.Result = dataResult;
-                jresult.Success = true;
+                jresult.Data = dataResult;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -200,8 +200,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tpaises.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -221,8 +221,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tmetodologias.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -242,8 +242,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tdocumentos.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -263,8 +263,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Testratos.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -284,8 +284,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tsisben.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -305,8 +305,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.TpVictimaConflicto.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -326,8 +326,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tdiscapacidades.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -347,8 +347,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.TcapExcepcionales.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -367,9 +367,9 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Tetnias.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                var listaDatos = db.Tetnia.Where(x => x.Estado == 1).ToList();
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {

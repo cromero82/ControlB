@@ -27,7 +27,7 @@ namespace Services.BL
             model.Id = db.Tniveles.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
             db.Tniveles.Add(model);
             db.SaveChanges();
-            jresult.Success = true;
+            jresult.Success = true;;
             jresult.Message = "Nivel académico registrado satisfactoriamente";
             return jresult;
         }
@@ -40,8 +40,8 @@ namespace Services.BL
         public Jresult GetListTniveles()
         {
             var listaDatos = db.Tniveles.Where(x => x.Estado == 1).ToList();
-            jresult.Result = listaDatos;
-            jresult.Success = true;
+            jresult.Data = listaDatos;
+            jresult.Success = true;;
             return jresult;
         }
 
@@ -57,7 +57,7 @@ namespace Services.BL
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Información del nivel académico modificada satisfactoriamente";
             }
             catch (Exception ex)
@@ -79,8 +79,8 @@ namespace Services.BL
             try
             {
                 var tnivel = db.Tniveles.Find(id);
-                jresult.Result = tnivel;
-                jresult.Success = true;
+                jresult.Data = tnivel;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -110,7 +110,7 @@ namespace Services.BL
                 db.SaveChanges();
 
                 // Salida success
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Nivel académico eliminada satisfactoriamente.";
             }
             catch (Exception ex)

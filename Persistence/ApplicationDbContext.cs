@@ -32,7 +32,7 @@ namespace Persistence
         public DbSet<TpVictimaConflicto> TpVictimaConflicto { get; set; }
         public DbSet<Tdiscapacidades> Tdiscapacidades { get; set; }
         public DbSet<TcapExcepcionales> TcapExcepcionales { get; set; }
-        public DbSet<Tetnias> Tetnias { get; set; }
+        public DbSet<Tetnia> Tetnia { get; set; }
         public DbSet<GenSedes> GenSedes { get; set; }
         public DbSet<GenNivelesAprobados> GenNivelesAprobados { get; set; }
         public DbSet<GenCore> GenCore { get; set; }

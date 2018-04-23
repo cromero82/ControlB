@@ -3,6 +3,7 @@
 
 var modalBs = $('#myModal');
 var modalBsContent = $('#myModal').find(".modal-content");
+var gridRefresh = "";
 
 function handleOnErrorModelState(e, status) {
     if (e.errors) {
@@ -33,7 +34,7 @@ function handleAjaxModal() {
     // Configura evento del link para aquellos para los que desean abrir popups
     $("a[data-modal]").on("click", function (e) {
         var dataModalValue = $(this).data("modal");
-
+        gridRefresh = $(this).data("kgrid")        
         $('#modalContent').load(this.href, function (response, status, xhr) {
             switch (status) {
                 case "success":
@@ -97,38 +98,46 @@ kendo.culture("es-CO");
             });
 
             $("a[data-modal]").on('click', function (e) {
-                    var dataModalValue = $(this).data("modal");
-                    $('#modalContent').load(this.href, function (response, status, xhr) {
-                        switch (status) {
-                            case "success":
-                                modalBs.modal({ backdrop: 'static', keyboard: false }, 'show');
+                var dataModalValue = $(this).data("modal");
+                gridRefresh = $(this).data("kgrid")
+                $('#modalContent').load(this.href, function (response, status, xhr) {
+                    switch (status) {
+                        case "success":
+                            modalBs.modal({ backdrop: 'static', keyboard: false }, 'show');
 
-                                if (dataModalValue == "modal-lg") {
-                                    modalBs.find(".modal-dialog").addClass("modal-lg");
-                                }
-                                else if (dataModalValue == "modal-xl") {
-                                    modalBs.find(".modal-dialog").addClass("modal-xl");
-                                }
-                                else {
-                                    modalBs.find(".modal-dialog").removeClass("modal-lg");
-                                    modalBs.find(".modal-dialog").removeClass("modal-xl");
-                                }
+                            if (dataModalValue == "modal-lg") {
+                                modalBs.find(".modal-dialog").addClass("modal-lg");
+                            }
+                            else if (dataModalValue == "modal-xl") {
+                                modalBs.find(".modal-dialog").addClass("modal-xl");
+                            }
+                            else {
+                                modalBs.find(".modal-dialog").removeClass("modal-lg");
+                                modalBs.find(".modal-dialog").removeClass("modal-xl");
+                            }
 
-                                $('#myModal').modal('show');                              
+                            $('#myModal').modal('show');
 
-                                break;
+                            break;
 
 
-                            case "error":
-                                var message = "Error de ejecución: " + xhr.status + " " + xhr.statusText;
-                                if (xhr.status == 403) $.msgbox(response, { type: 'error' });
-                                else   alerta("Resultado de la operación", message, "error");
-                                break;
-                        }
+                        case "error":
+                            alerta("Error de ejecución: " + xhr.status + " " + xhr.statusText, "error")
+                            //var message = "Error de ejecución: " + xhr.status + " " + xhr.statusText;
+                            //if (xhr.status == 403) alerta(response, result.Message, "error");
+                            //else alerta(message, result.Message, "error");
+                            break;
+                    }
 
-                    });
-                    return false;
                 });
+                return false;
+            });
+
+            function respuestaCargarVentana(dataRequest) {
+                debugger;
+                $("#contenidoVentana").html(dataRequest);
+                $("#winModal").data("kendoWindow").open();
+            }
 
             function findActive() {
                 var activeModal = modalContent.find('.holder-active').attr('href');

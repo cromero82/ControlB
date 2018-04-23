@@ -29,7 +29,7 @@ namespace Services.BL
                 model.Id = db.Tjornadas.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
                 db.Tjornadas.Add(model);
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Jornada académico registrado satisfactoriamente";
 
             }
@@ -52,8 +52,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.Tjornadas.Where(x => x.Estado == 1).ToList();
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace Services.BL
             {
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Información del jornada académico modificada satisfactoriamente";
             }
             catch (Exception ex)
@@ -97,8 +97,8 @@ namespace Services.BL
             try
             {
                 var tjornada = db.Tjornadas.Find(id);
-                jresult.Result = tjornada;
-                jresult.Success = true;
+                jresult.Data = tjornada;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -128,7 +128,7 @@ namespace Services.BL
                 db.SaveChanges();
 
                 // Salida success
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Jornada académico eliminada satisfactoriamente.";
             }
             catch (Exception ex)

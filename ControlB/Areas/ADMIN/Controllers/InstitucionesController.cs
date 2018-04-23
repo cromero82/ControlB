@@ -29,7 +29,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         {
             var institucionesBL = new InstitucionesBL();
             var jresult = institucionesBL.GetListInstituciones();
-            if (jresult.Success == false)
+            if (jresult.Success = true)
             {
                 ModelState.AddModelError("Error", "Error consultando establecimientos: " + jresult.Message);
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
@@ -37,7 +37,7 @@ namespace ControlB.Areas.ADMIN.Controllers
 
             //return Json(((IQueryable<InstitucionesGridVM>)jresult.Result).ToDataSourceResult(request));
             //return Json(new DataSourceResult { Data = jresult.Result });            
-            return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace ControlB.Areas.ADMIN.Controllers
             }
 
             // Retorna vista parcial con model         
-            return PartialView(jresult.Result);
+            return PartialView(jresult.Data);
         }
 
         /// <summary>
@@ -128,7 +128,8 @@ namespace ControlB.Areas.ADMIN.Controllers
             jresult = entityBL.UpdInstitucion(model);
 
             // Salida success
-            jresult.Success = true;
+            jresult.Success = true;;
+
             return Json(jresult);
         }
 

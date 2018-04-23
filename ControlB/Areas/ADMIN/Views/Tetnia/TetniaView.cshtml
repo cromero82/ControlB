@@ -1,22 +1,22 @@
 ﻿@using Model.BL.Tipos
-@model Tetnias
+@model TetniaVM
 
 @{
-    var viewName = Path.GetFileNameWithoutExtension(VirtualPath);    
+    var viewName = ViewContext.RouteData.Values["controller"].ToString();
     MvcForm form;
 }
 
 <div id="@viewName">
     @if (ViewBag.Accion == "Insertar")     {
-        form = Ajax.BeginForm("InsTetnia", "Tetnias", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure="onFailureGenerico" }, new { enable_placeholder = "" });  }
+        form = Ajax.BeginForm("InsTetnia", "Tetnia", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure="onFailureGenerico" }, new { enable_placeholder = "" });  }
     else {
-        form = Ajax.BeginForm("UpdTetnia", "Tetnias", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
+        form = Ajax.BeginForm("UpdTetnia", "Tetnia", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
     }
     
-    using (form)
+    @using (form)
     {
         @Html.AntiForgeryToken()
-               
+        @Html.HiddenFor(m=> m.Id)    
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">@ViewBag.Accion Etnia</h4>
@@ -47,6 +47,6 @@
 
     <!-- Inicialización script de vista -->
     <script>
-	@(viewName).init("crear");
+	@(viewName).initEdicion("Insertar");
     </script>
 </div>

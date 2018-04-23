@@ -20,7 +20,7 @@ namespace ControlB.Utilidades
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
             //return Json(new DataSourceResult { Data = jresult.Result, Total = jresult.Result.Count });
-            json = Json(jresult.Result);
+            json = Json(jresult.Data);
             json.MaxJsonLength = Int32.MaxValue;
             return json;
         }        

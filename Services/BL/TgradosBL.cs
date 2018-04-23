@@ -30,7 +30,7 @@ namespace Services.BL
                 model.Id = db.Tgrados.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
                 db.Tgrados.Add(model);
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Grado registrado satisfactoriamente";
 
             }
@@ -68,8 +68,8 @@ namespace Services.BL
                 dataResult.Data = listaDatos.ToList();
                 dataResult.Count = listaDatos.ToList().Count();
                     //.ToList();
-                jresult.Result = dataResult;
-                jresult.Success = true;
+                jresult.Data = dataResult;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -91,7 +91,7 @@ namespace Services.BL
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Información del grado modificada satisfactoriamente";
             }
             catch (Exception ex)
@@ -113,8 +113,8 @@ namespace Services.BL
             try
             {
                 var tgrado = db.Tgrados.Find(id);
-                jresult.Result = tgrado;
-                jresult.Success = true;
+                jresult.Data = tgrado;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -144,7 +144,7 @@ namespace Services.BL
                 db.SaveChanges();
 
                 // Salida success
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Grado eliminada satisfactoriamente.";
             }
             catch (Exception ex)

@@ -29,7 +29,7 @@ namespace Services.BL
                 model.Id = db.GenInstituciones.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
                 db.GenInstituciones.Add(model);
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Institucion registrado satisfactoriamente";
 
             }
@@ -52,8 +52,8 @@ namespace Services.BL
             try
             {
                 var listaDatos = db.GenInstituciones.Where(x => x.Estado == 1).ToList();                
-                jresult.Result = listaDatos;
-                jresult.Success = true;
+                jresult.Data = listaDatos;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace Services.BL
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Información del establecimiento modificada satisfactoriamente";
             }
             catch (Exception ex)
@@ -97,8 +97,8 @@ namespace Services.BL
             try
             {
                 var establecimiento = db.GenInstituciones.Find(id);
-                jresult.Result = establecimiento;
-                jresult.Success = true;
+                jresult.Data = establecimiento;
+                jresult.Success = true;;
             }
             catch (Exception ex)
             {
@@ -128,7 +128,7 @@ namespace Services.BL
                 db.SaveChanges();
 
                 // Salida success
-                jresult.Success = true;
+                jresult.Success = true;;
                 jresult.Message = "Institucion eliminada satisfactoriamente.";
             }
             catch (Exception ex)

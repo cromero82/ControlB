@@ -200,7 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
-    <Compile Include="Areas\ADMIN\Controllers\TetniasController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\TetniaController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TjornadasController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TgradosController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TlistasController.cs" />
@@ -222,7 +222,7 @@
     <Compile Include="Utilidades\UtilController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\ADMIN\Scripts\TetniasView.js" />
+    <Content Include="Areas\ADMIN\Scripts\Tetnia.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucionWizard.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucion.js" />
@@ -2364,8 +2364,8 @@
     <Content Include="Areas\ADMIN\Views\Tjornadas\UpdTjornada.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tlistas\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Instituciones\InsInstitucionWizard.cshtml" />
-    <Content Include="Areas\ADMIN\Views\Tetnias\Index.cshtml" />
-    <Content Include="Areas\ADMIN\Views\Tetnias\TetniasView.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tetnia\Index.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Tetnia\TetniaView.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3075,6 +3075,7 @@
     <Content Include="Scripts\misJavascripts.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\personal\inicioPorPagina.js" />
+    <Content Include="Scripts\personal\ScriptGenerico.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />

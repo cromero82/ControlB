@@ -69,8 +69,8 @@
     <Compile Include="BL\GenNivelesAprobados.cs" />
     <Compile Include="BL\GenPersona.cs" />
     <Compile Include="BL\GenSedes.cs" />
-    <Compile Include="BL\Tipos\TetniasVM.cs" />
-    <Compile Include="BL\Tipos\Tetnias.cs" />
+    <Compile Include="BL\Tipos\TetniaVM.cs" />
+    <Compile Include="BL\Tipos\Tetnia.cs" />
     <Compile Include="BL\Tipos\TcapExcepcionales.cs" />
     <Compile Include="BL\Tipos\TpVictimaConflicto.cs" />
     <Compile Include="BL\Tipos\Tdiscapacidades.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="BL\Tipos\Tmunicipios.cs" />
     <Compile Include="BL\Tipos\Tniveles.cs" />
     <Compile Include="BL\Tipos\Tpaises.cs" />
+    <Compile Include="General\Enumeraciones.cs" />
     <Compile Include="General\Jresult.cs" />
     <Compile Include="General\UserForGridView.cs" />
     <Compile Include="General\UserGrid.cs" />

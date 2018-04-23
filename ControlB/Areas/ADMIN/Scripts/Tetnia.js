@@ -1,22 +1,17 @@
-﻿var Tetnias = function () {
+﻿var Tetnia = function () {
     "use strict"
-    return {
-        // ---------------------------------
-        //           Propiedades 
-        // ---------------------------------        
+    return {        
 
-        // ---------------------------------
-        //           Metodos 
-        // ---------------------------------
-
+        // Iniciallizacion vista index
         initIndex: function () {
-            // Codigo de inicialización
-            this.handleTemplates();
+            Tetnia.actionBotones = kendo.template($('#actionBotones').html());
         },
 
-        handleTemplates: function () {
-            Tetnias.actionBotones = kendo.template($('#actionBotones').html());
+        // Iniciallizacion vista de edicion
+        initEdicion: function (accion) {
+            //if(accion == "Insertar"){}
         },
+
 
         // pregunta al usuario la eliminacion del registro
         validarEliminacion: function (id, nombre) {
