@@ -12,7 +12,6 @@
             //if(accion == "Insertar"){}
         },
 
-
         // pregunta al usuario la eliminacion del registro
         validarEliminacion: function (id, nombre) {
             var id_ = id;

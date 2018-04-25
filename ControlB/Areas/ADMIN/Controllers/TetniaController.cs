@@ -89,7 +89,7 @@ namespace ControlB.Areas.ADMIN.Controllers
             }
 
             // Acceso a la capa de negocio y result
-            jresult = entityBL.InsTetnia( model);
+            jresult = entityBL.Insert( model);
 
             // Salida success
             return Json(jresult);
@@ -104,7 +104,7 @@ namespace ControlB.Areas.ADMIN.Controllers
             }
 
             // Acceso a la capa de negocio y result
-            return Json(entityBL.UpdTetnia(model));            
+            return Json(entityBL.Update(model));            
         }
 
         public string GetMethodCrudName(string nombreMetodo)

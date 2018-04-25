@@ -1,7 +1,7 @@
 ﻿@using ControlB.Models
 @using Model.BL.Tipos
 @{
-    var controllerName = ViewContext.RouteData.Values["controller"].ToString();   var jsFile = controllerName;
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();   var jsFile = controllerName; var area = ViewContext.RouteData.DataTokens["area"];
 }
 @section BreadCrumb { @Html.Partial("~/Views/Shared/_BreadCrumb.cshtml", new BreadcrumModel { PaginaActual = "Index", PaginaPrincipal = "Etnias", UrlPaginaPrincipal = "Index.html" })}  @section BreadCrumbPanel{}
 
@@ -15,7 +15,7 @@
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
             <a data-modal="modal-lg" data-kgrid="grid" href='@Url.Action( jsFile +"View", controllerName, new { Area = "ADMIN", accionCrud = "Editar" })&id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
-            <a onclick="Tetnia.validarEliminacion('#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+            <a onclick="/@(Html.Raw(controllerName)).validarEliminacion('@(Html.Raw(controllerName))','#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
 
@@ -64,7 +64,7 @@
                         .DataSource(dataSource => dataSource
                             .Ajax()
                             .PageSize(10)
-                            .Read(read => read.Action("GetList", controllerName, new { Area = "ADMIN" })
+                            .Read(read => read.Action("GetList", controllerName, new { Area = area })
                             )
                         .Events(e => e.Error("handleOnErrorModelState"))
                         .ServerOperation(false)

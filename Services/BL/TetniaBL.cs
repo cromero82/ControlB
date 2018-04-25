@@ -24,18 +24,10 @@ namespace Services.BL
         /// Inserta tetnia
         /// </summary>
         /// <param name="model"> Modelo de tetnia</param>
-        /// <returns> boolean producto transacción</returns>
-        public Jresult InsTetnia(TetniaVM model)
+        /// <returns> Resultado de la transacción </returns>
+        public Jresult Insert(TetniaVM model)
         {
-            //var jresult = new Jresult();
-            //model.Id = db.Tetnia.DefaultIfEmpty().Max(r => r == null ? 0 : r.Id) + 1;
-            //db.Tetnia.Add(GetItemBd(model));
-            //db.SaveChanges();
-            //jresult.Success = true;;            
-            //jresult.Message = "Registro de " + entidad + " ejecutado de forma satisfactoria ";
-            //return jresult;
-            
-            try
+           try
             {
                 Tetnia dbItem = GetItemBd(model);
                 db.Tetnia.Add(dbItem);
@@ -43,11 +35,37 @@ namespace Services.BL
                 db.SaveChanges();
                 jresult.SetOk("Creación de " + entidad + " ha tenido una ejecución satisfactoria");
             }
+            #region Excepcion y salida
             catch (Exception ex)
             {
                 jresult.SetError("Modificación de " + entidad + " finalizada con errores ");
             }
             return jresult;
+            #endregion
+        }
+
+        /// <summary>
+        /// Actualiza  tetnia
+        /// </summary>
+        /// <param name="model"> Modelo de tetnia</param>
+        /// <returns> Resultado de la transacción </returns>
+        public Jresult Update(TetniaVM modelVM)
+        {
+            try
+            {
+                var modelBd = GetItemBd(modelVM);
+                db.Tetnia.Attach(modelBd);
+                db.Entry(modelBd).State = EntityState.Modified;
+                db.SaveChanges();
+                jresult.SetOk("Modificación de " + entidad + " ha tenido una ejecución satisfactoria");
+            }
+            #region Excepcion y salida
+            catch (Exception ex)
+            {
+                jresult.SetError("Modificación de " + entidad + " finalizada con errores ");
+            }
+            return jresult;
+            #endregion
         }
 
         public Jresult GetList(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
@@ -69,54 +87,7 @@ namespace Services.BL
             #region Manejador Excepcion
             catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
             #endregion
-        }
-
-
-
-        /// <summary>
-        /// Obtiene lista de tetnias
-        /// </summary>        
-        /// <returns> lista de datos</returns>
-        public Jresult GetListTetnia()
-        {
-            var jresult = new Jresult();
-            try
-            {
-                var listaDatos = db.Tetnia.Where(x => x.Estado == 1).ToList();
-                jresult.Data = listaDatos;
-                jresult.Success = true;;
-            }
-            catch (Exception ex)
-            {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-            }
-            return jresult;
-        }
-
-        ///// <summary>
-        ///// Actualiza datos básicos del tetnia
-        ///// </summary>
-        ///// <param name="model"> Datos del modelo de tetnia</param>
-        ///// <returns> Resultado de la transacción </returns>
-        public Jresult UpdTetnia(TetniaVM modelVM)
-        {
-            try
-            {              
-                var modelBd = GetItemBd(modelVM);
-                db.Tetnia.Attach(modelBd);
-                db.Entry(modelBd).State = EntityState.Modified;
-                db.SaveChanges();                
-                jresult.SetOk("Modificación de " + entidad + " ha tenido una ejecución satisfactoria");
-            }
-            catch (Exception ex)
-            {
-                jresult.SetError("Modificación de " + entidad + " finalizada con errores ");                
-            }
-            return jresult;
-        }
-
-       
+        }        
 
         /// <summary>
         /// Obtiene un tetnia
@@ -146,22 +117,25 @@ namespace Services.BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Resultado de la transacción </returns>
-        public Jresult DelTetnia(int id)
+        public Jresult Delete(int id)
         {
             var jresult = new Jresult();
             try
             {
+                //var entity = db.Tetnia.SingleOrDefault(b => b.Id == id);
+                //if (entity != null)
+                //{
+                //    entity.Estado = 0;
+                //    db.SaveChanges();
+                //}
                 var entity = db.Tetnia.SingleOrDefault(b => b.Id == id);
-                if (entity != null)
-                {
-                    entity.Estado = 0;
-                    db.SaveChanges();
-                }
+                entity.Estado = 0;
+                //var modelBd = GetItemBd(modelVM);
+                db.Tetnia.Attach(entity);
+                db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
+                jresult.SetOk("Modificación de " + entidad + " ha tenido una ejecución satisfactoria");
 
-                // Salida success
-                jresult.Success = true;;
-                jresult.Message = "se ha eliminado satisfactoriamente " + entidad;
             }
             catch (Exception ex)
             {
