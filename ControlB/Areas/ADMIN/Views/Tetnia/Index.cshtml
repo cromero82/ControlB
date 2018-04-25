@@ -14,23 +14,20 @@
     <!-- Template de botones -->
     <script id="actionBotones" type="text/x-kendo-template">
         <div class="text-center">
-            <a data-modal="modal-lg" data-kgrid="grid" href='@Url.Action( jsFile +"View", controllerName, new { Area = "ADMIN", accionCrud = "Editar" })&id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
-            <a onclick="/@(Html.Raw(controllerName)).validarEliminacion('@(Html.Raw(controllerName))','#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+            <a data-modal="modal-lg" data-kgrid="grid" href='@Url.Action( jsFile +"View", controllerName, new { Area = area, accionCrud = "Editar" })&id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a onclick="validarEliminacion('/@(Html.Raw(area +"/"+controllerName))/del@(Html.Raw(controllerName))','#=data.Id#','#=data.Nombre#')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
         </div>
     </script>
 
-    <div class="row" id="spy1">
+    <div class="row">
         <div class="col-md-12">
-
-            <div class="panel panel-visible" id="spy2">
+            <div class="panel panel-visible">
                 <div class="panel-heading">
                     <div class="panel-title hidden-xs">
                         <span class="glyphicon glyphicon-tasks"></span>Etnias
                         <div class="alineacionVertical pull-right">
-
-                            <a  data-modal="modal-lg" data-kgrid="grid" href='@Url.Action(jsFile +"View", controllerName, new { Area = "ADMIN", accionCrud = "Insertar"  })' 
+                            <a  data-modal="modal-lg" data-kgrid="grid" href='@Url.Action(jsFile +"View", controllerName, new { Area = area, accionCrud = "Insertar"  })' 
                                class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
-
                         </div>
                     </div>
                 </div>

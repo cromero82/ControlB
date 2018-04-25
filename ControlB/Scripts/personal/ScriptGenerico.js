@@ -60,6 +60,46 @@ function onFailureGenerico(data) {
     mostrarMensaje("Resultado de la transacción", "Se ha presentado un error del sistema", "danger");
 };
 
+// pregunta al usuario la eliminacion del registro
+function validarEliminacion (url, id, nombre) {
+    urlEliminar = url;
+    var id_ = id;
+    var nombre_ = nombre;
+    swal({
+        title: "Por favor, confirme con respecto a: '" + nombre + "'",
+        text: "¿Está seguro que querer eliminar el registro?  ",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            eliminar(id_);
+        }
+    });
+};
+
+// elimina el registro del conductor
+function eliminar(id) {
+    $.ajax({
+        method: "POST",
+        url: urlEliminar,
+        data: {
+            id: id
+            //__RequestVerificationToken: getCookie("__RequestVerificationToken") //window.RequestVerificationToken
+        }
+    }).done(function (result) {
+        if (result.Success) {
+            alerta("Resultado de la operación", result.Message, "success");
+            $('#grid').data('kendoGrid').dataSource.read();
+            $('#grid').data('kendoGrid').refresh();
+
+        } else {
+            alerta("Resultado de la operación", result.Message, "error")
+        }
+    });
+};
+
 function mostrarMensaje(titulo, mensaje, tipo) {
     // Mensaje alert
     if (tipo == "danger") {

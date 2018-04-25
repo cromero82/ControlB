@@ -20,10 +20,32 @@ namespace Services.BL
         Jresult jresult = new Jresult();
         private string entidad = "Etnia";
 
+        public Jresult GetList(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
+        {
+            try
+            {
+                var queryable = db.Tetnia.Where(f => f.Estado == 1).Select(r => new TetniaVM
+                {
+                    Id = r.Id,
+                    Nombre = r.Nombre,
+                    Numero = r.Numero,
+                    Estado = r.Estado
+                });
+
+                #region Aplicacion Filtro kendo
+                return AplicadorFiltrosKendo(jresult, filtrosComponenteKendo, queryable);
+                #endregion
+            }
+            #region Manejador Excepcion
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            #endregion
+        }
+
+
         /// <summary>
-        /// Inserta tetnia
+        /// Inserta Tetnia
         /// </summary>
-        /// <param name="model"> Modelo de tetnia</param>
+        /// <param name="model"> Modelo  Tetnia</param>
         /// <returns> Resultado de la transacción </returns>
         public Jresult Insert(TetniaVM model)
         {
@@ -45,7 +67,7 @@ namespace Services.BL
         }
 
         /// <summary>
-        /// Actualiza  tetnia
+        /// Actualiza  Tetnia
         /// </summary>
         /// <param name="model"> Modelo de tetnia</param>
         /// <returns> Resultado de la transacción </returns>
@@ -67,81 +89,54 @@ namespace Services.BL
             return jresult;
             #endregion
         }
-
-        public Jresult GetList(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
-        {
-            try
-            {
-                var queryable = db.Tetnia.Where(f => f.Estado == 1).Select(r => new TetniaVM
-                {
-                    Id = r.Id,
-                    Nombre = r.Nombre,
-                    Numero = r.Numero,
-                    Estado = r.Estado
-                });
-                
-                #region Aplicacion Filtro kendo
-                return AplicadorFiltrosKendo(jresult, filtrosComponenteKendo, queryable);
-                #endregion
-            }
-            #region Manejador Excepcion
-            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
-            #endregion
-        }        
-
+       
         /// <summary>
         /// Obtiene un tetnia
         /// </summary>
         /// <param name="id">id del tetnia </param>
         /// <returns> Resultado de la transaccion </returns>
-        public Jresult GetTetnia(long id)
+        public Jresult Get(long id)
         {
-            var jresult = new Jresult();
             try
             {
-                var tetnia = db.Tetnia.Find(id);
-                jresult.Data = GetItemModel(tetnia);
+                var entity = db.Tetnia.Find(id);
+                jresult.Data = GetItemModel(entity);
                 jresult.Success = true;;
             }
+            #region Excepcion y salida
             catch (Exception ex)
             {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
+                jresult.SetError("Error consultando " + entidad);
             }
             return jresult;
+            #endregion
 
         }
 
         /// <summary>
-        /// Elimina tetnia
+        /// Elimina Tetnia
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">id Tetnia</param>
         /// <returns> Resultado de la transacción </returns>
         public Jresult Delete(int id)
         {
-            var jresult = new Jresult();
             try
-            {
-                //var entity = db.Tetnia.SingleOrDefault(b => b.Id == id);
-                //if (entity != null)
-                //{
-                //    entity.Estado = 0;
-                //    db.SaveChanges();
-                //}
+            {                
                 var entity = db.Tetnia.SingleOrDefault(b => b.Id == id);
-                entity.Estado = 0;
-                //var modelBd = GetItemBd(modelVM);
+                entity.Estado = 0;                
                 db.Tetnia.Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
-                jresult.SetOk("Modificación de " + entidad + " ha tenido una ejecución satisfactoria");
+                jresult.SetOk("Eliminación de " + entidad + " ha tenido una ejecución satisfactoria");
 
             }
+            #region Excepcion y salida
             catch (Exception ex)
             {
-                jresult.Message = "Error eliminando registro: " + ex.Message;
+                jresult.SetError("Error eliminando " + entidad );
             }
             return jresult;
+            #endregion
 
         }
 

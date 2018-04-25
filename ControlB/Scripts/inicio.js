@@ -4,6 +4,7 @@
 var modalBs = $('#myModal');
 var modalBsContent = $('#myModal').find(".modal-content");
 var gridRefresh = "";
+var urlEliminar = "";
 
 function handleOnErrorModelState(e, status) {
     if (e.errors) {

@@ -21,6 +21,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         Jresult jresult = new Jresult();
         TetniaBL entityBL = new TetniaBL();
         String EntityName = "Etnia";
+        //Object Model = 
         JsonResult json;
         // GET: ADMIN/Tetnia
         public ActionResult Index()
@@ -57,7 +58,7 @@ namespace ControlB.Areas.ADMIN.Controllers
             }else
             {
                 // Acceso a la capa de negocio               
-                var jresult = entityBL.GetTetnia((long)id);
+                var jresult = entityBL.Get((long)id);
 
                 if (jresult.Success == false)
                 {
@@ -84,15 +85,12 @@ namespace ControlB.Areas.ADMIN.Controllers
             // Validaciones
             if (!ModelState.IsValid)
             {
-                jresult.Message = string.Join("; ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
-                return Json(jresult);
+                ViewBag.Accion = GetMethodCrudName(MethodInfo.GetCurrentMethod().Name);
+                return PartialView("TetniaView", model);
             }
 
             // Acceso a la capa de negocio y result
-            jresult = entityBL.Insert( model);
-
-            // Salida success
-            return Json(jresult);
+            return Json(entityBL.Insert(model));
         }
 
         public ActionResult UpdTetnia(TetniaVM model)
@@ -105,6 +103,19 @@ namespace ControlB.Areas.ADMIN.Controllers
 
             // Acceso a la capa de negocio y result
             return Json(entityBL.Update(model));            
+        }
+
+        /// <summary>
+        /// Elimina establecimiento
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns> Resultado de la transacción </returns>
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DelTetnia(int id)
+        {
+            // Acceso a la capa de negocio y result
+            return Json(entityBL.Delete(id));
         }
 
         public string GetMethodCrudName(string nombreMetodo)
