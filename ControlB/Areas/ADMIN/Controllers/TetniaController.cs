@@ -17,23 +17,15 @@ namespace ControlB.Areas.ADMIN.Controllers
 {
     public class TetniaController : UtilController
     {
-        #region Definiciones generales
-        Jresult jresult = new Jresult();
+                
         TetniaBL entityBL = new TetniaBL();
         String EntityName = "Etnia";
-        //Object Model = 
-        JsonResult json;
-        // GET: ADMIN/Tetnia
-        public ActionResult Index()
-        {
-            return View();
-        }
-        #endregion
+        Object ModelEmpy = new TetniaVM();
 
         /// <summary>
-        /// Obtiene una lista de establecimientos para presentarla en un grid
+        /// Obtiene una lista de Tetnia para presentarla en un grid
         /// </summary>
-        /// <param name="request"> Filtros en cliente </param>
+        /// <param name="request"> Filtros kendoGrid en cliente </param>
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -45,36 +37,38 @@ namespace ControlB.Areas.ADMIN.Controllers
         }
 
         /// <summary>
-        /// Vista de registro de establecimiento
+        /// Vista de edición (Crear y Editar)
         /// </summary>
-        /// <returns> Vista </returns>
+        /// <param name="id"> id de registro</param>
+        /// <param name="accionCrud"> acción que se va a realizar en la vista: Crear o Editar</param>
+        /// <returns>Vista</returns>
         [Authorize(Roles = "Admin")]
         public ActionResult TetniaView(long? id, string accionCrud)
         {
             ViewBag.Accion = accionCrud;            
             if (accionCrud== "Insertar")
             {
-                return PartialView("TetniaView", new TetniaVM());
+                return PartialView("TetniaView",  ModelEmpy);
             }else
             {
-                // Acceso a la capa de negocio               
+                #region Resolucion vista Editar
+                // En caso de accion 'Editar', se accede a la capa de negocio               
                 var jresult = entityBL.Get((long)id);
 
                 if (jresult.Success == false)
                 {
                     ModelState.AddModelError("Error", "Error consultando: " + EntityName + " " + jresult.Message);
-                    return PartialView(new TetniaVM());
+                    return PartialView(ModelEmpy);
                 }
 
                 // Retorna vista parcial con model         
                 return PartialView(jresult.Data);
-            }
-            
-            
+                #endregion                
+            }                        
         }
 
         /// <summary>
-        /// Inserta establecimiento   
+        /// Inserta Tetnia   
         /// </summary>  
         /// <param name="model">Instituciones model</param>
         /// <returns></returns>
@@ -106,7 +100,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         }
 
         /// <summary>
-        /// Elimina establecimiento
+        /// Elimina Tetnia
         /// </summary>
         /// <param name="model"></param>
         /// <returns> Resultado de la transacción </returns>
@@ -117,28 +111,5 @@ namespace ControlB.Areas.ADMIN.Controllers
             // Acceso a la capa de negocio y result
             return Json(entityBL.Delete(id));
         }
-
-        public string GetMethodCrudName(string nombreMetodo)
-        {
-            if (nombreMetodo.ToUpper().Substring(0, 3) == "UPD")
-            {
-                return "Editar";
-            }else
-            {
-                return "Insertar";
-            }
-        }
-
-        //public ActionResult DefinitionResult(Jresult jresult, object model)
-        //{
-        //    if(jresult.Success== true)
-        //    {
-        //        return Json(jresult);
-        //    }
-        //    else
-        //    {
-        //        ModelState.AddModelError("Error",)
-        //    }
-        //}
     }
 }
