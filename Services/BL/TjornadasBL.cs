@@ -1,4 +1,6 @@
 ﻿
+using Model;
+using Model.BL;
 using Model.BL.Tipos;
 using Model.General;
 using Persistence;
@@ -13,7 +15,7 @@ namespace Services.BL
     public class TjornadasBL
     {
         // Contexto de base de datos (EF)
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private bdControlC db = new bdControlC();
         /// <summary>
         /// Inserta tjornada
         /// </summary>

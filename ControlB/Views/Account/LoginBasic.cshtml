@@ -17,7 +17,7 @@
         <div class="login-links">
             <!--<a href="pages_login.html" class="active" title="Ingrese">Ingresar</a>
             <span class="text-white"> | </span>-->
-            <a href="pages_register.html" class="" title="Registrese y conozca nuestro sistema">Registrese</a>
+            <a href="Register" class="" title="Registrese y conozca nuestro sistema">Registrese</a>
         </div>
     </div>
 </div>
@@ -26,7 +26,9 @@
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new {  role = "form" }))
             {
         @Html.AntiForgeryToken()
-
+        
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+       
         <div class="panel-body bg-light p30">
             <div class="row">
                 <div class="col-sm-7 pr30">

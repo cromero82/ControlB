@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Model;
 using Model.Auth;
 using Persistence;
 using System;
@@ -18,7 +19,7 @@ namespace Services.Auth
             IOwinContext context)
         {
             var manager = new ApplicationRoleManager(
-                new RoleStore<ApplicationRole>(context.Get<ApplicationDbContext>()));
+                new RoleStore<ApplicationRole>(context.Get<bdControlC>()));
             return manager;
         }
     }

@@ -1,4 +1,6 @@
-﻿using Model.Auxiliar;
+﻿using Model;
+using Model.Auxiliar;
+using Model.BL;
 using Model.BL.Tipos;
 using Model.General;
 using Persistence;
@@ -14,7 +16,7 @@ namespace Services.BL
     public class TlistasBL
     {
         // Contexto de base de datos (EF)
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private bdControlC db = new bdControlC();
 
         /// <summary>
         /// Obtiene lista de tipos de caracteristicas 
@@ -25,7 +27,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Tcaracter.Where(x => x.Estado == 1).ToList();
+                var listaDatos = db.Tcaracters.Where(x => x.Estado == 1).ToList();
                 jresult.Data = listaDatos;
                 jresult.Success = true;;
             }
@@ -283,7 +285,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Tsisben.Where(x => x.Estado == 1).ToList();
+                var listaDatos = db.Tsisbens.Where(x => x.Estado == 1).ToList();
                 jresult.Data = listaDatos;
                 jresult.Success = true;;
             }
@@ -304,7 +306,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.TpVictimaConflicto.Where(x => x.Estado == 1).ToList();
+                var listaDatos = db.TpVictimaConflictoes.Where(x => x.Estado == 1).ToList();
                 jresult.Data = listaDatos;
                 jresult.Success = true;;
             }
@@ -367,7 +369,7 @@ namespace Services.BL
             var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Tetnia.Where(x => x.Estado == 1).ToList();
+                var listaDatos = db.Tetnias.Where(x => x.Estado == 1).ToList();
                 jresult.Data = listaDatos;
                 jresult.Success = true;;
             }

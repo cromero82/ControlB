@@ -9,7 +9,8 @@ using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Persistence;
-using Model.Auth;
+using Model.BL;
+//using Model.Auth;
 
 namespace Services.Common
 {
@@ -22,12 +23,16 @@ namespace Services.Common
 
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
                     result = (
-                        from au in ctx.ApplicationUsers
-                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == au.Id)
-                        from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
+                        //from au in ctx.ApplicationUsers
+                        from au in ctx.AspNetUsers
+                            //from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == au.Id)
+                        from aur in ctx.AspNetUserRoles.Where(x => x.UserId == au.Id)
+                            //from ar in ctx.ApplicationRoles.Where(x => x.Id == aur.RoleId && x.Enabled)
+                            // Pendiente roles activos
+                        from ar in ctx.AspNetRoles.Where(x => x.Id == aur.RoleId )
                         select new UserGrid
                         {
                             Id = au.Id,
@@ -48,22 +53,24 @@ namespace Services.Common
             return result;
         }
 
-        public ApplicationUser Get(string id)
+        public AspNetUsers Get(string id)
         {
-            var user = new ApplicationUser();
+            
             try
-            {               
-                using (var ctx = new ApplicationDbContext())
+            {
+               
+                using (var ctx = new bdControlC())
                 {
-                    user = ctx.ApplicationUsers.Find(id);
+                    var user = ctx.AspNetUsers.Find(id); //ApplicationUsers.Find(id);
+                    return user;
                 }
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
+                return null;
             }                          
-            return user;
+            
             //throw new NotImplementedException();
         }
 
@@ -74,10 +81,10 @@ namespace Services.Common
 
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
                     result = (
-                        from au in ctx.ApplicationUsers                       
+                        from au in ctx.AspNetUsers//ApplicationUsers                       
                         select new GenericEntityList
                         {                            
                             Id = au.Id,
@@ -101,14 +108,13 @@ namespace Services.Common
 
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
-                    result = (
-                        from au in ctx.ApplicationRoles.Where(x => x.Enabled)
-                        select new GenericEntityList
+                   
+                    result = ctx.AspNetRoles.Select( x=>  new GenericEntityList
                         {
-                            Id = au.Id,
-                            Nombres = au.Name
+                            Id = x.Id,
+                            Nombres = x.Name
                         }
                     ).ToList();
                 }
@@ -124,10 +130,10 @@ namespace Services.Common
 
         public bool TienePermiso(string filterContext)
         {
-            var permiso = new SegPermisos();
+            var permiso = new Model.SegPermisos();
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
                     permiso = ctx.SegPermisos.Where(x => x.Sigla == filterContext).FirstOrDefault();
                     if (permiso != null)
@@ -150,11 +156,12 @@ namespace Services.Common
             var permiso = new DefaultModel();
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
                     permiso = (
 
-                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)                            
+                        //from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)                            
+                        from aur in ctx.AspNetUserRoles.Where(x => x.UserId == userId)
                         from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
                         from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId && x.Sigla == nombrePermiso)
                         select new DefaultModel
@@ -183,10 +190,11 @@ namespace Services.Common
             var permiso = new List<DefaultModel>() { };
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
                     permiso = (
-                        from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)
+                        //from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)
+                        from aur in ctx.AspNetUserRoles.Where(x => x.UserId== userId)
                         from srp in ctx.SegRolesPermisos.Where(x => x.RolId == aur.RoleId)
                         from sper in ctx.SegPermisos.Where(x => x.Id == srp.PermisoId)
                         select new DefaultModel

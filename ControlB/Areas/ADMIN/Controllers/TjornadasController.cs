@@ -1,5 +1,7 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Model;
+using Model.BL;
 using Model.BL.Tipos;
 using Model.General;
 using Services.BL;

@@ -1,4 +1,5 @@
-﻿using Model.BL;
+﻿using Model;
+using Model.BL;
 using Model.General;
 using Persistence;
 using System;
@@ -13,7 +14,7 @@ namespace Services.BL
     public class InstitucionesBL
     {
         // Contexto de base de datos (EF)
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private bdControlC db = new bdControlC();
         /// <summary>
         /// Inserta establecimiento
         /// </summary>

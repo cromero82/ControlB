@@ -1,4 +1,6 @@
-﻿using Model.BL.Tipos;
+﻿using Model;
+using Model.BL;
+using Model.BL.Tipos;
 using Model.General;
 using Persistence;
 using System;
@@ -10,7 +12,7 @@ namespace Services.BL
     public class TnivelesBL
     {
         // Contexto de base de datos (EF)
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private bdControlC db = new bdControlC();
         Jresult jresult = new Jresult();
 
         //protected override void OnException(ExceptionContext filterContext)

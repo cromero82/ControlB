@@ -3,7 +3,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Logging;
 using Model;
 using Model.General;
-using Model.Auth;
 using Services;
 using Services.Auth;
 using Services.Common;
@@ -48,13 +47,13 @@ namespace ControlB.Controllers
                 );
         }
 
-        public ActionResult Get(string id)
-        {
-            ViewBag.Roles = _roleManager.Roles.ToList();
-            return View(
-                _userService.Get(id)
-                );
-        }
+        //public ActionResult Get(string id)
+        //{
+        //    ViewBag.Roles = _roleManager.Roles.ToList();
+        //    return View(
+        //        _userService.Get(id)
+        //        );
+        //}
 
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddRoleToUser(string id, string role)
@@ -69,24 +68,24 @@ namespace ControlB.Controllers
         }
 
         //[Authorize(Roles = "Admin")]
-        public async Task CreateRoles()
-        {
-            // Listado de roles genéricos
-            var roles = new List<ApplicationRole>
-            {
-                new ApplicationRole {Name = "Admin" },
-                new ApplicationRole {Name = "Moderator" },
-                new ApplicationRole {Name = "User" }
-            };
-            foreach (var r in roles)
-            { 
-                // Si es false, quiere decir que no existe el rol y se debe crear              
-                if(!await _roleManager.RoleExistsAsync(r.Name))
-                {
-                    await _roleManager.CreateAsync(r);
-                }               
-            }
-        }
+        //public async Task CreateRoles()
+        //{
+        //    // Listado de roles genéricos
+        //    var roles = new List<ApplicationRole>
+        //    {
+        //        new ApplicationRole {Name = "Admin" },
+        //        new ApplicationRole {Name = "Moderator" },
+        //        new ApplicationRole {Name = "User" }
+        //    };
+        //    foreach (var r in roles)
+        //    { 
+        //        // Si es false, quiere decir que no existe el rol y se debe crear              
+        //        if(!await _roleManager.RoleExistsAsync(r.Name))
+        //        {
+        //            await _roleManager.CreateAsync(r);
+        //        }               
+        //    }
+        //}
 
         /// <summary>
 		/// Vista para inserta un nuevo rol
@@ -102,18 +101,18 @@ namespace ControlB.Controllers
 		/// Inserta un nuevo rol
 		/// </summary>
 		/// <returns>Vista para insertar nuevo rol</returns>
-        [Authorize(Roles="Admin")]
-		public async Task  InsRol(ApplicationRole rol)
-        {            
-            // Si es false, quiere decir que no existe el rol y se debe crear  
+  //      [Authorize(Roles="Admin")]
+		//public async Task  InsRol(ApplicationRole rol)
+  //      {            
+  //          // Si es false, quiere decir que no existe el rol y se debe crear  
                       
-            if (!await _roleManager.RoleExistsAsync(rol.Name))
-            {                
-                await _roleManager.CreateAsync(
-                    new ApplicationRole { Name = rol.Name}
-                    );
-            }
-        }
+  //          if (!await _roleManager.RoleExistsAsync(rol.Name))
+  //          {                
+  //              await _roleManager.CreateAsync(
+  //                  new ApplicationRole { Name = rol.Name}
+  //                  );
+  //          }
+  //      }
 
         /// <summary>
 		/// Inserta un nuevo rol
@@ -123,9 +122,9 @@ namespace ControlB.Controllers
         [HassPermission(Permiso = "Per1")]
         public ActionResult InsRolUsuario(string userId)
         {
-            var user = new ApplicationUser();
+            //var user = new ApplicationUser();
             //var x = User.Identity.GetUserId();
-            user = _userService.Get(userId);
+            var user = _userService.Get(userId);
             var model = new AsignacionRolGridVM
             {
                 UserId = userId,

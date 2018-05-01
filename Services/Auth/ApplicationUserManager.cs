@@ -2,7 +2,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Model.Auth;
+using Model;
+using Model.Seguridad;
 using Persistence;
 using Services.Communications;
 using System;
@@ -20,7 +21,7 @@ namespace Services.Auth
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<bdControlC>()));
             // Configure la lógica de validación de nombres de usuario
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -69,9 +70,10 @@ namespace Services.Auth
         {
             try
             {
-                using (var ctx = new ApplicationDbContext())
+                using (var ctx = new bdControlC())
                 {
-                    ctx.ApplicationUserRoles.Add(new ApplicationUserRole
+                    //ctx.ApplicationUserRoles.Add(new ApplicationUserRole
+                    ctx.AspNetUserRoles.Add(new AspNetUserRoles
                     {
                         UserId = id,
                         RoleId = role
@@ -90,7 +92,7 @@ namespace Services.Auth
         // public override Task<IdentityResult> AddToRolesAsync(string userId, string roleId) {
         //    try
         //    {
-        //        using (var ctx = new ApplicationDbContext())
+        //        using (var ctx = new bdControlC())
         //        {
         //            ctx.ApplicationUserRoles.Add(new ApplicationUserRole
         //            {

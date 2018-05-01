@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,11 +6,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ControlB.Models;
-using Services.Auth;
-using Model.Auth;
-using Newtonsoft.Json;
-using Services;
-using Services.Common;
+using Model.Seguridad;
+using PruebaDbFirst;
 
 namespace ControlB.Controllers
 {
@@ -27,7 +21,7 @@ namespace ControlB.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -39,9 +33,9 @@ namespace ControlB.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -67,15 +61,6 @@ namespace ControlB.Controllers
         }
 
         //
-        // GET: /Account/Login
-        [AllowAnonymous]
-        public ActionResult LoginBasic(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -93,21 +78,6 @@ namespace ControlB.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    // Obtiene usuario logeado
-                    var user = UserManager.FindByEmail(model.Email);
-                    var jUser = JsonConvert.SerializeObject(new CurrentUser
-                    {
-                        Email = user.Email,
-                        Name = user.Name,
-                        LastName = user.LastName,
-                        UserId = user.Id,
-                        UserName = user.UserName,
-                        ShortName = user.ShortName
-                    });
-
-                    // Agrego el claim con userData
-                    await UserManager.AddClaimAsync(user.Id, new Claim(ClaimTypes.UserData, jUser));
-
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -115,8 +85,8 @@ namespace ControlB.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
-                    return View(model);
+                    ModelState.AddModelError("", "Intento de inicio de sesión no válido, revise los datos de acceso e inténtelo nuevamente.");
+                    return View("LoginBasic", model);
             }
         }
 
@@ -149,7 +119,7 @@ namespace ControlB.Controllers
             // Si un usuario introduce códigos incorrectos durante un intervalo especificado de tiempo, la cuenta del usuario 
             // se bloqueará durante un período de tiempo especificado. 
             // Puede configurar el bloqueo de la cuenta en IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -180,24 +150,19 @@ namespace ControlB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    Name = model.Name,
-                    LastName = model.LastName
-                };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -421,13 +386,16 @@ namespace ControlB.Controllers
 
         //
         // POST: /Account/LogOff
+        [Authorize]
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        [Authorize]
         public ActionResult LogOff()
         {
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //return RedirectToAction("Index", "Home");
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            UserUtils.clear();
+            //UserUtils.clear();
             return RedirectToAction("LoginBasic", "Account", new { Area = "" });
         }
 
@@ -485,7 +453,7 @@ namespace ControlB.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
@@ -517,5 +485,26 @@ namespace ControlB.Controllers
             }
         }
         #endregion
+
+        //
+        // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult LoginBasic(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        //
+        // POST: /Account/LogOff
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Authorize]
+        //public ActionResult LogOff()
+        //{
+        //    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        //    UserUtils.clear();
+        //    return RedirectToAction("LoginBasic", "Account", new { Area = "" });
+        //}
     }
 }

@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kendo.Mvc.UI;
+using Model.BL;
+using Model;
 
 namespace Services.BL
 {
     public class TetniaBL: ClaseBL
     {
         // Contexto de base de datos (EF)
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private bdControlC db = new bdControlC();
         Jresult jresult = new Jresult();
         private string entidad = "Etnia";
 
@@ -24,7 +26,7 @@ namespace Services.BL
         {
             try
             {
-                var queryable = db.Tetnia.Where(f => f.Estado == 1).Select(r => new TetniaVM
+                var queryable = db.Tetnias.Where(f => f.Estado == 1).Select(r => new TetniaVM
                 {
                     Id = r.Id,
                     Nombre = r.Nombre,
@@ -51,8 +53,8 @@ namespace Services.BL
         {
            try
             {
-                Tetnia dbItem = GetItemBd(model);
-                db.Tetnia.Add(dbItem);
+                Tetnias dbItem = GetItemBd(model);
+                db.Tetnias.Add(dbItem);
                 db.Entry(dbItem).State = EntityState.Added;
                 db.SaveChanges();
                 jresult.SetOk("Creación de " + entidad + " ha tenido una ejecución satisfactoria");
@@ -76,7 +78,7 @@ namespace Services.BL
             try
             {
                 var modelBd = GetItemBd(modelVM);
-                db.Tetnia.Attach(modelBd);
+                db.Tetnias.Attach(modelBd);
                 db.Entry(modelBd).State = EntityState.Modified;
                 db.SaveChanges();
                 jresult.SetOk("Modificación de " + entidad + " ha tenido una ejecución satisfactoria");
@@ -99,7 +101,7 @@ namespace Services.BL
         {
             try
             {
-                var entity = db.Tetnia.Find(id);
+                var entity = db.Tetnias.Find(id);
                 jresult.Data = GetItemModel(entity);
                 jresult.Success = true;;
             }
@@ -122,9 +124,9 @@ namespace Services.BL
         {
             try
             {                
-                var entity = db.Tetnia.SingleOrDefault(b => b.Id == id);
+                var entity = db.Tetnias.SingleOrDefault(b => b.Id == id);
                 entity.Estado = 0;                
-                db.Tetnia.Attach(entity);
+                db.Tetnias.Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
                 jresult.SetOk("Eliminación de " + entidad + " ha tenido una ejecución satisfactoria");
@@ -140,9 +142,9 @@ namespace Services.BL
 
         }
 
-        public Tetnia GetItemBd(TetniaVM model)
+        public Tetnias GetItemBd(TetniaVM model)
         {
-            var itemBD = new Tetnia
+            var itemBD = new Tetnias
             {
                 Nombre = model.Nombre,
                 Numero = model.Numero,
@@ -155,7 +157,7 @@ namespace Services.BL
             return itemBD;
         }
 
-        public TetniaVM GetItemModel(Tetnia modelBd)
+        public TetniaVM GetItemModel(Tetnias modelBd)
         {
             return new TetniaVM
             {
