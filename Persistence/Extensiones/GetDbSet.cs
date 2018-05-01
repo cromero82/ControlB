@@ -13,12 +13,12 @@ namespace Persistence.Extensiones
     {
         public static DbSet<T> GetEntity<T>(this IDbContextReadOnlyScope value) where T : class
         {
-            return value.DbContexts.Get<bdControlC>().Set<T>();
+            return value.DbContexts.Get<ControlcBDEntities>().Set<T>();
         }
 
         public static DbSet<T> GetEntity<T>(this IDbContextScope value) where T : class
         {
-            return value.DbContexts.Get<bdControlC>().Set<T>();
+            return value.DbContexts.Get<ControlcBDEntities>().Set<T>();
         }
 
         public static int ExecuteCommand(
@@ -27,7 +27,7 @@ namespace Persistence.Extensiones
             params object[] parameters
         )
         {
-            return ctx.DbContexts.Get<bdControlC>().Database.ExecuteSqlCommand(query, parameters);
+            return ctx.DbContexts.Get<ControlcBDEntities>().Database.ExecuteSqlCommand(query, parameters);
         }
 
         public static int ExecuteCommand(
@@ -36,7 +36,7 @@ namespace Persistence.Extensiones
             params object[] parameters
         )
         {
-            return ctx.DbContexts.Get<bdControlC>().Database.ExecuteSqlCommand(query, parameters);
+            return ctx.DbContexts.Get<ControlcBDEntities>().Database.ExecuteSqlCommand(query, parameters);
         }
 
         public static IQueryable<T> SqlQuery<T>(
@@ -45,7 +45,7 @@ namespace Persistence.Extensiones
             params object[] parameters
         )
         {
-            return ctx.DbContexts.Get<bdControlC>().Database.SqlQuery<T>(query, parameters).AsQueryable();
+            return ctx.DbContexts.Get<ControlcBDEntities>().Database.SqlQuery<T>(query, parameters).AsQueryable();
         }
 
         public static IQueryable<T> SqlQuery<T>(
@@ -54,7 +54,7 @@ namespace Persistence.Extensiones
             params object[] parameters
         )
         {
-            return ctx.DbContexts.Get<bdControlC>().Database.SqlQuery<T>(query, parameters).AsQueryable();
+            return ctx.DbContexts.Get<ControlcBDEntities>().Database.SqlQuery<T>(query, parameters).AsQueryable();
         }
     }
 }

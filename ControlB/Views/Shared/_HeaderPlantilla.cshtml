@@ -1,4 +1,5 @@
-﻿<!-- Start: Header -->
+﻿@using Microsoft.AspNet.Identity
+<!-- Start: Header -->
 <header class="navbar navbar-fixed-top bg-light">
     <div class="navbar-branding">
         <a class="navbar-brand" href="dashboard.html"> Control<b>C</b> </a>
@@ -121,7 +122,8 @@
                 <span>
                     @if (Request.IsAuthenticated)
                     {
-                        @CurrentUser.Get.ShortName
+                        @User.Identity.Name
+                        @*@CurrentUser.Get.ShortName*@
                     }                  
                 </span>
                 <span class="caret caret-tp hidden-xs"></span>

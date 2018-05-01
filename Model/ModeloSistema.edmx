@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bdbasicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ControlcBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -499,7 +499,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bdbasicModelStoreContainer">
+        <EntityContainer Name="ControlcBDModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -586,41 +586,127 @@
             <End Role="Tmunicipios" EntitySet="Tmunicipios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="bdbasicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ControlcBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ControlcBDEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="C__MigrationHistory" EntityType="ControlcBDModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="ControlcBDModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="ControlcBDModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="ControlcBDModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUserRoles" EntityType="ControlcBDModel.AspNetUserRoles" />
+          <EntitySet Name="AspNetUsers" EntityType="ControlcBDModel.AspNetUsers" />
+          <EntitySet Name="GenCores" EntityType="ControlcBDModel.GenCores" />
+          <EntitySet Name="GenInstituciones" EntityType="ControlcBDModel.GenInstituciones" />
+          <EntitySet Name="GenNivelesAprobados" EntityType="ControlcBDModel.GenNivelesAprobados" />
+          <EntitySet Name="GenSedes" EntityType="ControlcBDModel.GenSedes" />
+          <EntitySet Name="SegPermisos" EntityType="ControlcBDModel.SegPermisos" />
+          <EntitySet Name="SegRolesPermisos" EntityType="ControlcBDModel.SegRolesPermisos" />
+          <EntitySet Name="sysdiagrams" EntityType="ControlcBDModel.sysdiagrams" />
+          <EntitySet Name="TcapExcepcionales" EntityType="ControlcBDModel.TcapExcepcionales" />
+          <EntitySet Name="Tcaracters" EntityType="ControlcBDModel.Tcaracters" />
+          <EntitySet Name="Tdepartamentos" EntityType="ControlcBDModel.Tdepartamentos" />
+          <EntitySet Name="Tdiscapacidades" EntityType="ControlcBDModel.Tdiscapacidades" />
+          <EntitySet Name="Tdocumentos" EntityType="ControlcBDModel.Tdocumentos" />
+          <EntitySet Name="Tespecialidades" EntityType="ControlcBDModel.Tespecialidades" />
+          <EntitySet Name="Testratos" EntityType="ControlcBDModel.Testratos" />
+          <EntitySet Name="Tetnias" EntityType="ControlcBDModel.Tetnias" />
+          <EntitySet Name="Tgrados" EntityType="ControlcBDModel.Tgrados" />
+          <EntitySet Name="Tjornadas" EntityType="ControlcBDModel.Tjornadas" />
+          <EntitySet Name="Tmetodologias" EntityType="ControlcBDModel.Tmetodologias" />
+          <EntitySet Name="Tmunicipios" EntityType="ControlcBDModel.Tmunicipios" />
+          <EntitySet Name="Tniveles" EntityType="ControlcBDModel.Tniveles" />
+          <EntitySet Name="Tpaises" EntityType="ControlcBDModel.Tpaises" />
+          <EntitySet Name="TpVictimaConflictoes" EntityType="ControlcBDModel.TpVictimaConflictoes" />
+          <EntitySet Name="Tsisbens" EntityType="ControlcBDModel.Tsisbens" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId" Association="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="SegRolesPermisos" EntitySet="SegRolesPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ControlcBDModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ControlcBDModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId">
+            <End Role="GenSedes" EntitySet="GenSedes" />
+            <End Role="GenCores" EntitySet="GenCores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
+            <End Role="Tjornadas" EntitySet="Tjornadas" />
+            <End Role="GenCores" EntitySet="GenCores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" Association="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
+            <End Role="GenInstituciones" EntitySet="GenInstituciones" />
+            <End Role="GenNivelesAprobados" EntitySet="GenNivelesAprobados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" Association="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId">
+            <End Role="GenInstituciones" EntitySet="GenInstituciones" />
+            <End Role="GenSedes" EntitySet="GenSedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" Association="ControlcBDModel.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId">
+            <End Role="Tmunicipios" EntitySet="Tmunicipios" />
+            <End Role="GenInstituciones" EntitySet="GenInstituciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId" Association="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId">
+            <End Role="Tniveles" EntitySet="Tniveles" />
+            <End Role="GenNivelesAprobados" EntitySet="GenNivelesAprobados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" Association="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId">
+            <End Role="SegPermisos" EntitySet="SegPermisos" />
+            <End Role="SegRolesPermisos" EntitySet="SegRolesPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" Association="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId">
+            <End Role="Tdepartamentos" EntitySet="Tdepartamentos" />
+            <End Role="Tmunicipios" EntitySet="Tmunicipios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tgrados_dbo_Tniveles_NivelId" Association="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId">
+            <End Role="Tniveles" EntitySet="Tniveles" />
+            <End Role="Tgrados" EntitySet="Tgrados" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
             <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Enabled" Type="Boolean" />
-          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetUserRoles" />
-          <NavigationProperty Name="SegRolesPermisos" Relationship="Self.FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId" FromRole="AspNetRoles" ToRole="SegRolesPermisos" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetUserRoles" />
+          <NavigationProperty Name="SegRolesPermisos" Relationship="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId" FromRole="AspNetRoles" ToRole="SegRolesPermisos" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ControlcBDModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserLogins">
           <Key>
@@ -628,27 +714,27 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ControlcBDModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRoles" ToRole="AspNetUsers" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRoles" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -659,15 +745,15 @@
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="BirthDay" Type="DateTime" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ShortName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="ControlcBDModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="ControlcBDModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
         </EntityType>
         <EntityType Name="GenCores">
           <Key>
@@ -678,8 +764,8 @@
           <Property Name="JornadaId" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenSedes" Relationship="Self.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenCores" ToRole="GenSedes" />
-          <NavigationProperty Name="Tjornadas" Relationship="Self.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="GenCores" ToRole="Tjornadas" />
+          <NavigationProperty Name="GenSedes" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenCores" ToRole="GenSedes" />
+          <NavigationProperty Name="Tjornadas" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="GenCores" ToRole="Tjornadas" />
         </EntityType>
         <EntityType Name="GenInstituciones">
           <Key>
@@ -687,17 +773,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CodigoDane" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Rector" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FechaFundacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="TmunicipioId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenNivelesAprobados" Relationship="Self.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" FromRole="GenInstituciones" ToRole="GenNivelesAprobados" />
-          <NavigationProperty Name="GenSedes" Relationship="Self.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenInstituciones" ToRole="GenSedes" />
-          <NavigationProperty Name="Tmunicipios" Relationship="Self.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" FromRole="GenInstituciones" ToRole="Tmunicipios" />
+          <NavigationProperty Name="GenNivelesAprobados" Relationship="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" FromRole="GenInstituciones" ToRole="GenNivelesAprobados" />
+          <NavigationProperty Name="GenSedes" Relationship="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenInstituciones" ToRole="GenSedes" />
+          <NavigationProperty Name="Tmunicipios" Relationship="ControlcBDModel.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" FromRole="GenInstituciones" ToRole="Tmunicipios" />
         </EntityType>
         <EntityType Name="GenNivelesAprobados">
           <Key>
@@ -708,8 +794,8 @@
           <Property Name="NivelId" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenInstituciones" Relationship="Self.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" FromRole="GenNivelesAprobados" ToRole="GenInstituciones" />
-          <NavigationProperty Name="Tniveles" Relationship="Self.FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId" FromRole="GenNivelesAprobados" ToRole="Tniveles" />
+          <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" FromRole="GenNivelesAprobados" ToRole="GenInstituciones" />
+          <NavigationProperty Name="Tniveles" Relationship="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId" FromRole="GenNivelesAprobados" ToRole="Tniveles" />
         </EntityType>
         <EntityType Name="GenSedes">
           <Key>
@@ -717,16 +803,16 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CodigoDaneSede" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NombreSede" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreSede" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="InstitucionId" Type="Int32" Nullable="false" />
           <Property Name="RectorResponsable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenCores" Relationship="Self.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenSedes" ToRole="GenCores" />
-          <NavigationProperty Name="GenInstituciones" Relationship="Self.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenSedes" ToRole="GenInstituciones" />
+          <NavigationProperty Name="GenCores" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenSedes" ToRole="GenCores" />
+          <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenSedes" ToRole="GenInstituciones" />
         </EntityType>
         <EntityType Name="SegPermisos">
           <Key>
@@ -737,7 +823,7 @@
           <Property Name="Sigla" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SegRolesPermisos" Relationship="Self.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" FromRole="SegPermisos" ToRole="SegRolesPermisos" />
+          <NavigationProperty Name="SegRolesPermisos" Relationship="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" FromRole="SegPermisos" ToRole="SegRolesPermisos" />
         </EntityType>
         <EntityType Name="SegRolesPermisos">
           <Key>
@@ -747,14 +833,14 @@
           <Property Name="PermisoId" Type="Int32" Nullable="false" />
           <Property Name="RolId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId" FromRole="SegRolesPermisos" ToRole="AspNetRoles" />
-          <NavigationProperty Name="SegPermisos" Relationship="Self.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" FromRole="SegRolesPermisos" ToRole="SegPermisos" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId" FromRole="SegRolesPermisos" ToRole="AspNetRoles" />
+          <NavigationProperty Name="SegPermisos" Relationship="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" FromRole="SegRolesPermisos" ToRole="SegPermisos" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -765,7 +851,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -774,7 +860,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -784,18 +870,18 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cod" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Latitud" Type="Double" Nullable="false" />
           <Property Name="Longitud" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Tmunicipios" Relationship="Self.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tdepartamentos" ToRole="Tmunicipios" />
+          <NavigationProperty Name="Tmunicipios" Relationship="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tdepartamentos" ToRole="Tmunicipios" />
         </EntityType>
         <EntityType Name="Tdiscapacidades">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -804,7 +890,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
         </EntityType>
@@ -813,7 +899,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -822,7 +908,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -831,7 +917,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -845,7 +931,7 @@
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Tniveles" Relationship="Self.FK_dbo_Tgrados_dbo_Tniveles_NivelId" FromRole="Tgrados" ToRole="Tniveles" />
+          <NavigationProperty Name="Tniveles" Relationship="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId" FromRole="Tgrados" ToRole="Tniveles" />
         </EntityType>
         <EntityType Name="Tjornadas">
           <Key>
@@ -855,7 +941,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenCores" Relationship="Self.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="Tjornadas" ToRole="GenCores" />
+          <NavigationProperty Name="GenCores" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="Tjornadas" ToRole="GenCores" />
         </EntityType>
         <EntityType Name="Tmetodologias">
           <Key>
@@ -863,7 +949,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Tmunicipios">
@@ -873,32 +959,32 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
           <Property Name="Cod" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Latitud" Type="Double" Nullable="false" />
           <Property Name="Longitud" Type="Double" Nullable="false" />
-          <NavigationProperty Name="GenInstituciones" Relationship="Self.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" FromRole="Tmunicipios" ToRole="GenInstituciones" />
-          <NavigationProperty Name="Tdepartamentos" Relationship="Self.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tmunicipios" ToRole="Tdepartamentos" />
+          <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" FromRole="Tmunicipios" ToRole="GenInstituciones" />
+          <NavigationProperty Name="Tdepartamentos" Relationship="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tmunicipios" ToRole="Tdepartamentos" />
         </EntityType>
         <EntityType Name="Tniveles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenNivelesAprobados" Relationship="Self.FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId" FromRole="Tniveles" ToRole="GenNivelesAprobados" />
-          <NavigationProperty Name="Tgrados" Relationship="Self.FK_dbo_Tgrados_dbo_Tniveles_NivelId" FromRole="Tniveles" ToRole="Tgrados" />
+          <NavigationProperty Name="GenNivelesAprobados" Relationship="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId" FromRole="Tniveles" ToRole="GenNivelesAprobados" />
+          <NavigationProperty Name="Tgrados" Relationship="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId" FromRole="Tniveles" ToRole="Tgrados" />
         </EntityType>
         <EntityType Name="Tpaises">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TpVictimaConflictoes">
@@ -906,7 +992,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -915,15 +1001,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+          <End Type="ControlcBDModel.AspNetRoles" Role="AspNetRoles" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <End Type="ControlcBDModel.AspNetUserRoles" Role="AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
               <PropertyRef Name="Id" />
@@ -934,8 +1020,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
-          <End Role="SegRolesPermisos" Type="Self.SegRolesPermisos" Multiplicity="*" />
+          <End Type="ControlcBDModel.AspNetRoles" Role="AspNetRoles" Multiplicity="0..1" />
+          <End Type="ControlcBDModel.SegRolesPermisos" Role="SegRolesPermisos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
               <PropertyRef Name="Id" />
@@ -946,10 +1032,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="ControlcBDModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <End Type="ControlcBDModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -960,10 +1046,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="ControlcBDModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <End Type="ControlcBDModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -974,10 +1060,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="ControlcBDModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <End Type="ControlcBDModel.AspNetUserRoles" Role="AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -988,10 +1074,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_GenCores_dbo_GenSedes_SedeId">
-          <End Role="GenSedes" Type="Self.GenSedes" Multiplicity="1">
+          <End Type="ControlcBDModel.GenSedes" Role="GenSedes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenCores" Type="Self.GenCores" Multiplicity="*" />
+          <End Type="ControlcBDModel.GenCores" Role="GenCores" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GenSedes">
               <PropertyRef Name="Id" />
@@ -1002,10 +1088,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
-          <End Role="Tjornadas" Type="Self.Tjornadas" Multiplicity="1">
+          <End Type="ControlcBDModel.Tjornadas" Role="Tjornadas" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenCores" Type="Self.GenCores" Multiplicity="*" />
+          <End Type="ControlcBDModel.GenCores" Role="GenCores" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tjornadas">
               <PropertyRef Name="Id" />
@@ -1016,10 +1102,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
-          <End Role="GenInstituciones" Type="Self.GenInstituciones" Multiplicity="1">
+          <End Type="ControlcBDModel.GenInstituciones" Role="GenInstituciones" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenNivelesAprobados" Type="Self.GenNivelesAprobados" Multiplicity="*" />
+          <End Type="ControlcBDModel.GenNivelesAprobados" Role="GenNivelesAprobados" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GenInstituciones">
               <PropertyRef Name="Id" />
@@ -1030,10 +1116,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId">
-          <End Role="GenInstituciones" Type="Self.GenInstituciones" Multiplicity="1">
+          <End Type="ControlcBDModel.GenInstituciones" Role="GenInstituciones" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenSedes" Type="Self.GenSedes" Multiplicity="*" />
+          <End Type="ControlcBDModel.GenSedes" Role="GenSedes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GenInstituciones">
               <PropertyRef Name="Id" />
@@ -1044,10 +1130,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId">
-          <End Role="Tmunicipios" Type="Self.Tmunicipios" Multiplicity="1">
+          <End Type="ControlcBDModel.Tmunicipios" Role="Tmunicipios" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenInstituciones" Type="Self.GenInstituciones" Multiplicity="*" />
+          <End Type="ControlcBDModel.GenInstituciones" Role="GenInstituciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tmunicipios">
               <PropertyRef Name="Id" />
@@ -1058,10 +1144,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId">
-          <End Role="Tniveles" Type="Self.Tniveles" Multiplicity="1">
+          <End Type="ControlcBDModel.Tniveles" Role="Tniveles" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenNivelesAprobados" Type="Self.GenNivelesAprobados" Multiplicity="*" />
+          <End Type="ControlcBDModel.GenNivelesAprobados" Role="GenNivelesAprobados" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tniveles">
               <PropertyRef Name="Id" />
@@ -1072,10 +1158,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId">
-          <End Role="SegPermisos" Type="Self.SegPermisos" Multiplicity="1">
+          <End Type="ControlcBDModel.SegPermisos" Role="SegPermisos" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="SegRolesPermisos" Type="Self.SegRolesPermisos" Multiplicity="*" />
+          <End Type="ControlcBDModel.SegRolesPermisos" Role="SegRolesPermisos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SegPermisos">
               <PropertyRef Name="Id" />
@@ -1086,10 +1172,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId">
-          <End Role="Tdepartamentos" Type="Self.Tdepartamentos" Multiplicity="1">
+          <End Type="ControlcBDModel.Tdepartamentos" Role="Tdepartamentos" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Tmunicipios" Type="Self.Tmunicipios" Multiplicity="*" />
+          <End Type="ControlcBDModel.Tmunicipios" Role="Tmunicipios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tdepartamentos">
               <PropertyRef Name="Id" />
@@ -1100,10 +1186,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Tgrados_dbo_Tniveles_NivelId">
-          <End Role="Tniveles" Type="Self.Tniveles" Multiplicity="1">
+          <End Type="ControlcBDModel.Tniveles" Role="Tniveles" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Tgrados" Type="Self.Tgrados" Multiplicity="*" />
+          <End Type="ControlcBDModel.Tgrados" Role="Tgrados" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tniveles">
               <PropertyRef Name="Id" />
@@ -1113,421 +1199,334 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bdControlC" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-          <EntitySet Name="GenCores" EntityType="Self.GenCores" />
-          <EntitySet Name="GenInstituciones" EntityType="Self.GenInstituciones" />
-          <EntitySet Name="GenNivelesAprobados" EntityType="Self.GenNivelesAprobados" />
-          <EntitySet Name="GenSedes" EntityType="Self.GenSedes" />
-          <EntitySet Name="SegPermisos" EntityType="Self.SegPermisos" />
-          <EntitySet Name="SegRolesPermisos" EntityType="Self.SegRolesPermisos" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TcapExcepcionales" EntityType="Self.TcapExcepcionales" />
-          <EntitySet Name="Tcaracters" EntityType="Self.Tcaracters" />
-          <EntitySet Name="Tdepartamentos" EntityType="Self.Tdepartamentos" />
-          <EntitySet Name="Tdiscapacidades" EntityType="Self.Tdiscapacidades" />
-          <EntitySet Name="Tdocumentos" EntityType="Self.Tdocumentos" />
-          <EntitySet Name="Tespecialidades" EntityType="Self.Tespecialidades" />
-          <EntitySet Name="Testratos" EntityType="Self.Testratos" />
-          <EntitySet Name="Tetnias" EntityType="Self.Tetnias" />
-          <EntitySet Name="Tgrados" EntityType="Self.Tgrados" />
-          <EntitySet Name="Tjornadas" EntityType="Self.Tjornadas" />
-          <EntitySet Name="Tmetodologias" EntityType="Self.Tmetodologias" />
-          <EntitySet Name="Tmunicipios" EntityType="Self.Tmunicipios" />
-          <EntitySet Name="Tniveles" EntityType="Self.Tniveles" />
-          <EntitySet Name="Tpaises" EntityType="Self.Tpaises" />
-          <EntitySet Name="TpVictimaConflictoes" EntityType="Self.TpVictimaConflictoes" />
-          <EntitySet Name="Tsisbens" EntityType="Self.Tsisbens" />
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId" Association="Self.FK_dbo_SegRolesPermisos_dbo_AspNetRoles_RolId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="SegRolesPermisos" EntitySet="SegRolesPermisos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="Self.FK_dbo_GenCores_dbo_GenSedes_SedeId">
-            <End Role="GenSedes" EntitySet="GenSedes" />
-            <End Role="GenCores" EntitySet="GenCores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="Self.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
-            <End Role="Tjornadas" EntitySet="Tjornadas" />
-            <End Role="GenCores" EntitySet="GenCores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" Association="Self.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
-            <End Role="GenInstituciones" EntitySet="GenInstituciones" />
-            <End Role="GenNivelesAprobados" EntitySet="GenNivelesAprobados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" Association="Self.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId">
-            <End Role="GenInstituciones" EntitySet="GenInstituciones" />
-            <End Role="GenSedes" EntitySet="GenSedes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" Association="Self.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId">
-            <End Role="Tmunicipios" EntitySet="Tmunicipios" />
-            <End Role="GenInstituciones" EntitySet="GenInstituciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId" Association="Self.FK_dbo_GenNivelesAprobados_dbo_Tniveles_NivelId">
-            <End Role="Tniveles" EntitySet="Tniveles" />
-            <End Role="GenNivelesAprobados" EntitySet="GenNivelesAprobados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" Association="Self.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId">
-            <End Role="SegPermisos" EntitySet="SegPermisos" />
-            <End Role="SegRolesPermisos" EntitySet="SegRolesPermisos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" Association="Self.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId">
-            <End Role="Tdepartamentos" EntitySet="Tdepartamentos" />
-            <End Role="Tmunicipios" EntitySet="Tmunicipios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Tgrados_dbo_Tniveles_NivelId" Association="Self.FK_dbo_Tgrados_dbo_Tniveles_NivelId">
-            <End Role="Tniveles" EntitySet="Tniveles" />
-            <End Role="Tgrados" EntitySet="Tgrados" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bdbasicModelStoreContainer" CdmEntityContainer="bdControlC">
+        <EntityContainerMapping StorageEntityContainer="ControlcBDModelStoreContainer" CdmEntityContainer="ControlcBDEntities" >
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="bdbasicModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="ControlcBDModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="bdbasicModel.AspNetRoles">
+            <EntityTypeMapping TypeName="ControlcBDModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="bdbasicModel.AspNetUserClaims">
+            <EntityTypeMapping TypeName="ControlcBDModel.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="bdbasicModel.AspNetUserLogins">
+            <EntityTypeMapping TypeName="ControlcBDModel.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserRoles">
-            <EntityTypeMapping TypeName="bdbasicModel.AspNetUserRoles">
+            <EntityTypeMapping TypeName="ControlcBDModel.AspNetUserRoles">
               <MappingFragment StoreEntitySet="AspNetUserRoles">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="bdbasicModel.AspNetUsers">
+            <EntityTypeMapping TypeName="ControlcBDModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
                 <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GenCores">
-            <EntityTypeMapping TypeName="bdbasicModel.GenCores">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenCores">
               <MappingFragment StoreEntitySet="GenCores">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
-                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GenInstituciones">
-            <EntityTypeMapping TypeName="bdbasicModel.GenInstituciones">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenInstituciones">
               <MappingFragment StoreEntitySet="GenInstituciones">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CodigoDane" ColumnName="CodigoDane" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Rector" ColumnName="Rector" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="FechaFundacion" ColumnName="FechaFundacion" />
-                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="TmunicipioId" ColumnName="TmunicipioId" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="FechaFundacion" ColumnName="FechaFundacion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Rector" ColumnName="Rector" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoDane" ColumnName="CodigoDane" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GenNivelesAprobados">
-            <EntityTypeMapping TypeName="bdbasicModel.GenNivelesAprobados">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenNivelesAprobados">
               <MappingFragment StoreEntitySet="GenNivelesAprobados">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InstitucionId" ColumnName="InstitucionId" />
-                <ScalarProperty Name="NivelId" ColumnName="NivelId" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NivelId" ColumnName="NivelId" />
+                <ScalarProperty Name="InstitucionId" ColumnName="InstitucionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GenSedes">
-            <EntityTypeMapping TypeName="bdbasicModel.GenSedes">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenSedes">
               <MappingFragment StoreEntitySet="GenSedes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CodigoDaneSede" ColumnName="CodigoDaneSede" />
-                <ScalarProperty Name="NombreSede" ColumnName="NombreSede" />
-                <ScalarProperty Name="InstitucionId" ColumnName="InstitucionId" />
-                <ScalarProperty Name="RectorResponsable" ColumnName="RectorResponsable" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="RectorResponsable" ColumnName="RectorResponsable" />
+                <ScalarProperty Name="InstitucionId" ColumnName="InstitucionId" />
+                <ScalarProperty Name="NombreSede" ColumnName="NombreSede" />
+                <ScalarProperty Name="CodigoDaneSede" ColumnName="CodigoDaneSede" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SegPermisos">
-            <EntityTypeMapping TypeName="bdbasicModel.SegPermisos">
+            <EntityTypeMapping TypeName="ControlcBDModel.SegPermisos">
               <MappingFragment StoreEntitySet="SegPermisos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SegRolesPermisos">
-            <EntityTypeMapping TypeName="bdbasicModel.SegRolesPermisos">
+            <EntityTypeMapping TypeName="ControlcBDModel.SegRolesPermisos">
               <MappingFragment StoreEntitySet="SegRolesPermisos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
-                <ScalarProperty Name="RolId" ColumnName="RolId" />
                 <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="bdbasicModel.sysdiagrams">
+            <EntityTypeMapping TypeName="ControlcBDModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TcapExcepcionales">
-            <EntityTypeMapping TypeName="bdbasicModel.TcapExcepcionales">
+            <EntityTypeMapping TypeName="ControlcBDModel.TcapExcepcionales">
               <MappingFragment StoreEntitySet="TcapExcepcionales">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tcaracters">
-            <EntityTypeMapping TypeName="bdbasicModel.Tcaracters">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tcaracters">
               <MappingFragment StoreEntitySet="Tcaracters">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tdepartamentos">
-            <EntityTypeMapping TypeName="bdbasicModel.Tdepartamentos">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tdepartamentos">
               <MappingFragment StoreEntitySet="Tdepartamentos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Cod" ColumnName="Cod" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tdiscapacidades">
-            <EntityTypeMapping TypeName="bdbasicModel.Tdiscapacidades">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tdiscapacidades">
               <MappingFragment StoreEntitySet="Tdiscapacidades">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tdocumentos">
-            <EntityTypeMapping TypeName="bdbasicModel.Tdocumentos">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tdocumentos">
               <MappingFragment StoreEntitySet="Tdocumentos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tespecialidades">
-            <EntityTypeMapping TypeName="bdbasicModel.Tespecialidades">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tespecialidades">
               <MappingFragment StoreEntitySet="Tespecialidades">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Testratos">
-            <EntityTypeMapping TypeName="bdbasicModel.Testratos">
+            <EntityTypeMapping TypeName="ControlcBDModel.Testratos">
               <MappingFragment StoreEntitySet="Testratos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tetnias">
-            <EntityTypeMapping TypeName="bdbasicModel.Tetnias">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tetnias">
               <MappingFragment StoreEntitySet="Tetnias">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tgrados">
-            <EntityTypeMapping TypeName="bdbasicModel.Tgrados">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tgrados">
               <MappingFragment StoreEntitySet="Tgrados">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NivelId" ColumnName="NivelId" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NivelId" ColumnName="NivelId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tjornadas">
-            <EntityTypeMapping TypeName="bdbasicModel.Tjornadas">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tjornadas">
               <MappingFragment StoreEntitySet="Tjornadas">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tmetodologias">
-            <EntityTypeMapping TypeName="bdbasicModel.Tmetodologias">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tmetodologias">
               <MappingFragment StoreEntitySet="Tmetodologias">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tmunicipios">
-            <EntityTypeMapping TypeName="bdbasicModel.Tmunicipios">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tmunicipios">
               <MappingFragment StoreEntitySet="Tmunicipios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
-                <ScalarProperty Name="Cod" ColumnName="Cod" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tniveles">
-            <EntityTypeMapping TypeName="bdbasicModel.Tniveles">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tniveles">
               <MappingFragment StoreEntitySet="Tniveles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tpaises">
-            <EntityTypeMapping TypeName="bdbasicModel.Tpaises">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tpaises">
               <MappingFragment StoreEntitySet="Tpaises">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TpVictimaConflictoes">
-            <EntityTypeMapping TypeName="bdbasicModel.TpVictimaConflictoes">
+            <EntityTypeMapping TypeName="ControlcBDModel.TpVictimaConflictoes">
               <MappingFragment StoreEntitySet="TpVictimaConflictoes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tsisbens">
-            <EntityTypeMapping TypeName="bdbasicModel.Tsisbens">
+            <EntityTypeMapping TypeName="ControlcBDModel.Tsisbens">
               <MappingFragment StoreEntitySet="Tsisbens">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

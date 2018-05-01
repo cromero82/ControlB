@@ -23,7 +23,7 @@ namespace Model.Seguridad
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("BdService", throwIfV1Schema: false)
+            : base("ControlcBD", throwIfV1Schema: false)
         {
         }
 

@@ -16,7 +16,7 @@ namespace Services.BL
     public class TgradosBL
     {
         // Contexto de base de datos (EF)
-        private bdControlC db = new bdControlC();
+        private ControlcBDEntities db = new ControlcBDEntities();
         /// <summary>
         /// Inserta tgrado
         /// </summary>

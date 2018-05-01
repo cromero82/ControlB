@@ -15,7 +15,7 @@ namespace Services.BL
     public class TjornadasBL
     {
         // Contexto de base de datos (EF)
-        private bdControlC db = new bdControlC();
+        private ControlcBDEntities db = new ControlcBDEntities();
         /// <summary>
         /// Inserta tjornada
         /// </summary>

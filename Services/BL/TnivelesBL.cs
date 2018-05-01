@@ -12,7 +12,7 @@ namespace Services.BL
     public class TnivelesBL
     {
         // Contexto de base de datos (EF)
-        private bdControlC db = new bdControlC();
+        private ControlcBDEntities db = new ControlcBDEntities();
         Jresult jresult = new Jresult();
 
         //protected override void OnException(ExceptionContext filterContext)

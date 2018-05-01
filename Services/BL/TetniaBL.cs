@@ -18,7 +18,7 @@ namespace Services.BL
     public class TetniaBL: ClaseBL
     {
         // Contexto de base de datos (EF)
-        private bdControlC db = new bdControlC();
+        private ControlcBDEntities db = new ControlcBDEntities();
         Jresult jresult = new Jresult();
         private string entidad = "Etnia";
 

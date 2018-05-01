@@ -13,10 +13,10 @@ namespace Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bdControlC : DbContext
+    public partial class ControlcBDEntities : DbContext
     {
-        public bdControlC()
-            : base("name=bdControlC")
+        public ControlcBDEntities()
+            : base("name=ControlcBDEntities")
         {
         }
     

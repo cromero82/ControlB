@@ -28,7 +28,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="request"> Filtros kendoGrid en cliente </param>
         /// <returns>lista de datos</returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult GetList([DataSourceRequest]DataSourceRequest request)
         {           
             var institucionesBL = new TnivelesBL();
@@ -42,7 +42,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="id"> id de registro</param>
         /// <param name="accionCrud"> acción que se va a realizar en la vista: Crear o Editar</param>
         /// <returns>Vista</returns>
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult TetniaView(long? id, string accionCrud)
         {
             ViewBag.Accion = accionCrud;            
@@ -105,7 +105,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <param name="model"></param>
         /// <returns> Resultado de la transacción </returns>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult DelTetnia(int id)
         {
             // Acceso a la capa de negocio y result

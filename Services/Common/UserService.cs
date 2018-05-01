@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Persistence;
 using Model.BL;
+using System.Security.Claims;
+using System.Security.Principal;
 //using Model.Auth;
 
 namespace Services.Common
@@ -17,13 +19,23 @@ namespace Services.Common
 
     public class UserService
     {
+        public bool GetRoles(string NombreRol, IPrincipal User)
+        {
+            var roles = ((ClaimsIdentity)User.Identity).Claims
+                .Where(c => c.Type == ClaimTypes.Role                
+                )
+                ;
+            return true;
+                //.Select(c => c.Value);
+
+        }
         public IEnumerable<UserGrid> GetAll()
         {
             var result = new List<UserGrid>();
 
             try
             {
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                     result = (
                         //from au in ctx.ApplicationUsers
@@ -59,7 +71,7 @@ namespace Services.Common
             try
             {
                
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                     var user = ctx.AspNetUsers.Find(id); //ApplicationUsers.Find(id);
                     return user;
@@ -81,7 +93,7 @@ namespace Services.Common
 
             try
             {
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                     result = (
                         from au in ctx.AspNetUsers//ApplicationUsers                       
@@ -108,7 +120,7 @@ namespace Services.Common
 
             try
             {
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                    
                     result = ctx.AspNetRoles.Select( x=>  new GenericEntityList
@@ -133,7 +145,7 @@ namespace Services.Common
             var permiso = new Model.SegPermisos();
             try
             {
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                     permiso = ctx.SegPermisos.Where(x => x.Sigla == filterContext).FirstOrDefault();
                     if (permiso != null)
@@ -156,7 +168,7 @@ namespace Services.Common
             var permiso = new DefaultModel();
             try
             {
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                     permiso = (
 
@@ -190,7 +202,7 @@ namespace Services.Common
             var permiso = new List<DefaultModel>() { };
             try
             {
-                using (var ctx = new bdControlC())
+                using (var ctx = new ControlcBDEntities())
                 {
                     permiso = (
                         //from aur in ctx.ApplicationUserRoles.Where(x => x.UserId == userId)
