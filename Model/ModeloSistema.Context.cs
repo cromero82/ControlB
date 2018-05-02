@@ -31,7 +31,6 @@ namespace Model
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<GenCores> GenCores { get; set; }
         public virtual DbSet<GenInstituciones> GenInstituciones { get; set; }
         public virtual DbSet<GenNivelesAprobados> GenNivelesAprobados { get; set; }
         public virtual DbSet<GenSedes> GenSedes { get; set; }
@@ -54,5 +53,7 @@ namespace Model
         public virtual DbSet<Tpaises> Tpaises { get; set; }
         public virtual DbSet<TpVictimaConflictoes> TpVictimaConflictoes { get; set; }
         public virtual DbSet<Tsisbens> Tsisbens { get; set; }
+        public virtual DbSet<GenContexto> GenContexto { get; set; }
+        public virtual DbSet<GenPersona> GenPersona { get; set; }
     }
 }

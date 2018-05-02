@@ -71,10 +71,10 @@
           <Property Name="BirthDay" Type="datetime" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="LastName" Type="nvarchar(max)" />
-          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" />
           <Property Name="ShortName" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="GenCores">
+        <EntityType Name="GenContexto">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -107,6 +107,26 @@
           <Property Name="InstitucionId" Type="int" Nullable="false" />
           <Property Name="NivelId" Type="int" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenPersona">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TdocumentoId" Type="int" Nullable="false" />
+          <Property Name="NumDoc" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="PrimerNombre" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SegundoNombre" Type="nchar" MaxLength="10" />
+          <Property Name="PrimerApellido" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SegundoApellido" Type="nchar" MaxLength="10" />
+          <Property Name="FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="Direccion" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="TmunicipioId" Type="int" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono2" Type="nchar" MaxLength="20" />
+          <Property Name="ModoRegistro" Type="nchar" MaxLength="10" />
           <Property Name="Estregistro" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GenSedes">
@@ -365,12 +385,12 @@
           <End Role="GenSedes" Type="Self.GenSedes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenCores" Type="Self.GenCores" Multiplicity="*" />
+          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GenSedes">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="GenCores">
+            <Dependent Role="GenContexto">
               <PropertyRef Name="SedeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -379,12 +399,12 @@
           <End Role="Tjornadas" Type="Self.Tjornadas" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenCores" Type="Self.GenCores" Multiplicity="*" />
+          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tjornadas">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="GenCores">
+            <Dependent Role="GenContexto">
               <PropertyRef Name="JornadaId" />
             </Dependent>
           </ReferentialConstraint>
@@ -499,6 +519,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GPER_TMUNIC">
+          <End Role="Tmunicipios" Type="Self.Tmunicipios" Multiplicity="1" />
+          <End Role="GenPersona" Type="Self.GenPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tmunicipios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenPersona">
+              <PropertyRef Name="TmunicipioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDOC_GPER">
+          <End Role="Tdocumentos" Type="Self.Tdocumentos" Multiplicity="1" />
+          <End Role="GenPersona" Type="Self.GenPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tdocumentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenPersona">
+              <PropertyRef Name="TdocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ControlcBDModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -506,9 +550,10 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GenCores" EntityType="Self.GenCores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenContexto" EntityType="Self.GenContexto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenInstituciones" EntityType="Self.GenInstituciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenNivelesAprobados" EntityType="Self.GenNivelesAprobados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenPersona" EntityType="Self.GenPersona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenSedes" EntityType="Self.GenSedes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SegPermisos" EntityType="Self.SegPermisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SegRolesPermisos" EntityType="Self.SegRolesPermisos" Schema="dbo" store:Type="Tables" />
@@ -547,11 +592,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="Self.FK_dbo_GenCores_dbo_GenSedes_SedeId">
             <End Role="GenSedes" EntitySet="GenSedes" />
-            <End Role="GenCores" EntitySet="GenCores" />
+            <End Role="GenContexto" EntitySet="GenContexto" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="Self.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
             <End Role="Tjornadas" EntitySet="Tjornadas" />
-            <End Role="GenCores" EntitySet="GenCores" />
+            <End Role="GenContexto" EntitySet="GenContexto" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" Association="Self.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
             <End Role="GenInstituciones" EntitySet="GenInstituciones" />
@@ -585,6 +630,14 @@
             <End Role="Tdepartamentos" EntitySet="Tdepartamentos" />
             <End Role="Tmunicipios" EntitySet="Tmunicipios" />
           </AssociationSet>
+          <AssociationSet Name="FK_GPER_TMUNIC" Association="Self.FK_GPER_TMUNIC">
+            <End Role="Tmunicipios" EntitySet="Tmunicipios" />
+            <End Role="GenPersona" EntitySet="GenPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDOC_GPER" Association="Self.FK_TDOC_GPER">
+            <End Role="Tdocumentos" EntitySet="Tdocumentos" />
+            <End Role="GenPersona" EntitySet="GenPersona" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -597,7 +650,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="ControlcBDModel.AspNetUserLogins" />
           <EntitySet Name="AspNetUserRoles" EntityType="ControlcBDModel.AspNetUserRoles" />
           <EntitySet Name="AspNetUsers" EntityType="ControlcBDModel.AspNetUsers" />
-          <EntitySet Name="GenCores" EntityType="ControlcBDModel.GenCores" />
           <EntitySet Name="GenInstituciones" EntityType="ControlcBDModel.GenInstituciones" />
           <EntitySet Name="GenNivelesAprobados" EntityType="ControlcBDModel.GenNivelesAprobados" />
           <EntitySet Name="GenSedes" EntityType="ControlcBDModel.GenSedes" />
@@ -640,14 +692,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId">
-            <End Role="GenSedes" EntitySet="GenSedes" />
-            <End Role="GenCores" EntitySet="GenCores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
-            <End Role="Tjornadas" EntitySet="Tjornadas" />
-            <End Role="GenCores" EntitySet="GenCores" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" Association="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
             <End Role="GenInstituciones" EntitySet="GenInstituciones" />
             <End Role="GenNivelesAprobados" EntitySet="GenNivelesAprobados" />
@@ -675,6 +719,24 @@
           <AssociationSet Name="FK_dbo_Tgrados_dbo_Tniveles_NivelId" Association="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId">
             <End Role="Tniveles" EntitySet="Tniveles" />
             <End Role="Tgrados" EntitySet="Tgrados" />
+          </AssociationSet>
+          <EntitySet Name="GenContexto" EntityType="ControlcBDModel.GenContexto" />
+          <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId">
+            <End Role="GenSedes" EntitySet="GenSedes" />
+            <End Role="GenContexto" EntitySet="GenContexto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
+            <End Role="Tjornadas" EntitySet="Tjornadas" />
+            <End Role="GenContexto" EntitySet="GenContexto" />
+          </AssociationSet>
+          <EntitySet Name="GenPersona" EntityType="ControlcBDModel.GenPersona" />
+          <AssociationSet Name="FK_GPER_TMUNIC" Association="ControlcBDModel.FK_GPER_TMUNIC">
+            <End Role="Tmunicipios" EntitySet="Tmunicipios" />
+            <End Role="GenPersona" EntitySet="GenPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDOC_GPER" Association="ControlcBDModel.FK_TDOC_GPER">
+            <End Role="Tdocumentos" EntitySet="Tdocumentos" />
+            <End Role="GenPersona" EntitySet="GenPersona" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -749,23 +811,11 @@
           <Property Name="BirthDay" Type="DateTime" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ShortName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="ControlcBDModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="ControlcBDModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetUserRoles" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
-        </EntityType>
-        <EntityType Name="GenCores">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SedeId" Type="Int32" Nullable="false" />
-          <Property Name="JornadaId" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenSedes" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenCores" ToRole="GenSedes" />
-          <NavigationProperty Name="Tjornadas" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="GenCores" ToRole="Tjornadas" />
         </EntityType>
         <EntityType Name="GenInstituciones">
           <Key>
@@ -811,8 +861,8 @@
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenCores" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenSedes" ToRole="GenCores" />
           <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenSedes" ToRole="GenInstituciones" />
+          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenSedes" ToRole="GenContexto" />
         </EntityType>
         <EntityType Name="SegPermisos">
           <Key>
@@ -893,6 +943,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GenPersona" Relationship="ControlcBDModel.FK_TDOC_GPER" FromRole="Tdocumentos" ToRole="GenPersona" />
         </EntityType>
         <EntityType Name="Tespecialidades">
           <Key>
@@ -941,7 +992,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenCores" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="Tjornadas" ToRole="GenCores" />
+          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="Tjornadas" ToRole="GenContexto" />
         </EntityType>
         <EntityType Name="Tmetodologias">
           <Key>
@@ -965,6 +1016,7 @@
           <Property Name="Longitud" Type="Double" Nullable="false" />
           <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" FromRole="Tmunicipios" ToRole="GenInstituciones" />
           <NavigationProperty Name="Tdepartamentos" Relationship="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tmunicipios" ToRole="Tdepartamentos" />
+          <NavigationProperty Name="GenPersona" Relationship="ControlcBDModel.FK_GPER_TMUNIC" FromRole="Tmunicipios" ToRole="GenPersona" />
         </EntityType>
         <EntityType Name="Tniveles">
           <Key>
@@ -1073,34 +1125,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_GenCores_dbo_GenSedes_SedeId">
-          <End Type="ControlcBDModel.GenSedes" Role="GenSedes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="ControlcBDModel.GenCores" Role="GenCores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GenSedes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GenCores">
-              <PropertyRef Name="SedeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
-          <End Type="ControlcBDModel.Tjornadas" Role="Tjornadas" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="ControlcBDModel.GenCores" Role="GenCores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tjornadas">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GenCores">
-              <PropertyRef Name="JornadaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
           <End Type="ControlcBDModel.GenInstituciones" Role="GenInstituciones" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1199,6 +1223,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GenContexto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SedeId" Type="Int32" Nullable="false" />
+          <Property Name="JornadaId" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GenSedes" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenContexto" ToRole="GenSedes" />
+          <NavigationProperty Name="Tjornadas" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="GenContexto" ToRole="Tjornadas" />
+        </EntityType>
+        <Association Name="FK_dbo_GenCores_dbo_GenSedes_SedeId">
+          <End Type="ControlcBDModel.GenSedes" Role="GenSedes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenSedes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenContexto">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
+          <End Type="ControlcBDModel.Tjornadas" Role="Tjornadas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tjornadas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenContexto">
+              <PropertyRef Name="JornadaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GenPersona">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TdocumentoId" Type="Int32" Nullable="false" />
+          <Property Name="NumDoc" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="PrimerNombre" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SegundoNombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="TmunicipioId" Type="Int32" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ModoRegistro" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tmunicipios" Relationship="ControlcBDModel.FK_GPER_TMUNIC" FromRole="GenPersona" ToRole="Tmunicipios" />
+          <NavigationProperty Name="Tdocumentos" Relationship="ControlcBDModel.FK_TDOC_GPER" FromRole="GenPersona" ToRole="Tdocumentos" />
+        </EntityType>
+        <Association Name="FK_GPER_TMUNIC">
+          <End Type="ControlcBDModel.Tmunicipios" Role="Tmunicipios" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenPersona" Role="GenPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tmunicipios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenPersona">
+              <PropertyRef Name="TmunicipioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDOC_GPER">
+          <End Type="ControlcBDModel.Tdocumentos" Role="Tdocumentos" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenPersona" Role="GenPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tdocumentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenPersona">
+              <PropertyRef Name="TdocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1272,17 +1382,6 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GenCores">
-            <EntityTypeMapping TypeName="ControlcBDModel.GenCores">
-              <MappingFragment StoreEntitySet="GenCores">
-                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
-                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1527,6 +1626,38 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenContexto">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenContexto">
+              <MappingFragment StoreEntitySet="GenContexto">
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenPersona">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenPersona">
+              <MappingFragment StoreEntitySet="GenPersona">
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="ModoRegistro" ColumnName="ModoRegistro" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="TmunicipioId" ColumnName="TmunicipioId" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="NumDoc" ColumnName="NumDoc" />
+                <ScalarProperty Name="TdocumentoId" ColumnName="TdocumentoId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

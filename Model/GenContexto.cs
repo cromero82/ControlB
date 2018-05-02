@@ -12,7 +12,7 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class GenCores
+    public partial class GenContexto
     {
         public int Id { get; set; }
         public int SedeId { get; set; }

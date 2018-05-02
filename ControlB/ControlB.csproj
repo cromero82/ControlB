@@ -207,6 +207,8 @@
     <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionWizardVM.cs" />
+    <Compile Include="Areas\General\Controllers\GenPersonaController.cs" />
+    <Compile Include="Areas\General\GeneralAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -236,6 +238,7 @@
     <Content Include="Areas\ADMIN\Scripts\Tniveles\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\InsTnivel.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\UpdTnivel.js" />
+    <Content Include="Areas\General\Scripts\GenPersona.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\css\admin-forms.css" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\additional-methods.min.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\advanced\steps\jquery.steps.js" />
@@ -2365,6 +2368,10 @@
     <Content Include="Areas\ADMIN\Views\Instituciones\InsInstitucionWizard.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tetnia\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tetnia\TetniaView.cshtml" />
+    <Content Include="Areas\General\Views\web.config" />
+    <Content Include="Areas\General\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\General\Views\GenPersona\Index.cshtml" />
+    <Content Include="Areas\General\Views\GenPersona\GenPersonaView.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3132,6 +3139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\General\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

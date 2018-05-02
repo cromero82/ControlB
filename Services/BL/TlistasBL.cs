@@ -1,23 +1,18 @@
 ﻿using Model;
 using Model.Auxiliar;
-using Model.BL;
 using Model.BL.Tipos;
 using Model.General;
-using Persistence;
 using Services.Common;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.BL
 {
-    public class TlistasBL
+    public class TlistasBL : ClaseBL
     {
         // Contexto de base de datos (EF)
-        private ControlcBDEntities db = new ControlcBDEntities();
-
+        private ControlcBDEntities db = new ControlcBDEntities();        
+        Jresult jresult = new Jresult();
         /// <summary>
         /// Obtiene lista de tipos de caracteristicas 
         /// </summary>        
@@ -151,6 +146,32 @@ namespace Services.BL
             return jresult;
         }
 
+        public Jresult GetListMunicipios(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo, int? DepartamentoId)
+        {
+            try
+            {
+                var queryable = db.Tmunicipios.Where(f => f.Estado == 1);
+                if(DepartamentoId != null)
+                {
+                    queryable = queryable.Where(x => x.DepartamentoId == DepartamentoId);
+                }
+                queryable = queryable.AsQueryable();
+                jresult.Data = queryable.Select(r => new TipoDatoGenericoVM
+                {
+                    Id = r.Id,
+                    Nombre = r.Nombre,
+                    PadreId = r.Id
+                });
+
+                #region Aplicacion Filtro kendo
+                return AplicadorFiltrosKendo(jresult, filtrosComponenteKendo, queryable);
+                #endregion
+            }
+            #region Manejador Excepcion
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            #endregion
+        }
+
         /// <summary>
         /// Obtiene lista de municipios 
         /// </summary>        
@@ -170,7 +191,7 @@ namespace Services.BL
                         select new
                         {
                             Id = m.Id,
-                            Nombre = m.Nombre,                            
+                            Nombre = m.Nombre,
                             Cod = m.Cod,
                             NombreDepartamento = d.Nombre
                         }

@@ -149,7 +149,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request)
+        public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
         {
             var listaBl = new TlistasBL();
             var jresult = listaBl.GetListMunicipios();

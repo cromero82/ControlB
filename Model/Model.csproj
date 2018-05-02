@@ -75,11 +75,13 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
+    <Compile Include="BL\GenPersonaVM.cs" />
+    <Compile Include="BL\Tipos\TipoDatoGenericoVM.cs" />
     <Compile Include="BL\Tipos\TetniaVM.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
-    <Compile Include="GenCores.cs">
+    <Compile Include="GenContexto.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="General\Enumeraciones.cs" />
@@ -90,6 +92,9 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="GenNivelesAprobados.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenPersona.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="GenSedes.cs">

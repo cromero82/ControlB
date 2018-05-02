@@ -17,7 +17,7 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GenSedes()
         {
-            this.GenCores = new HashSet<GenCores>();
+            this.GenContexto = new HashSet<GenContexto>();
         }
     
         public int Id { get; set; }
@@ -31,8 +31,8 @@ namespace Model
         public int Estado { get; set; }
         public int Estregistro { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GenCores> GenCores { get; set; }
         public virtual GenInstituciones GenInstituciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GenContexto> GenContexto { get; set; }
     }
 }

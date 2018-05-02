@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="ControlcBDModel.AspNetUserLogins" Width="1.5" PointX="3" PointY="11.125" />
         <EntityTypeShape EntityType="ControlcBDModel.AspNetUserRoles" Width="1.5" PointX="6" PointY="15.375" />
         <EntityTypeShape EntityType="ControlcBDModel.AspNetUsers" Width="1.5" PointX="0.75" PointY="11" />
-        <EntityTypeShape EntityType="ControlcBDModel.GenCores" Width="1.5" PointX="9.75" PointY="7.875" />
         <EntityTypeShape EntityType="ControlcBDModel.GenInstituciones" Width="1.5" PointX="5.25" PointY="4.125" />
         <EntityTypeShape EntityType="ControlcBDModel.GenNivelesAprobados" Width="1.5" PointX="7.5" PointY="3.75" />
         <EntityTypeShape EntityType="ControlcBDModel.GenSedes" Width="1.5" PointX="7.5" PointY="7.375" />
@@ -27,7 +26,7 @@
         <EntityTypeShape EntityType="ControlcBDModel.Testratos" Width="1.5" PointX="11.75" PointY="11.375" />
         <EntityTypeShape EntityType="ControlcBDModel.Tetnias" Width="1.5" PointX="9.75" PointY="14.375" />
         <EntityTypeShape EntityType="ControlcBDModel.Tgrados" Width="1.5" PointX="7.5" PointY="23" />
-        <EntityTypeShape EntityType="ControlcBDModel.Tjornadas" Width="1.5" PointX="7.5" PointY="12" />
+        <EntityTypeShape EntityType="ControlcBDModel.Tjornadas" Width="1.5" PointX="7.5" PointY="11" />
         <EntityTypeShape EntityType="ControlcBDModel.Tmetodologias" Width="1.5" PointX="11.75" PointY="14.375" />
         <EntityTypeShape EntityType="ControlcBDModel.Tmunicipios" Width="1.5" PointX="3" PointY="4.5" />
         <EntityTypeShape EntityType="ControlcBDModel.Tniveles" Width="1.5" PointX="5.25" PointY="0.75" />
@@ -39,8 +38,6 @@
         <AssociationConnector Association="ControlcBDModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" />
-        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" />
@@ -48,6 +45,12 @@
         <AssociationConnector Association="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId" />
+        <EntityTypeShape EntityType="ControlcBDModel.GenContexto" Width="1.5" PointX="9.5" PointY="8.375" />
+        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" />
+        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" />
+        <EntityTypeShape EntityType="ControlcBDModel.GenPersona" Width="1.5" PointX="16" PointY="3.875" />
+        <AssociationConnector Association="ControlcBDModel.FK_GPER_TMUNIC" />
+        <AssociationConnector Association="ControlcBDModel.FK_TDOC_GPER" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,9 +14,18 @@ namespace Model
     
     public partial class Tdocumentos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tdocumentos()
+        {
+            this.GenPersona = new HashSet<GenPersona>();
+        }
+    
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Estado { get; set; }
         public int Numero { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GenPersona> GenPersona { get; set; }
     }
 }

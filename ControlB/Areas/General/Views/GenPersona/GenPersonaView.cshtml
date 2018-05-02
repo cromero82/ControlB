@@ -1,0 +1,188 @@
+﻿@using Model.BL
+@model GenPersonaVM
+
+@{
+    var viewName = ViewContext.RouteData.Values["controller"].ToString();
+    MvcForm form;
+}
+
+<div id="@viewName">
+    @if (ViewBag.Accion == "Insertar")
+    {
+        form = Ajax.BeginForm("InsPersona", "Persona", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
+    }
+    else
+    {
+        form = Ajax.BeginForm("UpdPersona", "Persona", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
+    }
+
+    @using (form)
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.ID)
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">@ViewBag.Accion Etnia</h4>
+        </div>
+
+        <div class="modal-body">
+            @Html.HiddenFor(m => m.Estregistro, new { Value = 1 })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.NumDoc)
+                        @(Html.TextBoxFor(m => m.NumDoc, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.NumDoc)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @(Html.Kendo().DropDownListFor(m => m.TdocumentoId)                      
+                      .HtmlAttributes(new { style = "width:100%" })
+                      .OptionLabel("Select order...")
+                      .DataTextField("Nombre")
+                      .DataValueField("Id")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetListTdocumentos", "Tlistas", new { Area = "ADMIN" });
+                          })
+                          .ServerFiltering(false);
+                      })                     
+                    )
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PrimerNombre)
+                        @(Html.TextBoxFor(m => m.PrimerNombre, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.PrimerNombre)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SegundoNombre)
+                        @(Html.TextBoxFor(m => m.SegundoNombre, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.SegundoNombre)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SegundoApellido)
+                        @(Html.TextBoxFor(m => m.SegundoApellido, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.SegundoApellido)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FechaNacimiento)
+                        @(Html.Kendo().DatePickerFor(model => model.FechaNacimiento)
+                              .Name("Fechainicial")
+                              .Max(String.Format("{0:d}", DateTime.Now))
+                              .Value(String.Format("{0:d}", DateTime.Now))
+                              .Format("dd/MM/yyyy")
+                              .HtmlAttributes(new
+                              {
+                                  @class = "form-control",
+                                  style = "width: 100%",
+                                  @maxlength = "10",
+                                  @placeholder = "DD/MM/AAAA"
+                              })
+                        )
+                        @Html.ValidationMessageFor(m => m.FechaNacimiento)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Direccion)
+                        @(Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.Direccion)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Telefono)
+                        @(Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.Telefono)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Telefono2)
+                        @(Html.TextBoxFor(m => m.Telefono2, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.Telefono2)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CorreoElectronico)
+                        @(Html.TextBoxFor(m => m.CorreoElectronico, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.CorreoElectronico)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    @(Html.Kendo().DropDownList()
+                      .Name("departamentos")
+                      .HtmlAttributes(new { style = "width:100%" })
+                      .OptionLabel("Seleccione departamento...")
+                      .DataTextField("Nombre")
+                      .DataValueField("Id")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN"});
+                          });
+                      })
+                    )
+                </div>
+                <div class="col-md-6">
+                    @(Html.Kendo().DropDownListFor(m=>m.TmunicipioId)                      
+                      .HtmlAttributes(new { style = "width:100%" })
+                      .OptionLabel("Select order...")
+                      .DataTextField("Nombre")
+                      .DataValueField("Id")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" })
+                                  .Data("Persona.filterMunicipios");
+                          })
+                          .ServerFiltering(true);
+                      })
+                      .Enable(false)
+                      .AutoBind(false)
+                      .CascadeFrom("departamentos")
+                    )
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    }
+
+    <!-- Inicialización script de vista -->
+    <script>
+	@(viewName).initEdicion("Insertar");
+    </script>
+</div>
