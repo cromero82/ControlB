@@ -1,4 +1,5 @@
 ﻿using ControlB.Areas.ADMIN.Models;
+using ControlB.Utilidades;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Model.Auxiliar;
@@ -13,8 +14,9 @@ using System.Web.Mvc;
 
 namespace ControlB.Areas.ADMIN.Controllers
 {
-    public class TlistasController : Controller
+    public class TlistasController : UtilController
     {
+        TlistasBL entityBL = new TlistasBL();
         //GET: ADMIN/Tlistas
         public ActionResult Index()
         {
@@ -29,9 +31,8 @@ namespace ControlB.Areas.ADMIN.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult GetListTcaracteristicas([DataSourceRequest]DataSourceRequest request)
-        {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListTcaracteristicas();
+        {            
+            var jresult = entityBL.GetListTcaracteristicas();
             if (jresult.Success == false)
             {
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
@@ -48,9 +49,8 @@ namespace ControlB.Areas.ADMIN.Controllers
         [HttpPost]
         [Authorize]
         public ActionResult GetListTespecialidades([DataSourceRequest]DataSourceRequest request)
-        {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListTespecialidades();
+        {            
+            var jresult = entityBL.GetListTespecialidades();
             if (jresult.Success == false)
             {
                 ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
@@ -66,16 +66,32 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
+        public ActionResult GetBuscarTdepartamentos([DataSourceRequest]DataSourceRequest request)
+        {
+          
+
+            var jresult = entityBL.GetListDepartamentos(request);
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
+            
+            //if (jresult.Success == false)
+            //{
+            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            //}
+            //return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
+        }
+
+        [Authorize]
         public ActionResult GetListTdepartamentos([DataSourceRequest]DataSourceRequest request)
         {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListDepartamentos();
-            if (jresult.Success == false)
-            {
-                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
-            }
-            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
+            var jresult = entityBL.GetListDepartamentos(request);
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
+            //if (jresult.Success == false)
+            //{
+            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            //}
+            //return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count },JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -149,7 +165,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
+        public ActionResult GetBuscarTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
         {
             var listaBl = new TlistasBL();
             var jresult = listaBl.GetListMunicipios();
@@ -159,6 +175,19 @@ namespace ControlB.Areas.ADMIN.Controllers
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
             return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count });
+        }
+
+        [Authorize]
+        public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListMunicipios();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            }
+            return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -206,7 +235,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetListTdocumentos([DataSourceRequest]DataSourceRequest request)
+        public ActionResult GetBuscarTdocumentos([DataSourceRequest]DataSourceRequest request)
         {
             var listaBl = new TlistasBL();
             var jresult = listaBl.GetListTiposDocumentos();
@@ -216,6 +245,19 @@ namespace ControlB.Areas.ADMIN.Controllers
                 return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
             }
             return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
+        }
+        
+        [Authorize]
+        public ActionResult GetListTdocumentos([DataSourceRequest]DataSourceRequest request)
+        {
+            var listaBl = new TlistasBL();
+            var jresult = listaBl.GetListTiposDocumentos();
+            if (jresult.Success == false)
+            {
+                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            }
+            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

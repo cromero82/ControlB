@@ -2372,6 +2372,7 @@
     <Content Include="Areas\General\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\General\Views\GenPersona\Index.cshtml" />
     <Content Include="Areas\General\Views\GenPersona\GenPersonaView.cshtml" />
+    <Content Include="Areas\General\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

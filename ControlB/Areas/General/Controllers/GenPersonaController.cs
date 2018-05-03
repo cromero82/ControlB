@@ -24,9 +24,9 @@ namespace ControlB.Areas.General.Controllers
         [Authorize]
         public ActionResult GetList([DataSourceRequest]DataSourceRequest request)
         {
-            var institucionesBL = new TnivelesBL();
+            
             var jresult = entityBL.GetList(request);
-            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando establecimientos: ");
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando Personas: ");
         }
 
         /// <summary>

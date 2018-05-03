@@ -22,6 +22,7 @@ namespace Services.BL
             {
                 var queryable = db.GenPersona.Where(f => f.Estregistro == 1).Select(r => new GenPersonaVM
                 {
+                    Id = r.Id,
                     TdocumentoId = r.TdocumentoId,
                     Tdocumento = r.Tdocumentos.Nombre,
                     NumDoc = r.NumDoc,
@@ -130,7 +131,7 @@ namespace Services.BL
         {
             try
             {                
-                var entity = db.GenPersona.SingleOrDefault(b => b.ID == id);
+                var entity = db.GenPersona.SingleOrDefault(b => b.Id == id);
                 entity.Estregistro = 0;                
                 db.GenPersona.Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
@@ -166,9 +167,9 @@ namespace Services.BL
                 Telefono2 = model.Telefono2,
                 ModoRegistro = model.ModoRegistro
             };
-            if (model.ID > 0)
+            if (model.Id > 0)
             {
-                itemBD.ID = model.ID;
+                itemBD.Id = model.Id;
             }
             return itemBD;
         }

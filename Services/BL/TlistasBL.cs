@@ -92,22 +92,40 @@ namespace Services.BL
         /// Obtiene lista de departamentos 
         /// </summary>        
         /// <returns> lista de datos</returns>
-        public Jresult GetListDepartamentos()
+        public Jresult GetListDepartamentos(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
         {
-            var jresult = new Jresult();
             try
             {
-                var listaDatos = db.Tdepartamentos.Where(x => x.Estado == 1).ToList();
-                jresult.Data = listaDatos;
-                jresult.Success = true;;
+                var queryable = db.Tdepartamentos.Where(f => f.Estado == 1).Select(r => new TipoDatoGenericoVM
+                {
+                    Id = r.Id,
+                    Nombre = r.Nombre
+                });
+
+                #region Aplicacion Filtro kendo
+                return AplicadorFiltrosKendo(jresult, filtrosComponenteKendo, queryable);
+                #endregion
             }
-            catch (Exception ex)
-            {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-            }
-            return jresult;
+            #region Manejador Excepcion
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            #endregion
         }
+        //public Jresult GetListDepartamentos()
+        //{
+        //    var jresult = new Jresult();
+        //    try
+        //    {
+        //        var listaDatos = db.Tdepartamentos.Where(x => x.Estado == 1).ToList();
+        //        jresult.Data = listaDatos;
+        //        jresult.Success = true;;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        jresult.Message = ex.Message;
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //    return jresult;
+        //}
 
         /// <summary>
         /// Inserta lista de departamentos

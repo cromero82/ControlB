@@ -111,9 +111,9 @@
         </EntityType>
         <EntityType Name="GenPersona">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TdocumentoId" Type="int" Nullable="false" />
           <Property Name="NumDoc" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="PrimerNombre" Type="nchar" MaxLength="10" Nullable="false" />
@@ -738,7 +738,7 @@
             <End Role="Tdocumentos" EntitySet="Tdocumentos" />
             <End Role="GenPersona" EntitySet="GenPersona" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1265,9 +1265,9 @@
         </Association>
         <EntityType Name="GenPersona">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TdocumentoId" Type="Int32" Nullable="false" />
           <Property Name="NumDoc" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="PrimerNombre" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -1309,7 +1309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1657,7 +1657,7 @@
                 <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
                 <ScalarProperty Name="NumDoc" ColumnName="NumDoc" />
                 <ScalarProperty Name="TdocumentoId" ColumnName="TdocumentoId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

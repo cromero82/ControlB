@@ -14,7 +14,7 @@ namespace Model
     
     public partial class GenPersona
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int TdocumentoId { get; set; }
         public string NumDoc { get; set; }
         public string PrimerNombre { get; set; }
