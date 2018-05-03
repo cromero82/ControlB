@@ -10,6 +10,9 @@ namespace Model.BL
     {
 
         public int Id { get; set; }
+
+        [DisplayName("Ciudad expedición documento")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int TdocumentoId { get; set; }
 
         [DisplayName("Tipo de documento")]        

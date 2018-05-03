@@ -22,7 +22,7 @@
         @Html.HiddenFor(m => m.Id)
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">@ViewBag.Accion Etnia</h4>
+            <h4 class="modal-title">@ViewBag.Accion Persona</h4>
         </div>
 
         <div class="modal-body">
@@ -30,13 +30,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.NumDoc)
-                        @(Html.TextBoxFor(m => m.NumDoc, new { @class = "form-control", autocomplete = "off" }))
-                        @Html.ValidationMessageFor(m => m.NumDoc)
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    @(Html.Kendo().DropDownListFor(model => model.TdocumentoId)
+                        @Html.LabelFor(m => m.TdocumentoId)
+                        @(Html.Kendo().DropDownListFor(model => model.TdocumentoId)
                               .Name("NivelId")
                               .DataTextField("Nombre")
                               .DataValueField("Id")
@@ -53,25 +48,75 @@
                                       .Events(e => e.Error("handleOnErrorModelState"));
                               })
                             .HtmlAttributes(new { style = "width:100%;", @class = "itemComponente" })
-                    )
+                        )
+                        @Html.ValidationMessageFor(m => m.TdocumentoId)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.NumDoc)
+                        @(Html.TextBoxFor(m => m.NumDoc, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.NumDoc)
+                    </div>
+                </div>
+            </div>
 
-                    @*@(Html.Kendo().DropDownListFor(m => m.TdocumentoId)                      
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Departamento del documento")
+                        @(Html.Kendo().DropDownListFor(model => model.TdocumentoId)
+                      .Name("departamentos")
+                      .HtmlAttributes(new { style = "width:100%" })
+                      .OptionLabel("Seleccione departamento...")
+                      .DataTextField("Nombre")
+                      .DataValueField("Id")
+                              .DataSource(source =>
+                              {
+                                  source.Custom().Type("aspnetmvc-ajax")
+                                      .Transport(t =>
+                                      {
+                                          t.Read(r => r.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN" }));
+                                      })
+                                      .ServerFiltering(false)
+                                      .Schema(s =>
+                                      {
+                                          s.Data("Data").Total("Total").Errors("Errors");
+                                      })
+                                      .Events(e => e.Error("handleOnErrorModelState"));
+                              })
+                            .HtmlAttributes(new { style = "width:100%;", @class = "itemComponente" })
+                        )
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TmunicipioId)
+                        @(Html.Kendo().DropDownListFor(m => m.TmunicipioId)
                       .HtmlAttributes(new { style = "width:100%" })
                       .OptionLabel("Select order...")
                       .DataTextField("Nombre")
                       .DataValueField("Id")
                       .DataSource(source =>
                       {
-                          source.Read(read =>
-                          {
-                              read.Action("GetListTdocumentos", "Tlistas", new { Area = "ADMIN" });
-                          })
-                          .ServerFiltering(false);
-                      })                     
-                    )*@
+                          source.Custom().Type("aspnetmvc-ajax")
+                              .Transport(t =>
+                              {
+                                  t.Read(r => r.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" }));
+                              })
+                              .ServerFiltering(false)
+                              .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                              .Events(e => e.Error("handleOnErrorModelState"));
+                      })
+                      .Enable(false)
+                      .AutoBind(false)
+                      .CascadeFrom("departamentos")
+                        )
+                        @Html.ValidationMessageFor(m => m.TdocumentoId)
+                    </div>
                 </div>
             </div>
-
 
             <div class="row">
                 <div class="col-md-6">
@@ -93,11 +138,21 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.SegundoApellido)
-                        @(Html.TextBoxFor(m => m.SegundoApellido, new { @class = "form-control", autocomplete = "off" }))
-                        @Html.ValidationMessageFor(m => m.SegundoApellido)
+                        @Html.LabelFor(m => m.PrimerApellido)
+                        @(Html.TextBoxFor(m => m.PrimerNombre, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.PrimerNombre)
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SegundoApellido)
+                        @(Html.TextBoxFor(m => m.SegundoNombre, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.SegundoNombre)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.FechaNacimiento)
@@ -115,16 +170,6 @@
                               })
                         )
                         @Html.ValidationMessageFor(m => m.FechaNacimiento)
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.Direccion)
-                        @(Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", autocomplete = "off" }))
-                        @Html.ValidationMessageFor(m => m.Direccion)
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -154,44 +199,14 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
-                    @(Html.Kendo().DropDownList()
-                      .Name("departamentos")
-                      .HtmlAttributes(new { style = "width:100%" })
-                      .OptionLabel("Seleccione departamento...")
-                      .DataTextField("Nombre")
-                      .DataValueField("Id")
-                      .DataSource(source =>
-                      {
-                          source.Read(read =>
-                          {
-                              read.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN"});
-                          });
-                      })
-                    )
-                </div>
-                <div class="col-md-6">
-                    @(Html.Kendo().DropDownListFor(m=>m.TmunicipioId)                      
-                      .HtmlAttributes(new { style = "width:100%" })
-                      .OptionLabel("Select order...")
-                      .DataTextField("Nombre")
-                      .DataValueField("Id")
-                      .DataSource(source =>
-                      {
-                          source.Read(read =>
-                          {
-                              read.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" })
-                                  .Data("Persona.filterMunicipios");
-                          })
-                          .ServerFiltering(true);
-                      })
-                      .Enable(false)
-                      .AutoBind(false)
-                      .CascadeFrom("departamentos")
-                    )
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Direccion)
+                        @(Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.Direccion)
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <div class="modal-footer">

@@ -109,23 +109,7 @@ namespace Services.BL
             #region Manejador Excepcion
             catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
             #endregion
-        }
-        //public Jresult GetListDepartamentos()
-        //{
-        //    var jresult = new Jresult();
-        //    try
-        //    {
-        //        var listaDatos = db.Tdepartamentos.Where(x => x.Estado == 1).ToList();
-        //        jresult.Data = listaDatos;
-        //        jresult.Success = true;;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        jresult.Message = ex.Message;
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //    return jresult;
-        //}
+        }        
 
         /// <summary>
         /// Inserta lista de departamentos
