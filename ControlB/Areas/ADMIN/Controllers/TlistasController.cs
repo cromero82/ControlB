@@ -66,32 +66,10 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetBuscarTdepartamentos([DataSourceRequest]DataSourceRequest request)
-        {
-          
-
-            var jresult = entityBL.GetListDepartamentos(request);
-            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
-            
-            //if (jresult.Success == false)
-            //{
-            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
-            //}
-            //return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
-        }
-
-        [Authorize]
         public ActionResult GetListTdepartamentos([DataSourceRequest]DataSourceRequest request)
         {
             var jresult = entityBL.GetListDepartamentos(request);
             return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
-            //if (jresult.Success == false)
-            //{
-            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
-            //}
-            //return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count },JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -165,30 +143,21 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetBuscarTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
-        {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListMunicipios();
-            if (jresult.Success == false)
-            {
-                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
-            }
-            return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count });
-        }
-
-        [Authorize]
         public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
         {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListMunicipios();
-            if (jresult.Success == false)
-            {
-                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
-            }
-            return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count }, JsonRequestBehavior.AllowGet);
+            var jresult = entityBL.GetListMunicipios(request, departamento);
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
+            //var listaBl = new TlistasBL();
+            //var jresult = listaBl.GetListMunicipios();
+            //if (jresult.Success == false)
+            //{
+            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            //}
+            //return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count });
         }
+
+      
 
         /// <summary>
         /// Obtiene una lista de paises  para presentarla en un grid

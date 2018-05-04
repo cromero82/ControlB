@@ -1,21 +1,16 @@
 ﻿@using Model.BL
 @model GenPersonaVM
-
 @{
-    var viewName = ViewContext.RouteData.Values["controller"].ToString();
+    #region definiciones
     MvcForm form;
-}
+    var viewName = ViewContext.RouteData.Values["action"].ToString(); 
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString(); var area = ViewContext.RouteData.DataTokens["area"];
+    #endregion
+ }
 
-<div id="@viewName">
-    @if (ViewBag.Accion == "Insertar")
-    {
-        form = Ajax.BeginForm("InsPersona", "Persona", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
-    }
-    else
-    {
-        form = Ajax.BeginForm("UpdPersona", "Persona", new { Area = "ADMIN" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" });
-    }
-
+<div id="@controllerName">    
+    @if (ViewBag.Accion == "Insertar") { form = Ajax.BeginForm("InsGenPersona", controllerName, new { Area = area }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" }); }
+    else {                               form = Ajax.BeginForm("UpdGenPersona", controllerName, new { Area = area }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" }); }
     @using (form)
     {
         @Html.AntiForgeryToken()
@@ -31,8 +26,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.TdocumentoId)
-                        @(Html.Kendo().DropDownListFor(model => model.TdocumentoId)
-                              .Name("NivelId")
+                        @(Html.Kendo().DropDownListFor(model => model.TdocumentoId)                              
                               .DataTextField("Nombre")
                               .DataValueField("Id")
                               .OptionLabel("Seleccione...")
@@ -41,7 +35,7 @@
                                   source.Custom().Type("aspnetmvc-ajax")
                                       .Transport(t =>
                                       {
-                                          t.Read(r => r.Action("GetListTdocumentos", "Tlistas", new { Area = "ADMIN" }));
+                                          t.Read(r => r.Action("GetListTdocumentos", "Tlistas", new { Area = "ADMIN" }).Type(HttpVerbs.Post));
                                       })
                                       .ServerFiltering(false)
                                       .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
@@ -65,7 +59,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.Label("Departamento del documento")
-                        @(Html.Kendo().DropDownListFor(model => model.TdocumentoId)
+                        @(Html.Kendo().DropDownList()
                       .Name("departamentos")
                       .HtmlAttributes(new { style = "width:100%" })
                       .OptionLabel("Seleccione departamento...")
@@ -76,7 +70,7 @@
                                   source.Custom().Type("aspnetmvc-ajax")
                                       .Transport(t =>
                                       {
-                                          t.Read(r => r.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN" }));
+                                          t.Read(r => r.Action("GetListTdepartamentos", "Tlistas", new { Area = "ADMIN" }).Type(HttpVerbs.Post));
                                       })
                                       .ServerFiltering(false)
                                       .Schema(s =>
@@ -103,7 +97,7 @@
                           source.Custom().Type("aspnetmvc-ajax")
                               .Transport(t =>
                               {
-                                  t.Read(r => r.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" }));
+                                  t.Read(r => r.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" }).Type(HttpVerbs.Post));
                               })
                               .ServerFiltering(false)
                               .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
@@ -113,7 +107,7 @@
                       .AutoBind(false)
                       .CascadeFrom("departamentos")
                         )
-                        @Html.ValidationMessageFor(m => m.TdocumentoId)
+                        @Html.ValidationMessageFor(m => m.TmunicipioId)
                     </div>
                 </div>
             </div>
@@ -139,15 +133,15 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.PrimerApellido)
-                        @(Html.TextBoxFor(m => m.PrimerNombre, new { @class = "form-control", autocomplete = "off" }))
-                        @Html.ValidationMessageFor(m => m.PrimerNombre)
+                        @(Html.TextBoxFor(m => m.PrimerApellido, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.PrimerApellido)
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.SegundoApellido)
-                        @(Html.TextBoxFor(m => m.SegundoNombre, new { @class = "form-control", autocomplete = "off" }))
-                        @Html.ValidationMessageFor(m => m.SegundoNombre)
+                        @(Html.TextBoxFor(m => m.SegundoApellido, new { @class = "form-control", autocomplete = "off" }))
+                        @Html.ValidationMessageFor(m => m.SegundoApellido)
                     </div>
                 </div>
             </div>
@@ -217,6 +211,6 @@
 
     <!-- Inicialización script de vista -->
     <script>
-	@(viewName).initEdicion("Insertar");
+	@(controllerName).initEdicion("@(ViewBag.Accion)");
     </script>
 </div>
