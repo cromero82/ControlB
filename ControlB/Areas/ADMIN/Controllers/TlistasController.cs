@@ -146,15 +146,7 @@ namespace ControlB.Areas.ADMIN.Controllers
         public ActionResult GetListTmunicipios([DataSourceRequest]DataSourceRequest request, int? departamento)
         {
             var jresult = entityBL.GetListMunicipios(request, departamento);
-            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
-            //var listaBl = new TlistasBL();
-            //var jresult = listaBl.GetListMunicipios();
-            //if (jresult.Success == false)
-            //{
-            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
-            //}
-            //return Json(new DataSourceResult { Data = jresult.Data.Data, Total = jresult.Data.Count });
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");           
         }
 
       
@@ -196,7 +188,6 @@ namespace ControlB.Areas.ADMIN.Controllers
             }
             return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
         }
-
         /// <summary>
         /// Obtiene una lista de tipos de documentos para presentarlas en un grid
         /// </summary>
@@ -204,29 +195,19 @@ namespace ControlB.Areas.ADMIN.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetBuscarTdocumentos([DataSourceRequest]DataSourceRequest request)
-        {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListTiposDocumentos();
-            if (jresult.Success == false)
-            {
-                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
-            }
-            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count });
-        }
-        
-        [Authorize]
         public ActionResult GetListTdocumentos([DataSourceRequest]DataSourceRequest request)
         {
-            var listaBl = new TlistasBL();
-            var jresult = listaBl.GetListTiposDocumentos();
-            if (jresult.Success == false)
-            {
-                ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
-                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
-            }
-            return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count }, JsonRequestBehavior.AllowGet);
+            var jresult = entityBL.GetListTiposDocumentos(request);
+            return EvaluarResultadoListaGenerico(jresult, request, "Error consultando departamentos: ");
+
+            //var listaBl = new TlistasBL();
+            //var jresult = listaBl.GetListTiposDocumentos();
+            //if (jresult.Success == false)
+            //{
+            //    ModelState.AddModelError("Error", "Error consultando datos: " + jresult.Message);
+            //    return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            //}
+            //return Json(new DataSourceResult { Data = jresult.Data, Total = jresult.Data.Count }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

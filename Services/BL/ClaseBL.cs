@@ -23,8 +23,8 @@ namespace Services.BL
         public Jresult AplicadorFiltrosKendo(Jresult jresult, DataSourceRequest filtrosComponenteKendo, IQueryable<Object> queryable)
         {
             // Se aplican filtros de kendo               
-            jresult.Data = queryable.ToDataSourceResult(filtrosComponenteKendo);
-            jresult.Success = true;;
+            jresult.Data = queryable.ToDataSourceResult(filtrosComponenteKendo);            
+            jresult.SetOk("Filtro aplicado correctamente");
             return jresult;
         }
     }

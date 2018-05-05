@@ -13,6 +13,7 @@ namespace Services.BL
         // Contexto de base de datos (EF)
         private ControlcBDEntities db = new ControlcBDEntities();        
         Jresult jresult = new Jresult();
+                
         /// <summary>
         /// Obtiene lista de tipos de caracteristicas 
         /// </summary>        
@@ -261,21 +262,38 @@ namespace Services.BL
         /// Obtiene lista de tipos de documentos 
         /// </summary>        
         /// <returns> lista de datos</returns>
-        public Jresult GetListTiposDocumentos()
+        public Jresult GetListTiposDocumentos(Kendo.Mvc.UI.DataSourceRequest filtrosComponenteKendo)
         {
-            var jresult = new Jresult();
             try
-            {
-                var listaDatos = db.Tdocumentos.Where(x => x.Estado == 1).ToList();
-                jresult.Data = listaDatos;
-                jresult.Success = true;;
+            {                
+                var queryable = db.Tdocumentos.Where(f => f.Estado == 1);                
+                queryable = queryable.AsQueryable();
+                jresult.Data = queryable.Select(r => new TipoDatoGenericoVM
+                {
+                    Id = r.Id,
+                    Nombre = r.Nombre
+                });
+
+                #region Aplicacion Filtro kendo
+                return AplicadorFiltrosKendo(jresult, filtrosComponenteKendo, queryable);
+                #endregion
             }
-            catch (Exception ex)
-            {
-                jresult.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-            }
-            return jresult;
+            #region Manejador Excepcion
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            #endregion
+            //var jresult = new Jresult();
+            //try
+            //{
+            //    var listaDatos = db.Tdocumentos.Where(x => x.Estado == 1).ToList();
+            //    jresult.Data = listaDatos;
+            //    jresult.Success = true;;
+            //}
+            //catch (Exception ex)
+            //{
+            //    jresult.Message = ex.Message;
+            //    Console.WriteLine(ex.Message);
+            //}
+            //return jresult;
         }
 
         /// <summary>
