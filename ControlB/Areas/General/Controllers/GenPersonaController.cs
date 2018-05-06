@@ -5,6 +5,7 @@ using Services.BL;
 using System;
 using System.Reflection;
 using System.Web.Mvc;
+using Model.General;
 
 namespace ControlB.Areas.General.Controllers
 {
@@ -34,7 +35,7 @@ namespace ControlB.Areas.General.Controllers
         /// </summary>
         /// <param name="id"> id de registro</param>
         /// <param name="accionCrud"> acción que se va a realizar en la vista: Crear o Editar</param>
-        /// <returns>Vista</returns>
+        /// <returns>Vista para accion crear o editar</returns>
         [Authorize]
         public ActionResult GenPersonaView(long? id, string accionCrud)
         {
@@ -45,20 +46,10 @@ namespace ControlB.Areas.General.Controllers
             }
             else
             {
-                #region Resolucion vista Editar
-                // En caso de accion 'Editar', se accede a la capa de negocio               
                 var jresult = entityBL.Get((long)id);
-                if (jresult.Success == false)
-                {
-                    ModelState.AddModelError("Error", "Error consultando: " + EntityName + " " + jresult.Message);
-                    return PartialView(ModelEmpy);
-                }
-
-                // Retorna vista parcial con model         
-                return PartialView(jresult.Data);
-                #endregion                
+                return ManejadorRetornoVista(jresult, ModelEmpy);
             } 
-        }
+        }        
 
         /// <summary>
         /// Inserta GenPersona   

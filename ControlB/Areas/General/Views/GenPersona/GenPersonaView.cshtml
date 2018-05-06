@@ -12,7 +12,7 @@
     @if (ViewBag.Accion == "Insertar") { form = Ajax.BeginForm("InsGenPersona", controllerName, new { Area = area }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" }); }
     else {                               form = Ajax.BeginForm("UpdGenPersona", controllerName, new { Area = area }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessGenerico", OnFailure = "onFailureGenerico" }, new { enable_placeholder = "" }); }
     @using (form)
-    {
+    {        
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.Id)
         <div class="modal-header">
@@ -22,7 +22,8 @@
 
         <div class="modal-body">
             @Html.HiddenFor(m => m.Estregistro, new { Value = 1 })
-            <div class="row">
+            @Html.Partial("_ValidationSummaryPersonalizado")
+                <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.TdocumentoId)
@@ -153,10 +154,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.FechaNacimiento)
-                        @(Html.Kendo().DatePickerFor(model => model.FechaNacimiento)                              
+                        @(Html.Kendo().DatePickerFor(model => model.FechaNacimiento)
                               .Max(String.Format("{0:d}", DateTime.Now))
-                              .Value(String.Format("{0:d}", DateTime.Now))
+                              .Value(Model.FechaNacimiento)// String.Format("{0:d}", DateTime.Now))
                               .Format("dd/MM/yyyy")
+                              .ParseFormats(new string[] { "dd/MM/yyyy", "hh:mm tt" })
                               .HtmlAttributes(new
                               {
                                   @class = "form-control",

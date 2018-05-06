@@ -39,7 +39,7 @@ namespace Services.BL
                 #endregion
             }
             #region Manejador Excepcion
-            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult, entidad); }
             #endregion
         }
 

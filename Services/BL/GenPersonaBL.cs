@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Services.BL
 {
-    public class GenPersonaBL: ClaseBL
+    public class GenPersonaBL : ClaseBL
     {
         // Contexto de base de datos (EF)
         private ControlcBDEntities db = new ControlcBDEntities();
@@ -46,7 +46,7 @@ namespace Services.BL
                 #endregion
             }
             #region Manejador Excepcion
-            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult, entidad); }
             #endregion
         }
 
@@ -58,7 +58,7 @@ namespace Services.BL
         /// <returns> Resultado de la transacción </returns>
         public Jresult Insert(GenPersonaVM model)
         {
-           try
+            try
             {
                 GenPersona dbItem = GetItemBd(model);
                 db.GenPersona.Add(dbItem);
@@ -98,7 +98,7 @@ namespace Services.BL
             return jresult;
             #endregion
         }
-       
+
         /// <summary>
         /// Obtiene un tetnia
         /// </summary>
@@ -110,22 +110,25 @@ namespace Services.BL
             {
                 // Consulta persona
                 var entity = db.GenPersona.Find(id);
-                jresult.Data = GetItemModel(entity);
-
+                var itemModel = GetItemModel(entity);
+                
                 // Consulta depto del municipio de la persona
-                if (jresult.Success)
-                {                    
-                    var listasBl = new TlistasBL();
-                    var resultConsultaDept = listasBl.GetDepartamentoByMunicipio(entity.TmunicipioId);
-                    jresult.Success = resultConsultaDept.Success;
-                }               
+                var listasBl = new TlistasBL();
+                var resultGetDepartamentoByMunicipio = listasBl.GetDepartamentoByMunicipio(entity.TmunicipioId);
+                if (resultGetDepartamentoByMunicipio.Success)
+                {
+                    itemModel.TdepartamentoId = resultGetDepartamentoByMunicipio.Data;
+                    jresult.Data = itemModel;
+                    jresult.SetOk("");
+                    return jresult;
+                }
+                return resultGetDepartamentoByMunicipio;
             }
             #region Excepcion y salida
             catch (Exception ex)
             {
-                jresult.SetError("Error consultando " + entidad);
-            }
-            return jresult;
+                return ManejadorExcepciones(ex, jresult, entidad);                
+            }            
             #endregion
 
         }
@@ -138,9 +141,9 @@ namespace Services.BL
         public Jresult Delete(int id)
         {
             try
-            {                
+            {
                 var entity = db.GenPersona.SingleOrDefault(b => b.Id == id);
-                entity.Estregistro = 0;                
+                entity.Estregistro = 0;
                 db.GenPersona.Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
@@ -150,7 +153,7 @@ namespace Services.BL
             #region Excepcion y salida
             catch (Exception ex)
             {
-                jresult.SetError("Error eliminando " + entidad );
+                jresult.SetError("Error eliminando " + entidad);
             }
             return jresult;
             #endregion
@@ -163,7 +166,7 @@ namespace Services.BL
             {
                 TdocumentoId = model.TdocumentoId,
                 NumDoc = model.NumDoc,
-                PrimerNombre =  model.PrimerNombre,
+                PrimerNombre = model.PrimerNombre,
                 SegundoNombre = model.SegundoNombre,
                 PrimerApellido = model.PrimerApellido,
                 SegundoApellido = model.SegundoApellido,

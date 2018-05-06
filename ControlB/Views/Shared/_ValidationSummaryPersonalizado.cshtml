@@ -1,0 +1,6 @@
+﻿@if (ViewBag.ErrorVista!= null && ViewBag.ErrorVista)
+{
+    <div class="alert alert-danger">
+        <strong>Danger!</strong> @Html.ValidationSummary(false, "", new { @class = "" })
+    </div>
+}

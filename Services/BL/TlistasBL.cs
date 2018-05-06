@@ -109,7 +109,7 @@ namespace Services.BL
                 #endregion
             }
             #region Manejador Excepcion
-            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult,"Departamento"); }
             #endregion
         }        
 
@@ -171,7 +171,7 @@ namespace Services.BL
                 #endregion
             }
             #region Manejador Excepcion
-            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult,"Municipio"); }
             #endregion
         }
 
@@ -180,11 +180,12 @@ namespace Services.BL
             {
                 var deptoId = db.Tmunicipios.Find(municipio).DepartamentoId;
                 jresult.Data= db.Tdepartamentos.Find(deptoId).Id;
+                jresult.SetOk("");
                 return jresult;
             }
             #region Manejador Excepcion
             catch (Exception ex) {
-                return ManejadorExcepciones(ex, jresult);
+                return ManejadorExcepciones(ex, jresult,"Departamento");
             }
             #endregion
 
@@ -294,7 +295,7 @@ namespace Services.BL
                 #endregion
             }
             #region Manejador Excepcion
-            catch (Exception ex) { return ManejadorExcepciones(ex, jresult); }
+            catch (Exception ex) { return ManejadorExcepciones(ex, jresult,"Tipos de documentos"); }
             #endregion
             //var jresult = new Jresult();
             //try

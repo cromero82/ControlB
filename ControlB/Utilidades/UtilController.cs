@@ -23,6 +23,20 @@ namespace ControlB.Utilidades
             return View();
         }
 
+        public ActionResult ManejadorRetornoVista(Jresult jresult, Object ModelEmpy)
+        {
+            ViewBag.ErrorVista = false;
+            if (jresult.Success == false)
+            {
+                ViewBag.ErrorVista = true;
+                ModelState.AddModelError("", jresult.Message);
+                return PartialView(ModelEmpy);
+            }
+
+            // Retorna vista parcial con model         
+            return PartialView(jresult.Data);
+        }
+
         /// <summary>
         /// Nombre de la accion crud
         /// </summary>
