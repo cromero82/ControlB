@@ -165,7 +165,8 @@ namespace Services.BL
                 TmunicipioId = model.TmunicipioId,
                 CorreoElectronico = model.CorreoElectronico,
                 Telefono2 = model.Telefono2,
-                ModoRegistro = model.ModoRegistro
+                ModoRegistro = model.ModoRegistro,
+                Estregistro = 1
             };
             if (model.Id > 0)
             {

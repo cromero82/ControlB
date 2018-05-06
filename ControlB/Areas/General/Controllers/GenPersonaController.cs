@@ -58,7 +58,7 @@ namespace ControlB.Areas.General.Controllers
                 // Retorna vista parcial con model         
                 return PartialView(jresult.Data);
                 #endregion                
-            }
+            } 
         }
 
         /// <summary>

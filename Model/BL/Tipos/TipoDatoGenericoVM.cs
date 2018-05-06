@@ -19,5 +19,6 @@ namespace Model.BL.Tipos
         /// Representa número oficial 1 (Estrato 1), 2 (Estrato 2)
         /// </summary>
         public string Numero { get; set; }
+        public int DepartamentoId { get; set; }
     }
 }

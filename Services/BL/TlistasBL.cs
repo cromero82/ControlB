@@ -100,6 +100,7 @@ namespace Services.BL
                 var queryable = db.Tdepartamentos.Where(f => f.Estado == 1).Select(r => new TipoDatoGenericoVM
                 {
                     Id = r.Id,
+                    DepartamentoId = r.Id,
                     Nombre = r.Nombre
                 });
 
@@ -162,8 +163,7 @@ namespace Services.BL
                 jresult.Data = queryable.Select(r => new TipoDatoGenericoVM
                 {
                     Id = r.Id,
-                    Nombre = r.Nombre,
-                    PadreId = r.Id
+                    Nombre = r.Nombre
                 });
 
                 #region Aplicacion Filtro kendo

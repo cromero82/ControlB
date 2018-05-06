@@ -41,6 +41,7 @@
                                       .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
                                       .Events(e => e.Error("handleOnErrorModelState"));
                               })
+                              .Filter("contains")
                             .HtmlAttributes(new { style = "width:100%;", @class = "itemComponente" })
                         )
                         @Html.ValidationMessageFor(m => m.TdocumentoId)
@@ -64,7 +65,8 @@
                       .HtmlAttributes(new { style = "width:100%" })
                       .OptionLabel("Seleccione departamento...")
                       .DataTextField("Nombre")
-                      .DataValueField("Id")
+                      .DataValueField("DepartamentoId")
+                      .Filter("contains")
                               .DataSource(source =>
                               {
                                   source.Custom().Type("aspnetmvc-ajax")
@@ -92,6 +94,7 @@
                       .OptionLabel("Select order...")
                       .DataTextField("Nombre")
                       .DataValueField("Id")
+                      .Filter("contains")
                       .DataSource(source =>
                       {
                           source.Custom().Type("aspnetmvc-ajax")
@@ -99,7 +102,7 @@
                               {
                                   t.Read(r => r.Action("GetListTmunicipios", "Tlistas", new { Area = "ADMIN" }).Type(HttpVerbs.Post));
                               })
-                              .ServerFiltering(false)
+                              .ServerFiltering(true)
                               .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
                               .Events(e => e.Error("handleOnErrorModelState"));
                       })
@@ -150,8 +153,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(m => m.FechaNacimiento)
-                        @(Html.Kendo().DatePickerFor(model => model.FechaNacimiento)
-                              .Name("Fechainicial")
+                        @(Html.Kendo().DatePickerFor(model => model.FechaNacimiento)                              
                               .Max(String.Format("{0:d}", DateTime.Now))
                               .Value(String.Format("{0:d}", DateTime.Now))
                               .Format("dd/MM/yyyy")
