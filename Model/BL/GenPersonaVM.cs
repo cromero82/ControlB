@@ -49,6 +49,10 @@ namespace Model.BL
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Telefono { get; set; }
 
+        [DisplayName("Departamento del documento")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        public int TdepartamentoId { get; set; }
+
         [DisplayName("Ciudad (Municipio)")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public int TmunicipioId { get; set; }

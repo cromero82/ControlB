@@ -175,6 +175,21 @@ namespace Services.BL
             #endregion
         }
 
+        public Jresult GetDepartamentoByMunicipio (int municipio) {
+            try
+            {
+                var deptoId = db.Tmunicipios.Find(municipio).DepartamentoId;
+                jresult.Data= db.Tdepartamentos.Find(deptoId).Id;
+                return jresult;
+            }
+            #region Manejador Excepcion
+            catch (Exception ex) {
+                return ManejadorExcepciones(ex, jresult);
+            }
+            #endregion
+
+        }
+
         /// <summary>
         /// Obtiene lista de municipios 
         /// </summary>        

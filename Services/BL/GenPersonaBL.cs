@@ -108,9 +108,17 @@ namespace Services.BL
         {
             try
             {
+                // Consulta persona
                 var entity = db.GenPersona.Find(id);
                 jresult.Data = GetItemModel(entity);
-                jresult.Success = true;;
+
+                // Consulta depto del municipio de la persona
+                if (jresult.Success)
+                {                    
+                    var listasBl = new TlistasBL();
+                    var resultConsultaDept = listasBl.GetDepartamentoByMunicipio(entity.TmunicipioId);
+                    jresult.Success = resultConsultaDept.Success;
+                }               
             }
             #region Excepcion y salida
             catch (Exception ex)

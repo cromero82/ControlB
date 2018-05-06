@@ -48,7 +48,6 @@ namespace ControlB.Areas.General.Controllers
                 #region Resolucion vista Editar
                 // En caso de accion 'Editar', se accede a la capa de negocio               
                 var jresult = entityBL.Get((long)id);
-
                 if (jresult.Success == false)
                 {
                     ModelState.AddModelError("Error", "Error consultando: " + EntityName + " " + jresult.Message);
