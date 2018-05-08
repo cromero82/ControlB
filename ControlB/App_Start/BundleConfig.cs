@@ -10,12 +10,19 @@ namespace ControlB
         {
             // css de componentes Kendo MVC
             bundles.Add(new StyleBundle("~/bundles/kendo/css").Include(
-                    "~/Content/kendo/2016.1.112/kendo.common-bootstrap.min.css",
-                    "~/Content/kendo/2016.1.112/kendo.mobile.all.min.css",
-                      "~/Content/kendo/2016.1.112/kendo.dataviz.min.css",
-                      "~/Content/kendo/2016.1.112/kendo.bootstrap.min.css",
-                      "~/Content/kendo/2016.1.112/kendo.dataviz.bootstrap.min.css"
-                    ));
+                 "~/Content/kendo_upd/kendo.common-bootstrap.min.css",
+                 "~/Content/kendo_upd/kendo.mobile.all.min.css",
+                   "~/Content/kendo_upd/kendo.custom.dataviz.min.css",
+                   "~/Content/kendo_upd/kendo.common-bootstrap.min.css",
+                   "~/Content/kendo_upd/kendo.dataviz.bootstrap.min.css"
+                 ));
+            //bundles.Add(new StyleBundle("~/bundles/kendo/css").Include(
+            //        "~/Content/kendo/2016.1.112/kendo.common-bootstrap.min.css",
+            //        "~/Content/kendo/2016.1.112/kendo.mobile.all.min.css",
+            //          "~/Content/kendo/2016.1.112/kendo.dataviz.min.css",
+            //          "~/Content/kendo/2016.1.112/kendo.bootstrap.min.css",
+            //          "~/Content/kendo/2016.1.112/kendo.dataviz.bootstrap.min.css"
+            //        ));
 
             // css básico bootstrap
             bundles.Add(new StyleBundle("~/Content/css").Include(
