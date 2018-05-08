@@ -39,6 +39,7 @@ namespace Model.BL
 
         [DisplayName("Fecha de nacimiento")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime FechaNacimiento { get; set; }
 
         [DisplayName("Dirección")]

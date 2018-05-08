@@ -44,8 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>C:\Windows\dll_hack\FromSS\Kendo.Mvc.dll</HintPath>
+    <Reference Include="Kendo.Mvc, Version=2015.2.624.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\dll_hack\FromIto\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -3079,6 +3080,14 @@
     <Content Include="Scripts\kendo\2016.1.112\messages\kendo.messages.zh-HK.min.js" />
     <Content Include="Scripts\kendo\2016.1.112\messages\kendo.messages.zh-TW.min.js" />
     <Content Include="Scripts\kendo\2016.1.112\pako_deflate.min.js" />
+    <Content Include="Scripts\kendo_upd\cultures\kendo.culture.es-CO.min.js" />
+    <Content Include="Scripts\kendo_upd\jquery.min.js" />
+    <Content Include="Scripts\kendo_upd\kendo.all.min.js" />
+    <Content Include="Scripts\kendo_upd\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\kendo_upd\kendo.dataviz.core.min.js" />
+    <Content Include="Scripts\kendo_upd\kendo.dataviz.themes.min.js" />
+    <Content Include="Scripts\kendo_upd\kendo.drawing.min.js" />
+    <Content Include="Scripts\kendo_upd\messages\kendo.messages.es-ES.min.js" />
     <Content Include="Scripts\misJavascripts.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\personal\inicioPorPagina.js" />

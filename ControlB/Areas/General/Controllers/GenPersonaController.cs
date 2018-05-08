@@ -1,11 +1,11 @@
 ﻿using ControlB.Utilidades;
-using Kendo.Mvc.UI;
 using Model.BL;
 using Services.BL;
 using System;
 using System.Reflection;
 using System.Web.Mvc;
 using Model.General;
+using Kendo.Mvc.UI;
 
 namespace ControlB.Areas.General.Controllers
 {
@@ -23,7 +23,7 @@ namespace ControlB.Areas.General.Controllers
         /// <returns>lista de datos</returns>
         [HttpPost]
         [Authorize]
-        public ActionResult GetList([DataSourceRequest]DataSourceRequest request)
+        public ActionResult GetList([Kendo.Mvc.UI.DataSourceRequest]DataSourceRequest request)
         {
             
             var jresult = entityBL.GetList(request);

@@ -21,3 +21,12 @@
     }
 
 }();
+
+//function change(e) {
+//    $(this).value = kendo.toString(this.value(), 'd');
+//}
+
+function onUpdateRequest_Details(e) {
+    debugger;
+    e.LastStatementDate = $("#<YourDateFieldName>").val(); // set string value
+}

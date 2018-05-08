@@ -156,12 +156,20 @@
                         @Html.LabelFor(m => m.FechaNacimiento)
                         @(Html.Kendo().DatePickerFor(model => model.FechaNacimiento)
                               .Max(String.Format("{0:d}", DateTime.Now))
-                              .Value(Model.FechaNacimiento)// String.Format("{0:d}", DateTime.Now))
-                              .Format("dd/MM/yyyy")
-                              .ParseFormats(new string[] { "dd/MM/yyyy", "hh:mm tt" })
+               //.Value(Model.FechaNacimiento)// String.Format("{0:d}", DateTime.Now))
+               //.Culture("es-CO")
+
+               //.DateInput()
+               .Format("dd/MM/yyyy")
+               .ParseFormats(new String[] { "dd/MM/yyyy" })
+                              //.Value(Model.FechaNacimiento ?? DateTime.Today)
+                              //.Events(e =>
+                              //{
+                              //    e.Change("change");
+                              //})
                               .HtmlAttributes(new
                               {
-                                  @class = "form-control",
+                                  @class = "",
                                   style = "width: 100%",
                                   @maxlength = "10",
                                   @placeholder = "DD/MM/AAAA"
