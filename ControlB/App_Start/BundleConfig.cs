@@ -10,19 +10,13 @@ namespace ControlB
         {
             // css de componentes Kendo MVC
             bundles.Add(new StyleBundle("~/bundles/kendo/css").Include(
-                 "~/Content/kendo_upd/kendo.common-bootstrap.min.css",
-                 "~/Content/kendo_upd/kendo.mobile.all.min.css",
-                   "~/Content/kendo_upd/kendo.custom.dataviz.min.css",
-                   "~/Content/kendo_upd/kendo.common-bootstrap.min.css",
-                   "~/Content/kendo_upd/kendo.dataviz.bootstrap.min.css"
+                 "~/Content/kendo_upd2/kendo.common-bootstrap.min.css",
+                    "~/Content/kendo_upd2/kendo.mobile.all.min.css",
+                    "~/Content/kendo_upd2/kendo.dataviz.min.css",
+                    "~/Content/kendo_upd2/kendo.bootstrap.min.css",
+                    "~/Content/kendo_upd2/kendo.dataviz.bootstrap.min.css",
+                    "~/Content/kendo_upd2/kendo.default.mobile.min.css"
                  ));
-            //bundles.Add(new StyleBundle("~/bundles/kendo/css").Include(
-            //        "~/Content/kendo/2016.1.112/kendo.common-bootstrap.min.css",
-            //        "~/Content/kendo/2016.1.112/kendo.mobile.all.min.css",
-            //          "~/Content/kendo/2016.1.112/kendo.dataviz.min.css",
-            //          "~/Content/kendo/2016.1.112/kendo.bootstrap.min.css",
-            //          "~/Content/kendo/2016.1.112/kendo.dataviz.bootstrap.min.css"
-            //        ));
 
             // css básico bootstrap
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -49,10 +43,6 @@ namespace ControlB
                 "~/Scripts/kendo_upd/jquery.min.js",
                 "~/Scripts/jquery.validate.min.js",
                 "~/Scripts/jquery.unobtrusive-ajax.min.js"
-
-
-
-                
                         ));
 
             // Scripts de la plantilla
@@ -74,30 +64,7 @@ namespace ControlB
                       //"~/Scripts/kendo/2016.1.112/messages/kendo.messages.es-ES.modified.min.js",
 
                       "~/Scripts/kendo.modernizr.custom.js" // No actualizada
-
-                      // "~/Scripts/kendo_upd/kendo.drawing.min.js",
-                      //"~/Scripts/kendo_upd/kendo.dataviz.core.min.js",
-                      //"~/Scripts/kendo_upd/kendo.dataviz.themes.min.js"
-                      //"~/Scripts/kendo/2016.1.112/kendo.dataviz.chart.min.js"
                       ));
-
-            //bundles.Add(new ScriptBundle("~/bundles/kendo/js").Include(
-            //          "~/Scripts/kendo/2016.1.112/kendo.custom.2016-06-23-0247.min.js",
-            //          "~/Scripts/kendo/2016.1.112/kendo.aspnetmvc.min.js",
-
-            //          //"~/Scripts/kendo/2016.1.112/cultures/kendo.culture.es.modified.min.js",
-            //          "~/Scripts/kendo/2016.1.112/cultures/kendo.culture.es-CO.min.js",
-            //          "~/Scripts/kendo/2016.1.112/messages/kendo.messages.es-ES.min.js",
-            //          "~/Scripts/kendo/2016.1.112/messages/kendo.messages.es-ES.modified.min.js",
-
-            //          "~/Scripts/kendo.modernizr.custom.js",
-
-            //           "~/Scripts/kendo/2016.1.112/kendo.drawing.min.js",
-            //          "~/Scripts/kendo/2016.1.112/kendo.dataviz.core.min.js",
-            //          "~/Scripts/kendo/2016.1.112/kendo.dataviz.themes.min.js",
-            //          "~/Scripts/kendo/2016.1.112/kendo.dataviz.chart.min.js"
-            //          ));
-
         }
     }
 }
