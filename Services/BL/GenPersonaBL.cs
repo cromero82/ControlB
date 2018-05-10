@@ -148,14 +148,13 @@ namespace Services.BL
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
                 jresult.SetOk("Eliminación de " + entidad + " ha tenido una ejecución satisfactoria");
-
+                return jresult;
             }
             #region Excepcion y salida
             catch (Exception ex)
             {
-                jresult.SetError("Error eliminando " + entidad);
+                return ManejadorExcepciones(ex, jresult, entidad);
             }
-            return jresult;
             #endregion
 
         }

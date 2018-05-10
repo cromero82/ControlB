@@ -11,7 +11,6 @@ namespace ControlB.Areas.General.Controllers
 {
     public class GenPersonaController   : UtilController
     {
-
         GenPersonaBL entityBL = new GenPersonaBL();
         String EntityName = "Persona";
         Object ModelEmpy = new GenPersonaVM();
@@ -25,13 +24,12 @@ namespace ControlB.Areas.General.Controllers
         [Authorize]
         public ActionResult GetList([Kendo.Mvc.UI.DataSourceRequest]DataSourceRequest request)
         {
-            
             var jresult = entityBL.GetList(request);
             return EvaluarResultadoListaGenerico(jresult, request, "Error consultando Personas: ");
         }
 
         /// <summary>
-        /// Vista de edición (Crear y Editar)
+        /// Vista de edición (Crear y Editar) GenPersona
         /// </summary>
         /// <param name="id"> id de registro</param>
         /// <param name="accionCrud"> acción que se va a realizar en la vista: Crear o Editar</param>
