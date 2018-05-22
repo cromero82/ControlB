@@ -1,15 +1,10 @@
 ﻿#region include
 using ControlB.Utilidades;
-using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-using Model.BL.Tipos;
-using Model.General;
+using Model;
 using Services.BL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 #endregion
 

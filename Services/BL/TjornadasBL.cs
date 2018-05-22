@@ -1,14 +1,8 @@
 ﻿
 using Model;
-using Model.BL;
-using Model.BL.Tipos;
 using Model.General;
-using Persistence;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.BL
 {

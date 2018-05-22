@@ -1,8 +1,5 @@
 ﻿using Model;
-using Model.BL;
-using Model.BL.Tipos;
 using Model.General;
-using Persistence;
 using System;
 using System.Data.Entity;
 using System.Linq;

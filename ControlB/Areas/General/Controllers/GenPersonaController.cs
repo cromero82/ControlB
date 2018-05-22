@@ -1,11 +1,10 @@
 ﻿using ControlB.Utilidades;
-using Model.BL;
 using Services.BL;
 using System;
 using System.Reflection;
 using System.Web.Mvc;
-using Model.General;
 using Kendo.Mvc.UI;
+using Model;
 
 namespace ControlB.Areas.General.Controllers
 {

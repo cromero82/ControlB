@@ -1,15 +1,8 @@
-﻿using Persistence.DbContextScope;
-using Persistence.Interfaces;
-using System;
+﻿using System;
 using Model;
 using Model.General;
 using System.Collections.Generic;
-using Persistence.Extensiones;
 using System.Linq;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Persistence;
-using Model.BL;
 using System.Security.Claims;
 using System.Security.Principal;
 //using Model.Auth;

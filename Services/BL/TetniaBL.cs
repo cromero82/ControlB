@@ -1,16 +1,8 @@
 ﻿using Kendo.Mvc.Extensions;
-using Model.BL.Tipos;
 using Model.General;
-using Persistence;
-using Services.BL;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kendo.Mvc.UI;
-using Model.BL;
 using Model;
 
 namespace Services.BL

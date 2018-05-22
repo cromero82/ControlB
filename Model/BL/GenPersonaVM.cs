@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Model.BL
+namespace Model
 {
     /// <summary>
     /// Representa el tipo de discapacidad de personas: 1 Sordera, 9, Sindrome de down, etc.

@@ -14,9 +14,18 @@ namespace Model
     
     public partial class TcapExcepcionales
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TcapExcepcionales()
+        {
+            this.GenEstudiante = new HashSet<GenEstudiante>();
+        }
+    
         public int Id { get; set; }
         public string Nombre { get; set; }
         public int Estado { get; set; }
         public string Numero { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GenEstudiante> GenEstudiante { get; set; }
     }
 }

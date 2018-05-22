@@ -8,6 +8,10 @@ using Microsoft.Owin.Security;
 using ControlB.Models;
 using Model.Seguridad;
 using PruebaDbFirst;
+using System.Security.Claims;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Services.Common;
 
 namespace ControlB.Controllers
 {
@@ -78,7 +82,55 @@ namespace ControlB.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //return RedirectToLocal(returnUrl);
+                    //-------
+                    //var user = UserManager.Find(model.Email, model.Password);
+                    ////if (user != null)
+                    ////{
+                    //var ident = UserManager.CreateIdentity(user,
+                    //    DefaultAuthenticationTypes.ApplicationCookie);
+                    //ident.AddClaims(new[] {
+                    //        new Claim("MyClaimName","MyClaimValue"),
+                    //        new Claim("YetAnotherClaim","YetAnotherValue"),
+                    //    });
+                    //AuthenticationManager.SignIn(
+                    //    new AuthenticationProperties() { IsPersistent = true },
+                    //    ident);
+                    //----------
+                    //var claims = new List<Claim>();
+                    ////claims.Add(new Claim(ClaimTypes.Name, "Brock"));
+                    //claims.Add(new Claim(ClaimTypes.Name, "Carlitos"));
+                    //var id = new ClaimsIdentity(claims,
+                    //                            DefaultAuthenticationTypes.ApplicationCookie);
+
+                    //var ctx = Request.GetOwinContext();
+                    //var authenticationManager = ctx.Authentication;
+                    //authenticationManager.SignIn(id);
+                    //-----------------
+                    // Obtiene usuario logeado
+                    //var user = UserManager.FindByEmail(model.Email);
+                    //var jUser = JsonConvert.SerializeObject(new CurrentUser
+                    //{
+                    //    Email = user.Email,
+                    //    Name = user.Name,
+                    //    LastName = user.LastName,
+                    //    UserId = user.Id,
+                    //    UserName = user.UserName,
+                    //    ShortName = user.ShortName
+                    //});
+                    // Agrego el claim con userData
+                    //await UserManager.AddClaimAsync(user.Id, new Claim(ClaimTypes.UserData, jUser));
+                    //---------
+                    //ApplicationUser modelAppUser = UserManager.FindById(User.Identity.GetUserId());
+                    //model.Email = AppUserViewModel.Email;
+                    //model.FName = AppUserViewModel.FName;
+                    //model.LName = AppUserViewModel.LName;
+                    //model.DOB = AppUserViewModel.DOB;
+                    //model.Gender = AppUserViewModel.Gender;
+
+                    
                     return RedirectToLocal(returnUrl);
+                //}
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -150,7 +202,7 @@ namespace ControlB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email  };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

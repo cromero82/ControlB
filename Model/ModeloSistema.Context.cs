@@ -18,7 +18,6 @@ namespace Model
         public ControlcBDEntities()
             : base("name=ControlcBDEntities")
         {
-            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -54,7 +53,16 @@ namespace Model
         public virtual DbSet<Tpaises> Tpaises { get; set; }
         public virtual DbSet<TpVictimaConflictoes> TpVictimaConflictoes { get; set; }
         public virtual DbSet<Tsisbens> Tsisbens { get; set; }
-        public virtual DbSet<GenContexto> GenContexto { get; set; }
         public virtual DbSet<GenPersona> GenPersona { get; set; }
+        public virtual DbSet<AcaCalendario> AcaCalendario { get; set; }
+        public virtual DbSet<AcaGrupo> AcaGrupo { get; set; }
+        public virtual DbSet<GenEstudiante> GenEstudiante { get; set; }
+        public virtual DbSet<GenFamilia> GenFamilia { get; set; }
+        public virtual DbSet<GenUnidadOrganizacional> GenUnidadOrganizacional { get; set; }
+        public virtual DbSet<SegUserContexto> SegUserContexto { get; set; }
+        public virtual DbSet<TestadoMatricula> TestadoMatricula { get; set; }
+        public virtual DbSet<TrelacionFamiliar> TrelacionFamiliar { get; set; }
+        public virtual DbSet<AcaMatricula> AcaMatricula { get; set; }
+        public virtual DbSet<GenContexto> GenContexto { get; set; }
     }
 }

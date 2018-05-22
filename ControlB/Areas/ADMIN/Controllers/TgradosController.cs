@@ -1,14 +1,9 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Model;
-using Model.BL;
-using Model.BL.Tipos;
 using Model.General;
 using Services.BL;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ControlB.Areas.ADMIN.Controllers

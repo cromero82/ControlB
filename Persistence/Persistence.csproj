@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Enums\DbContextScopeOption.cs" />
     <Compile Include="Extensiones\GetDbSet.cs" />
+    <Compile Include="Extensiones\IdentityExtensions.cs" />
     <Compile Include="Interfaces\IDbContextCollection.cs" />
     <Compile Include="Interfaces\IDbContextReadOnlyScope.cs" />
     <Compile Include="Interfaces\IDbContextScope.cs" />

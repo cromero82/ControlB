@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.BL.Tipos
+namespace Model
 {
     [DataContract(IsReference = true)]
     public class TipoDatoGenericoVM

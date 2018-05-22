@@ -15,6 +15,43 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="AcaCalendario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FechaInicial" Type="date" Nullable="false" />
+          <Property Name="FechaFinal" Type="nchar" MaxLength="10" />
+          <Property Name="AnioInicial" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EstadoVigencia" Type="int" Nullable="false" />
+          <Property Name="EstRegistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcaGrupo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TgradoId" Type="int" Nullable="false" />
+          <Property Name="ContextoId" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cupo" Type="int" Nullable="false" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcaMatricula">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="GradoId" Type="int" Nullable="false" />
+          <Property Name="EstudianteId" Type="int" Nullable="false" />
+          <Property Name="PersonaFamiliarId" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="EstadoMatriculaId" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="nchar" MaxLength="1000" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
+          <Property Name="ContextoId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -51,6 +88,7 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id" Type="int" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -78,11 +116,33 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SedeId" Type="int" Nullable="false" />
-          <Property Name="JornadaId" Type="int" Nullable="false" />
-          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UnidadOrganizacionalId" Type="int" Nullable="false" />
+          <Property Name="CalendarioId" Type="int" Nullable="false" />
           <Property Name="Estregistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenEstudiante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
+          <Property Name="CapacidadExcepcionalId" Type="int" Nullable="false" />
+          <Property Name="DiscapacidadId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenFamilia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="EstudianteId" Type="int" Nullable="false" />
+          <Property Name="RelacionFamiliarId" Type="int" Nullable="false" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+          <Property Name="EsAcudiente" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="EsNotificado" Type="decimal" Precision="1" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="GenInstituciones">
           <Key>
@@ -128,6 +188,7 @@
           <Property Name="Telefono2" Type="nchar" MaxLength="20" />
           <Property Name="ModoRegistro" Type="nchar" MaxLength="10" />
           <Property Name="Estregistro" Type="int" Nullable="false" />
+          <Property Name="ArchivoID" Type="int" />
         </EntityType>
         <EntityType Name="GenSedes">
           <Key>
@@ -141,6 +202,16 @@
           <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenUnidadOrganizacional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SedeId" Type="int" Nullable="false" />
+          <Property Name="JornadaId" Type="int" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="Estregistro" Type="int" Nullable="false" />
         </EntityType>
@@ -162,6 +233,15 @@
           <Property Name="PermisoId" Type="int" Nullable="false" />
           <Property Name="RolId" Type="nvarchar" MaxLength="128" />
           <Property Name="Estregistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SegUserContexto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AspNetUserRolesId" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="GenContextoId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EstregistroId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -228,6 +308,14 @@
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="Numero" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="TestadoMatricula">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Estregistro" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Testratos">
           <Key>
@@ -316,6 +404,15 @@
           <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="Numero" Type="nvarchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="TrelacionFamiliar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="GeneroRelacion" Type="nchar" MaxLength="1" />
+          <Property Name="EstregistroId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tsisbens">
           <Key>
             <PropertyRef Name="Id" />
@@ -325,6 +422,90 @@
           <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="Numero" Type="nvarchar" MaxLength="5" />
         </EntityType>
+        <Association Name="AGrupo_GContext_FK">
+          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="1" />
+          <End Role="AcaGrupo" Type="Self.AcaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenContexto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaGrupo">
+              <PropertyRef Name="ContextoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGrupo_Tgrado_FK">
+          <End Role="Tgrados" Type="Self.Tgrados" Multiplicity="1" />
+          <End Role="AcaGrupo" Type="Self.AcaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tgrados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaGrupo">
+              <PropertyRef Name="TgradoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ACAMATRICULA_CONTEXTO">
+          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="1" />
+          <End Role="AcaMatricula" Type="Self.AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenContexto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="ContextoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_Familiar">
+          <End Role="GenPersona" Type="Self.GenPersona" Multiplicity="1" />
+          <End Role="AcaMatricula" Type="Self.AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="PersonaFamiliarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_GenEstudiante">
+          <End Role="GenEstudiante" Type="Self.GenEstudiante" Multiplicity="1" />
+          <End Role="AcaMatricula" Type="Self.AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenEstudiante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="EstudianteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_TestadoMatricula">
+          <End Role="TestadoMatricula" Type="Self.TestadoMatricula" Multiplicity="1" />
+          <End Role="AcaMatricula" Type="Self.AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestadoMatricula">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="EstadoMatriculaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_Tgrados">
+          <End Role="Tgrados" Type="Self.Tgrados" Multiplicity="1" />
+          <End Role="AcaMatricula" Type="Self.AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tgrados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="GradoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -385,12 +566,12 @@
           <End Role="GenSedes" Type="Self.GenSedes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="*" />
+          <End Role="GenUnidadOrganizacional" Type="Self.GenUnidadOrganizacional" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GenSedes">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="GenContexto">
+            <Dependent Role="GenUnidadOrganizacional">
               <PropertyRef Name="SedeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -399,12 +580,12 @@
           <End Role="Tjornadas" Type="Self.Tjornadas" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="*" />
+          <End Role="GenUnidadOrganizacional" Type="Self.GenUnidadOrganizacional" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tjornadas">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="GenContexto">
+            <Dependent Role="GenUnidadOrganizacional">
               <PropertyRef Name="JornadaId" />
             </Dependent>
           </ReferentialConstraint>
@@ -519,6 +700,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ESTUD_CAPEXCEP">
+          <End Role="TcapExcepcionales" Type="Self.TcapExcepcionales" Multiplicity="1" />
+          <End Role="GenEstudiante" Type="Self.GenEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TcapExcepcionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenEstudiante">
+              <PropertyRef Name="CapacidadExcepcionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ESTUD_DISCAPACIDAD">
+          <End Role="Tdiscapacidades" Type="Self.Tdiscapacidades" Multiplicity="1" />
+          <End Role="GenEstudiante" Type="Self.GenEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tdiscapacidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenEstudiante">
+              <PropertyRef Name="DiscapacidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenFamilia_GenEstudiante">
+          <End Role="GenEstudiante" Type="Self.GenEstudiante" Multiplicity="1" />
+          <End Role="GenFamilia" Type="Self.GenFamilia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenEstudiante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenFamilia">
+              <PropertyRef Name="EstudianteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenFamilia_GenPersonaFamiliar">
+          <End Role="GenPersona" Type="Self.GenPersona" Multiplicity="1" />
+          <End Role="GenFamilia" Type="Self.GenFamilia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenFamilia">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenFamilia_TrelacionFamiliar">
+          <End Role="TrelacionFamiliar" Type="Self.TrelacionFamiliar" Multiplicity="1" />
+          <End Role="GenFamilia" Type="Self.GenFamilia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrelacionFamiliar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenFamilia">
+              <PropertyRef Name="RelacionFamiliarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GPER_TMUNIC">
           <End Role="Tmunicipios" Type="Self.Tmunicipios" Multiplicity="1" />
           <End Role="GenPersona" Type="Self.GenPersona" Multiplicity="*" />
@@ -543,20 +784,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="GCont_Calen_FK">
+          <End Role="AcaCalendario" Type="Self.AcaCalendario" Multiplicity="1" />
+          <End Role="GenContexto" Type="Self.GenContexto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcaCalendario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenContexto">
+              <PropertyRef Name="CalendarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GEstud_GPersona_FK">
+          <End Role="GenPersona" Type="Self.GenPersona" Multiplicity="1" />
+          <End Role="GenEstudiante" Type="Self.GenEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenEstudiante">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ControlcBDModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcaCalendario" EntityType="Self.AcaCalendario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcaGrupo" EntityType="Self.AcaGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcaMatricula" EntityType="Self.AcaMatricula" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenContexto" EntityType="Self.GenContexto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenEstudiante" EntityType="Self.GenEstudiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenFamilia" EntityType="Self.GenFamilia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenInstituciones" EntityType="Self.GenInstituciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenNivelesAprobados" EntityType="Self.GenNivelesAprobados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenPersona" EntityType="Self.GenPersona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenSedes" EntityType="Self.GenSedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenUnidadOrganizacional" EntityType="Self.GenUnidadOrganizacional" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SegPermisos" EntityType="Self.SegPermisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SegRolesPermisos" EntityType="Self.SegRolesPermisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SegUserContexto" EntityType="Self.SegUserContexto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TcapExcepcionales" EntityType="Self.TcapExcepcionales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tcaracters" EntityType="Self.Tcaracters" Schema="dbo" store:Type="Tables" />
@@ -564,6 +836,7 @@
           <EntitySet Name="Tdiscapacidades" EntityType="Self.Tdiscapacidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tdocumentos" EntityType="Self.Tdocumentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tespecialidades" EntityType="Self.Tespecialidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestadoMatricula" EntityType="Self.TestadoMatricula" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Testratos" EntityType="Self.Testratos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tetnias" EntityType="Self.Tetnias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tgrados" EntityType="Self.Tgrados" Schema="dbo" store:Type="Tables" />
@@ -573,7 +846,36 @@
           <EntitySet Name="Tniveles" EntityType="Self.Tniveles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tpaises" EntityType="Self.Tpaises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TpVictimaConflictoes" EntityType="Self.TpVictimaConflictoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrelacionFamiliar" EntityType="Self.TrelacionFamiliar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tsisbens" EntityType="Self.Tsisbens" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="AGrupo_GContext_FK" Association="Self.AGrupo_GContext_FK">
+            <End Role="GenContexto" EntitySet="GenContexto" />
+            <End Role="AcaGrupo" EntitySet="AcaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="AGrupo_Tgrado_FK" Association="Self.AGrupo_Tgrado_FK">
+            <End Role="Tgrados" EntitySet="Tgrados" />
+            <End Role="AcaGrupo" EntitySet="AcaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ACAMATRICULA_CONTEXTO" Association="Self.FK_ACAMATRICULA_CONTEXTO">
+            <End Role="GenContexto" EntitySet="GenContexto" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_Familiar" Association="Self.FK_AcaMatricula_Familiar">
+            <End Role="GenPersona" EntitySet="GenPersona" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_GenEstudiante" Association="Self.FK_AcaMatricula_GenEstudiante">
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_TestadoMatricula" Association="Self.FK_AcaMatricula_TestadoMatricula">
+            <End Role="TestadoMatricula" EntitySet="TestadoMatricula" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_Tgrados" Association="Self.FK_AcaMatricula_Tgrados">
+            <End Role="Tgrados" EntitySet="Tgrados" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -592,11 +894,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="Self.FK_dbo_GenCores_dbo_GenSedes_SedeId">
             <End Role="GenSedes" EntitySet="GenSedes" />
-            <End Role="GenContexto" EntitySet="GenContexto" />
+            <End Role="GenUnidadOrganizacional" EntitySet="GenUnidadOrganizacional" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="Self.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
             <End Role="Tjornadas" EntitySet="Tjornadas" />
-            <End Role="GenContexto" EntitySet="GenContexto" />
+            <End Role="GenUnidadOrganizacional" EntitySet="GenUnidadOrganizacional" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId" Association="Self.FK_dbo_GenNivelesAprobados_dbo_GenInstituciones_InstitucionId">
             <End Role="GenInstituciones" EntitySet="GenInstituciones" />
@@ -630,6 +932,26 @@
             <End Role="Tdepartamentos" EntitySet="Tdepartamentos" />
             <End Role="Tmunicipios" EntitySet="Tmunicipios" />
           </AssociationSet>
+          <AssociationSet Name="FK_ESTUD_CAPEXCEP" Association="Self.FK_ESTUD_CAPEXCEP">
+            <End Role="TcapExcepcionales" EntitySet="TcapExcepcionales" />
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESTUD_DISCAPACIDAD" Association="Self.FK_ESTUD_DISCAPACIDAD">
+            <End Role="Tdiscapacidades" EntitySet="Tdiscapacidades" />
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenFamilia_GenEstudiante" Association="Self.FK_GenFamilia_GenEstudiante">
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+            <End Role="GenFamilia" EntitySet="GenFamilia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenFamilia_GenPersonaFamiliar" Association="Self.FK_GenFamilia_GenPersonaFamiliar">
+            <End Role="GenPersona" EntitySet="GenPersona" />
+            <End Role="GenFamilia" EntitySet="GenFamilia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenFamilia_TrelacionFamiliar" Association="Self.FK_GenFamilia_TrelacionFamiliar">
+            <End Role="TrelacionFamiliar" EntitySet="TrelacionFamiliar" />
+            <End Role="GenFamilia" EntitySet="GenFamilia" />
+          </AssociationSet>
           <AssociationSet Name="FK_GPER_TMUNIC" Association="Self.FK_GPER_TMUNIC">
             <End Role="Tmunicipios" EntitySet="Tmunicipios" />
             <End Role="GenPersona" EntitySet="GenPersona" />
@@ -637,6 +959,14 @@
           <AssociationSet Name="FK_TDOC_GPER" Association="Self.FK_TDOC_GPER">
             <End Role="Tdocumentos" EntitySet="Tdocumentos" />
             <End Role="GenPersona" EntitySet="GenPersona" />
+          </AssociationSet>
+          <AssociationSet Name="GCont_Calen_FK" Association="Self.GCont_Calen_FK">
+            <End Role="AcaCalendario" EntitySet="AcaCalendario" />
+            <End Role="GenContexto" EntitySet="GenContexto" />
+          </AssociationSet>
+          <AssociationSet Name="GEstud_GPersona_FK" Association="Self.GEstud_GPersona_FK">
+            <End Role="GenPersona" EntitySet="GenPersona" />
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -720,15 +1050,6 @@
             <End Role="Tniveles" EntitySet="Tniveles" />
             <End Role="Tgrados" EntitySet="Tgrados" />
           </AssociationSet>
-          <EntitySet Name="GenContexto" EntityType="ControlcBDModel.GenContexto" />
-          <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId">
-            <End Role="GenSedes" EntitySet="GenSedes" />
-            <End Role="GenContexto" EntitySet="GenContexto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId" Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
-            <End Role="Tjornadas" EntitySet="Tjornadas" />
-            <End Role="GenContexto" EntitySet="GenContexto" />
-          </AssociationSet>
           <EntitySet Name="GenPersona" EntityType="ControlcBDModel.GenPersona" />
           <AssociationSet Name="FK_GPER_TMUNIC" Association="ControlcBDModel.FK_GPER_TMUNIC">
             <End Role="Tmunicipios" EntitySet="Tmunicipios" />
@@ -737,6 +1058,80 @@
           <AssociationSet Name="FK_TDOC_GPER" Association="ControlcBDModel.FK_TDOC_GPER">
             <End Role="Tdocumentos" EntitySet="Tdocumentos" />
             <End Role="GenPersona" EntitySet="GenPersona" />
+          </AssociationSet>
+          <EntitySet Name="AcaCalendario" EntityType="ControlcBDModel.AcaCalendario" />
+          <EntitySet Name="AcaGrupo" EntityType="ControlcBDModel.AcaGrupo" />
+          <EntitySet Name="GenEstudiante" EntityType="ControlcBDModel.GenEstudiante" />
+          <EntitySet Name="GenFamilia" EntityType="ControlcBDModel.GenFamilia" />
+          <EntitySet Name="GenUnidadOrganizacional" EntityType="ControlcBDModel.GenUnidadOrganizacional" />
+          <EntitySet Name="SegUserContexto" EntityType="ControlcBDModel.SegUserContexto" />
+          <EntitySet Name="TestadoMatricula" EntityType="ControlcBDModel.TestadoMatricula" />
+          <EntitySet Name="TrelacionFamiliar" EntityType="ControlcBDModel.TrelacionFamiliar" />
+          <AssociationSet Name="AGrupo_Tgrado_FK" Association="ControlcBDModel.AGrupo_Tgrado_FK">
+            <End Role="Tgrados" EntitySet="Tgrados" />
+            <End Role="AcaGrupo" EntitySet="AcaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESTUD_CAPEXCEP" Association="ControlcBDModel.FK_ESTUD_CAPEXCEP">
+            <End Role="TcapExcepcionales" EntitySet="TcapExcepcionales" />
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESTUD_DISCAPACIDAD" Association="ControlcBDModel.FK_ESTUD_DISCAPACIDAD">
+            <End Role="Tdiscapacidades" EntitySet="Tdiscapacidades" />
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenFamilia_GenEstudiante" Association="ControlcBDModel.FK_GenFamilia_GenEstudiante">
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+            <End Role="GenFamilia" EntitySet="GenFamilia" />
+          </AssociationSet>
+          <AssociationSet Name="GEstud_GPersona_FK" Association="ControlcBDModel.GEstud_GPersona_FK">
+            <End Role="GenPersona" EntitySet="GenPersona" />
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenFamilia_GenPersonaFamiliar" Association="ControlcBDModel.FK_GenFamilia_GenPersonaFamiliar">
+            <End Role="GenPersona" EntitySet="GenPersona" />
+            <End Role="GenFamilia" EntitySet="GenFamilia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenFamilia_TrelacionFamiliar" Association="ControlcBDModel.FK_GenFamilia_TrelacionFamiliar">
+            <End Role="TrelacionFamiliar" EntitySet="TrelacionFamiliar" />
+            <End Role="GenFamilia" EntitySet="GenFamilia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenCores_dbo_GenSedes_SedeId1" Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId1">
+            <End Role="GenSedes" EntitySet="GenSedes" />
+            <End Role="GenUnidadOrganizacional" EntitySet="GenUnidadOrganizacional" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId1" Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId1">
+            <End Role="Tjornadas" EntitySet="Tjornadas" />
+            <End Role="GenUnidadOrganizacional" EntitySet="GenUnidadOrganizacional" />
+          </AssociationSet>
+          <EntitySet Name="AcaMatricula" EntityType="ControlcBDModel.AcaMatricula" />
+          <AssociationSet Name="FK_AcaMatricula_Familiar" Association="ControlcBDModel.FK_AcaMatricula_Familiar">
+            <End Role="GenPersona" EntitySet="GenPersona" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_GenEstudiante" Association="ControlcBDModel.FK_AcaMatricula_GenEstudiante">
+            <End Role="GenEstudiante" EntitySet="GenEstudiante" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_TestadoMatricula" Association="ControlcBDModel.FK_AcaMatricula_TestadoMatricula">
+            <End Role="TestadoMatricula" EntitySet="TestadoMatricula" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcaMatricula_Tgrados" Association="ControlcBDModel.FK_AcaMatricula_Tgrados">
+            <End Role="Tgrados" EntitySet="Tgrados" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
+          </AssociationSet>
+          <EntitySet Name="GenContexto" EntityType="ControlcBDModel.GenContexto" />
+          <AssociationSet Name="GCont_Calen_FK" Association="ControlcBDModel.GCont_Calen_FK">
+            <End Role="AcaCalendario" EntitySet="AcaCalendario" />
+            <End Role="GenContexto" EntitySet="GenContexto" />
+          </AssociationSet>
+          <AssociationSet Name="AGrupo_GContext_FK" Association="ControlcBDModel.AGrupo_GContext_FK">
+            <End Role="GenContexto" EntitySet="GenContexto" />
+            <End Role="AcaGrupo" EntitySet="AcaGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ACAMATRICULA_CONTEXTO" Association="ControlcBDModel.FK_ACAMATRICULA_CONTEXTO">
+            <End Role="GenContexto" EntitySet="GenContexto" />
+            <End Role="AcaMatricula" EntitySet="AcaMatricula" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -791,6 +1186,7 @@
           <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetRoles" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
           <NavigationProperty Name="AspNetUsers" Relationship="ControlcBDModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRoles" ToRole="AspNetUsers" />
+          <Property Name="Id" Type="Int32" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -861,8 +1257,8 @@
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenSedes" ToRole="GenInstituciones" />
-          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenSedes" ToRole="GenContexto" />
+          <NavigationProperty Name="Institucion" Relationship="ControlcBDModel.FK_dbo_GenSedes_dbo_GenInstituciones_InstitucionId" FromRole="GenSedes" ToRole="GenInstituciones" />
+          <NavigationProperty Name="GenUnidadOrganizacional" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId1" FromRole="GenSedes" ToRole="GenUnidadOrganizacional" />
         </EntityType>
         <EntityType Name="SegPermisos">
           <Key>
@@ -904,6 +1300,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GenEstudiante" Relationship="ControlcBDModel.FK_ESTUD_CAPEXCEP" FromRole="TcapExcepcionales" ToRole="GenEstudiante" />
         </EntityType>
         <EntityType Name="Tcaracters">
           <Key>
@@ -934,6 +1331,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GenEstudiante" Relationship="ControlcBDModel.FK_ESTUD_DISCAPACIDAD" FromRole="Tdiscapacidades" ToRole="GenEstudiante" />
         </EntityType>
         <EntityType Name="Tdocumentos">
           <Key>
@@ -982,7 +1380,9 @@
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Tniveles" Relationship="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId" FromRole="Tgrados" ToRole="Tniveles" />
+          <NavigationProperty Name="Nivel" Relationship="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId" FromRole="Tgrados" ToRole="Tniveles" />
+          <NavigationProperty Name="AcaGrupo" Relationship="ControlcBDModel.AGrupo_Tgrado_FK" FromRole="Tgrados" ToRole="AcaGrupo" />
+          <NavigationProperty Name="AcaMatricula" Relationship="ControlcBDModel.FK_AcaMatricula_Tgrados" FromRole="Tgrados" ToRole="AcaMatricula" />
         </EntityType>
         <EntityType Name="Tjornadas">
           <Key>
@@ -992,7 +1392,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="Tjornadas" ToRole="GenContexto" />
+          <NavigationProperty Name="GenUnidadOrganizacional" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId1" FromRole="Tjornadas" ToRole="GenUnidadOrganizacional" />
         </EntityType>
         <EntityType Name="Tmetodologias">
           <Key>
@@ -1015,7 +1415,7 @@
           <Property Name="Latitud" Type="Double" Nullable="false" />
           <Property Name="Longitud" Type="Double" Nullable="false" />
           <NavigationProperty Name="GenInstituciones" Relationship="ControlcBDModel.FK_dbo_Instituciones_dbo_Tmunicipios_TmunicipioId" FromRole="Tmunicipios" ToRole="GenInstituciones" />
-          <NavigationProperty Name="Tdepartamentos" Relationship="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tmunicipios" ToRole="Tdepartamentos" />
+          <NavigationProperty Name="Departamento" Relationship="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" FromRole="Tmunicipios" ToRole="Tdepartamentos" />
           <NavigationProperty Name="GenPersona" Relationship="ControlcBDModel.FK_GPER_TMUNIC" FromRole="Tmunicipios" ToRole="GenPersona" />
         </EntityType>
         <EntityType Name="Tniveles">
@@ -1223,46 +1623,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="GenContexto">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SedeId" Type="Int32" Nullable="false" />
-          <Property Name="JornadaId" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GenSedes" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" FromRole="GenContexto" ToRole="GenSedes" />
-          <NavigationProperty Name="Tjornadas" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" FromRole="GenContexto" ToRole="Tjornadas" />
-        </EntityType>
-        <Association Name="FK_dbo_GenCores_dbo_GenSedes_SedeId">
-          <End Type="ControlcBDModel.GenSedes" Role="GenSedes" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GenSedes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GenContexto">
-              <PropertyRef Name="SedeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId">
-          <End Type="ControlcBDModel.Tjornadas" Role="Tjornadas" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tjornadas">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GenContexto">
-              <PropertyRef Name="JornadaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="GenPersona">
           <Key>
             <PropertyRef Name="Id" />
@@ -1282,8 +1642,12 @@
           <Property Name="Telefono2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="ModoRegistro" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Estregistro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Tmunicipios" Relationship="ControlcBDModel.FK_GPER_TMUNIC" FromRole="GenPersona" ToRole="Tmunicipios" />
-          <NavigationProperty Name="Tdocumentos" Relationship="ControlcBDModel.FK_TDOC_GPER" FromRole="GenPersona" ToRole="Tdocumentos" />
+          <NavigationProperty Name="Municipio" Relationship="ControlcBDModel.FK_GPER_TMUNIC" FromRole="GenPersona" ToRole="Tmunicipios" />
+          <NavigationProperty Name="Tipodocumento" Relationship="ControlcBDModel.FK_TDOC_GPER" FromRole="GenPersona" ToRole="Tdocumentos" />
+          <Property Name="ArchivoID" Type="Int32" />
+          <NavigationProperty Name="GenEstudiante" Relationship="ControlcBDModel.GEstud_GPersona_FK" FromRole="GenPersona" ToRole="GenEstudiante" />
+          <NavigationProperty Name="GenFamilia" Relationship="ControlcBDModel.FK_GenFamilia_GenPersonaFamiliar" FromRole="GenPersona" ToRole="GenFamilia" />
+          <NavigationProperty Name="AcaMatricula" Relationship="ControlcBDModel.FK_AcaMatricula_Familiar" FromRole="GenPersona" ToRole="AcaMatricula" />
         </EntityType>
         <Association Name="FK_GPER_TMUNIC">
           <End Type="ControlcBDModel.Tmunicipios" Role="Tmunicipios" Multiplicity="1" />
@@ -1306,6 +1670,330 @@
             </Principal>
             <Dependent Role="GenPersona">
               <PropertyRef Name="TdocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AcaCalendario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicial" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFinal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AnioInicial" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EstadoVigencia" Type="Int32" Nullable="false" />
+          <Property Name="EstRegistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.GCont_Calen_FK" FromRole="AcaCalendario" ToRole="GenContexto" />
+        </EntityType>
+        <EntityType Name="AcaGrupo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TgradoId" Type="Int32" Nullable="false" />
+          <Property Name="ContextoId" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Cupo" Type="Int32" Nullable="false" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grado" Relationship="ControlcBDModel.AGrupo_Tgrado_FK" FromRole="AcaGrupo" ToRole="Tgrados" />
+          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.AGrupo_GContext_FK" FromRole="AcaGrupo" ToRole="GenContexto" />
+        </EntityType>
+        <EntityType Name="GenEstudiante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <Property Name="CapacidadExcepcionalId" Type="Int32" Nullable="false" />
+          <Property Name="DiscapacidadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CapacidadExcepcional" Relationship="ControlcBDModel.FK_ESTUD_CAPEXCEP" FromRole="GenEstudiante" ToRole="TcapExcepcionales" />
+          <NavigationProperty Name="Discapacidad" Relationship="ControlcBDModel.FK_ESTUD_DISCAPACIDAD" FromRole="GenEstudiante" ToRole="Tdiscapacidades" />
+          <NavigationProperty Name="GenFamilia" Relationship="ControlcBDModel.FK_GenFamilia_GenEstudiante" FromRole="GenEstudiante" ToRole="GenFamilia" />
+          <NavigationProperty Name="Persona" Relationship="ControlcBDModel.GEstud_GPersona_FK" FromRole="GenEstudiante" ToRole="GenPersona" />
+          <NavigationProperty Name="AcaMatricula" Relationship="ControlcBDModel.FK_AcaMatricula_GenEstudiante" FromRole="GenEstudiante" ToRole="AcaMatricula" />
+        </EntityType>
+        <EntityType Name="GenFamilia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="EstudianteId" Type="Int32" Nullable="false" />
+          <Property Name="RelacionFamiliarId" Type="Int32" Nullable="false" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
+          <Property Name="EsAcudiente" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+          <Property Name="EsNotificado" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
+          <NavigationProperty Name="Estudiante" Relationship="ControlcBDModel.FK_GenFamilia_GenEstudiante" FromRole="GenFamilia" ToRole="GenEstudiante" />
+          <NavigationProperty Name="FamiliarPersona" Relationship="ControlcBDModel.FK_GenFamilia_GenPersonaFamiliar" FromRole="GenFamilia" ToRole="GenPersona" />
+          <NavigationProperty Name="RelacionFamiliar" Relationship="ControlcBDModel.FK_GenFamilia_TrelacionFamiliar" FromRole="GenFamilia" ToRole="TrelacionFamiliar" />
+        </EntityType>
+        <EntityType Name="GenUnidadOrganizacional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SedeId" Type="Int32" Nullable="false" />
+          <Property Name="JornadaId" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sede" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId1" FromRole="GenUnidadOrganizacional" ToRole="GenSedes" />
+          <NavigationProperty Name="Jornada" Relationship="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId1" FromRole="GenUnidadOrganizacional" ToRole="Tjornadas" />
+        </EntityType>
+        <EntityType Name="SegUserContexto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AspNetUserRolesId" Type="String" Nullable="false" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="GenContextoId" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EstregistroId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestadoMatricula">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AcaMatricula" Relationship="ControlcBDModel.FK_AcaMatricula_TestadoMatricula" FromRole="TestadoMatricula" ToRole="AcaMatricula" />
+        </EntityType>
+        <EntityType Name="TrelacionFamiliar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="GeneroRelacion" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="EstregistroId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GenFamilia" Relationship="ControlcBDModel.FK_GenFamilia_TrelacionFamiliar" FromRole="TrelacionFamiliar" ToRole="GenFamilia" />
+        </EntityType>
+        <Association Name="AGrupo_Tgrado_FK">
+          <End Type="ControlcBDModel.Tgrados" Role="Tgrados" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaGrupo" Role="AcaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tgrados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaGrupo">
+              <PropertyRef Name="TgradoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ESTUD_CAPEXCEP">
+          <End Type="ControlcBDModel.TcapExcepcionales" Role="TcapExcepcionales" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenEstudiante" Role="GenEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TcapExcepcionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenEstudiante">
+              <PropertyRef Name="CapacidadExcepcionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ESTUD_DISCAPACIDAD">
+          <End Type="ControlcBDModel.Tdiscapacidades" Role="Tdiscapacidades" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenEstudiante" Role="GenEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tdiscapacidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenEstudiante">
+              <PropertyRef Name="DiscapacidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenFamilia_GenEstudiante">
+          <End Type="ControlcBDModel.GenEstudiante" Role="GenEstudiante" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenFamilia" Role="GenFamilia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenEstudiante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenFamilia">
+              <PropertyRef Name="EstudianteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GEstud_GPersona_FK">
+          <End Type="ControlcBDModel.GenPersona" Role="GenPersona" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenEstudiante" Role="GenEstudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenEstudiante">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenFamilia_GenPersonaFamiliar">
+          <End Type="ControlcBDModel.GenPersona" Role="GenPersona" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenFamilia" Role="GenFamilia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenFamilia">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenFamilia_TrelacionFamiliar">
+          <End Type="ControlcBDModel.TrelacionFamiliar" Role="TrelacionFamiliar" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenFamilia" Role="GenFamilia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrelacionFamiliar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenFamilia">
+              <PropertyRef Name="RelacionFamiliarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_GenCores_dbo_GenSedes_SedeId1">
+          <End Type="ControlcBDModel.GenSedes" Role="GenSedes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ControlcBDModel.GenUnidadOrganizacional" Role="GenUnidadOrganizacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenSedes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenUnidadOrganizacional">
+              <PropertyRef Name="SedeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_GenCores_dbo_Tjornadas_JornadaId1">
+          <End Type="ControlcBDModel.Tjornadas" Role="Tjornadas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ControlcBDModel.GenUnidadOrganizacional" Role="GenUnidadOrganizacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tjornadas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenUnidadOrganizacional">
+              <PropertyRef Name="JornadaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AcaMatricula">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="GradoId" Type="Int32" Nullable="false" />
+          <Property Name="EstudianteId" Type="Int32" Nullable="false" />
+          <Property Name="PersonaFamiliarId" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EstadoMatriculaId" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <Property Name="ContextoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Acudiente" Relationship="ControlcBDModel.FK_AcaMatricula_Familiar" FromRole="AcaMatricula" ToRole="GenPersona" />
+          <NavigationProperty Name="Estudiante" Relationship="ControlcBDModel.FK_AcaMatricula_GenEstudiante" FromRole="AcaMatricula" ToRole="GenEstudiante" />
+          <NavigationProperty Name="Estadomatricula" Relationship="ControlcBDModel.FK_AcaMatricula_TestadoMatricula" FromRole="AcaMatricula" ToRole="TestadoMatricula" />
+          <NavigationProperty Name="Grado" Relationship="ControlcBDModel.FK_AcaMatricula_Tgrados" FromRole="AcaMatricula" ToRole="Tgrados" />
+          <NavigationProperty Name="GenContexto" Relationship="ControlcBDModel.FK_ACAMATRICULA_CONTEXTO" FromRole="AcaMatricula" ToRole="GenContexto" />
+        </EntityType>
+        <Association Name="FK_AcaMatricula_Familiar">
+          <End Type="ControlcBDModel.GenPersona" Role="GenPersona" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaMatricula" Role="AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="PersonaFamiliarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_GenEstudiante">
+          <End Type="ControlcBDModel.GenEstudiante" Role="GenEstudiante" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaMatricula" Role="AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenEstudiante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="EstudianteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_TestadoMatricula">
+          <End Type="ControlcBDModel.TestadoMatricula" Role="TestadoMatricula" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaMatricula" Role="AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestadoMatricula">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="EstadoMatriculaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcaMatricula_Tgrados">
+          <End Type="ControlcBDModel.Tgrados" Role="Tgrados" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaMatricula" Role="AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tgrados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="GradoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GenContexto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UnidadOrganizacionalId" Type="Int32" Nullable="false" />
+          <Property Name="CalendarioId" Type="Int32" Nullable="false" />
+          <Property Name="Estregistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Calendario" Relationship="ControlcBDModel.GCont_Calen_FK" FromRole="GenContexto" ToRole="AcaCalendario" />
+          <NavigationProperty Name="AcaGrupo" Relationship="ControlcBDModel.AGrupo_GContext_FK" FromRole="GenContexto" ToRole="AcaGrupo" />
+          <NavigationProperty Name="AcaMatricula" Relationship="ControlcBDModel.FK_ACAMATRICULA_CONTEXTO" FromRole="GenContexto" ToRole="AcaMatricula" />
+        </EntityType>
+        <Association Name="GCont_Calen_FK">
+          <End Type="ControlcBDModel.AcaCalendario" Role="AcaCalendario" Multiplicity="1" />
+          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcaCalendario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenContexto">
+              <PropertyRef Name="CalendarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGrupo_GContext_FK">
+          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaGrupo" Role="AcaGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenContexto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaGrupo">
+              <PropertyRef Name="ContextoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ACAMATRICULA_CONTEXTO">
+          <End Type="ControlcBDModel.GenContexto" Role="GenContexto" Multiplicity="1" />
+          <End Type="ControlcBDModel.AcaMatricula" Role="AcaMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenContexto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcaMatricula">
+              <PropertyRef Name="ContextoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1357,6 +2045,7 @@
           <EntitySetMapping Name="AspNetUserRoles">
             <EntityTypeMapping TypeName="ControlcBDModel.AspNetUserRoles">
               <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1629,20 +2318,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GenContexto">
-            <EntityTypeMapping TypeName="ControlcBDModel.GenContexto">
-              <MappingFragment StoreEntitySet="GenContexto">
-                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
-                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GenPersona">
             <EntityTypeMapping TypeName="ControlcBDModel.GenPersona">
               <MappingFragment StoreEntitySet="GenPersona">
+                <ScalarProperty Name="ArchivoID" ColumnName="ArchivoID" />
                 <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
                 <ScalarProperty Name="ModoRegistro" ColumnName="ModoRegistro" />
                 <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
@@ -1657,6 +2336,121 @@
                 <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
                 <ScalarProperty Name="NumDoc" ColumnName="NumDoc" />
                 <ScalarProperty Name="TdocumentoId" ColumnName="TdocumentoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcaCalendario">
+            <EntityTypeMapping TypeName="ControlcBDModel.AcaCalendario">
+              <MappingFragment StoreEntitySet="AcaCalendario">
+                <ScalarProperty Name="EstRegistro" ColumnName="EstRegistro" />
+                <ScalarProperty Name="EstadoVigencia" ColumnName="EstadoVigencia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="AnioInicial" ColumnName="AnioInicial" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcaGrupo">
+            <EntityTypeMapping TypeName="ControlcBDModel.AcaGrupo">
+              <MappingFragment StoreEntitySet="AcaGrupo">
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Cupo" ColumnName="Cupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ContextoId" ColumnName="ContextoId" />
+                <ScalarProperty Name="TgradoId" ColumnName="TgradoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenEstudiante">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenEstudiante">
+              <MappingFragment StoreEntitySet="GenEstudiante">
+                <ScalarProperty Name="DiscapacidadId" ColumnName="DiscapacidadId" />
+                <ScalarProperty Name="CapacidadExcepcionalId" ColumnName="CapacidadExcepcionalId" />
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenFamilia">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenFamilia">
+              <MappingFragment StoreEntitySet="GenFamilia">
+                <ScalarProperty Name="EsNotificado" ColumnName="EsNotificado" />
+                <ScalarProperty Name="EsAcudiente" ColumnName="EsAcudiente" />
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="RelacionFamiliarId" ColumnName="RelacionFamiliarId" />
+                <ScalarProperty Name="EstudianteId" ColumnName="EstudianteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenUnidadOrganizacional">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenUnidadOrganizacional">
+              <MappingFragment StoreEntitySet="GenUnidadOrganizacional">
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
+                <ScalarProperty Name="SedeId" ColumnName="SedeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SegUserContexto">
+            <EntityTypeMapping TypeName="ControlcBDModel.SegUserContexto">
+              <MappingFragment StoreEntitySet="SegUserContexto">
+                <ScalarProperty Name="EstregistroId" ColumnName="EstregistroId" />
+                <ScalarProperty Name="GenContextoId" ColumnName="GenContextoId" />
+                <ScalarProperty Name="AspNetUserRolesId" ColumnName="AspNetUserRolesId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestadoMatricula">
+            <EntityTypeMapping TypeName="ControlcBDModel.TestadoMatricula">
+              <MappingFragment StoreEntitySet="TestadoMatricula">
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrelacionFamiliar">
+            <EntityTypeMapping TypeName="ControlcBDModel.TrelacionFamiliar">
+              <MappingFragment StoreEntitySet="TrelacionFamiliar">
+                <ScalarProperty Name="EstregistroId" ColumnName="EstregistroId" />
+                <ScalarProperty Name="GeneroRelacion" ColumnName="GeneroRelacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcaMatricula">
+            <EntityTypeMapping TypeName="ControlcBDModel.AcaMatricula">
+              <MappingFragment StoreEntitySet="AcaMatricula">
+                <ScalarProperty Name="ContextoId" ColumnName="ContextoId" />
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="EstadoMatriculaId" ColumnName="EstadoMatriculaId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PersonaFamiliarId" ColumnName="PersonaFamiliarId" />
+                <ScalarProperty Name="EstudianteId" ColumnName="EstudianteId" />
+                <ScalarProperty Name="GradoId" ColumnName="GradoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenContexto">
+            <EntityTypeMapping TypeName="ControlcBDModel.GenContexto">
+              <MappingFragment StoreEntitySet="GenContexto">
+                <ScalarProperty Name="Estregistro" ColumnName="Estregistro" />
+                <ScalarProperty Name="CalendarioId" ColumnName="CalendarioId" />
+                <ScalarProperty Name="UnidadOrganizacionalId" ColumnName="UnidadOrganizacionalId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

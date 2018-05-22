@@ -14,13 +14,22 @@ namespace Model
     
     public partial class GenContexto
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GenContexto()
+        {
+            this.AcaGrupo = new HashSet<AcaGrupo>();
+            this.AcaMatricula = new HashSet<AcaMatricula>();
+        }
+    
         public int Id { get; set; }
-        public int SedeId { get; set; }
-        public int JornadaId { get; set; }
-        public int Estado { get; set; }
+        public int UnidadOrganizacionalId { get; set; }
+        public int CalendarioId { get; set; }
         public int Estregistro { get; set; }
     
-        public virtual GenSedes GenSedes { get; set; }
-        public virtual Tjornadas Tjornadas { get; set; }
+        public virtual AcaCalendario Calendario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcaGrupo> AcaGrupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcaMatricula> AcaMatricula { get; set; }
     }
 }

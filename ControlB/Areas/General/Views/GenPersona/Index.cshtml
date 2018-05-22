@@ -1,5 +1,4 @@
-﻿@using Model.BL
-@using ControlB.Models
+﻿@using ControlB.Models
 @{ var controllerName = ViewContext.RouteData.Values["controller"].ToString(); var jsFile = controllerName; var area = ViewContext.RouteData.DataTokens["area"]; }
 @section BreadCrumb { @Html.Partial("~/Views/Shared/_BreadCrumb.cshtml", new BreadcrumModel { PaginaActual = "Index", PaginaPrincipal = "Persona", UrlPaginaPrincipal = "Index.html" })}  @section BreadCrumbPanel{}
 

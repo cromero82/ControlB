@@ -31,7 +31,7 @@ namespace Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GenInstituciones> GenInstituciones { get; set; }
-        public virtual Tdepartamentos Tdepartamentos { get; set; }
+        public virtual Tdepartamentos Departamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GenPersona> GenPersona { get; set; }
     }

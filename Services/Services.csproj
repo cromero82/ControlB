@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\ClaseBL.cs" />
+    <Compile Include="BL\AcaMatriculaBL.cs" />
     <Compile Include="BL\InstitucionesBL.cs" />
     <Compile Include="BL\GenPersonaBL.cs" />
     <Compile Include="BL\TgradosBL.cs" />

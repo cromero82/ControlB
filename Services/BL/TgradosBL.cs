@@ -1,6 +1,4 @@
 ﻿using Model;
-using Model.BL;
-using Model.BL.Tipos;
 using Model.General;
 using Persistence;
 using Services.Common;

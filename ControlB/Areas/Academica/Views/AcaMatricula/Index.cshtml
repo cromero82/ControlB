@@ -1,0 +1,78 @@
+﻿@using ControlB.Models
+@{ var controllerName = ViewContext.RouteData.Values["controller"].ToString(); var jsFile = controllerName; var area = ViewContext.RouteData.DataTokens["area"]; }
+@section BreadCrumb { @Html.Partial("~/Views/Shared/_BreadCrumb.cshtml", new BreadcrumModel { PaginaActual = "Index", PaginaPrincipal = "Persona", UrlPaginaPrincipal = "Index.html" })}  @section BreadCrumbPanel{}
+
+<div class="tray tray-center p5 va-t posr">
+
+    <!-- Scripts base de la página -->
+    <script src="~/Scripts/personal/inicioPorPagina.js"></script>
+    <script src="~/Scripts/personal/ScriptGenerico.js"></script>
+    <script src="@Url.Content("~/Areas/Academica/Scripts/" + jsFile +".js")"></script>    
+    <!-- Template de botones -->
+    <script id="actionBotones" type="text/x-kendo-template">
+        <div class="text-center">
+            <a data-modal="modal-lg" data-kgrid="grid" href='@Url.Action( jsFile +"View", controllerName, new { Area = area, accionCrud = "Editar" })&id=#=data.Id#' class="btn btn-sm btn-primary m-2" style="width: 60px;">Editar</a>
+            <a onclick="validarEliminacion('/@(Html.Raw(area +"/"+controllerName))/del@(Html.Raw(controllerName))','#=data.Id#','#=data.PrimerNombre # #=data.PrimerApellido #')" class="btn btn-sm btn-alert m-2" style="width: 60px;">Eliminar</a>
+        </div>
+    </script>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-visible">
+                <div class="panel-heading">
+                    <div class="panel-title hidden-xs">
+                        <span class="glyphicon glyphicon-tasks"></span>Personas
+                        <div class="alineacionVertical pull-right">
+                            <a  data-modal="modal-lg" data-kgrid="grid" href='@Url.Action(jsFile +"View", controllerName, new { Area = area, accionCrud = "Insertar"  })' 
+                               class="btn btn-success " style="width: 80px;"><span class="fa fa-plus pr5"></span>Nueva</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body pn" id="divLista">
+                    @(Html.Kendo().Grid<AcaMatriculaVM>()
+                            .Name("grid")
+                            .Columns(columns =>
+                            {
+                                columns.Bound(p => p.).Width(120).Filterable(true);
+                                columns.Bound(p => p.Grado).Width(120).Filterable(true);
+                                columns.Bound(p => p.PrimerNombreEstudiante).Width(120).Filterable(true);
+                                columns.Bound(p => p.SegundoNombreEstudiante).Width(120).Filterable(true);
+                                columns.Bound(p => p.PrimerApellidoEstudiante).Width(120).Filterable(true);
+                                columns.Bound(p => p.SegundoApellidoEstudiante).Width(120).Filterable(ftb => ftb.Cell(cell => cell.Operator("contains")));                                
+                                columns.Bound(p => p.Id)
+                                        .Title("Acción")
+                                        .Width(160)
+                                        .ClientTemplate("#="+ controllerName + ".actionBotones(data)#")
+                                        .Filterable(false);
+                            })
+
+                        .Pageable(p => p.Refresh(true).PageSizes(true)
+                        .Messages(m => m.ItemsPerPage("items por página"))
+                        )
+                        .Scrollable(s => s.Height("auto"))
+                        .AutoBind(true)
+                        .Sortable(s => s.Enabled(true))
+                        .Filterable(ftb => ftb.Mode(GridFilterMode.Row | GridFilterMode.Menu))
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .PageSize(10)
+                            .Read(read => read.Action("GetList", controllerName, new { Area = area })
+                            )
+                        .Events(e => e.Error("handleOnErrorModelState"))
+                        .ServerOperation(true)
+                        ).Events(events => events.DataBound("handleAjaxModal"))
+
+                    )
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Inicialización script de vista - INDEX -->
+    <script>
+        @(jsFile).initIndex();
+    </script>
+</div>

@@ -17,7 +17,7 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tjornadas()
         {
-            this.GenContexto = new HashSet<GenContexto>();
+            this.GenUnidadOrganizacional = new HashSet<GenUnidadOrganizacional>();
         }
     
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace Model
         public int Numero { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GenContexto> GenContexto { get; set; }
+        public virtual ICollection<GenUnidadOrganizacional> GenUnidadOrganizacional { get; set; }
     }
 }

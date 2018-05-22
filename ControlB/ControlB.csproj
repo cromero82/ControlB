@@ -199,6 +199,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Academica\AcademicaAreaRegistration.cs" />
+    <Compile Include="Areas\Academica\Controllers\AcaMatriculaController.cs" />
     <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
     <Compile Include="Areas\ADMIN\Controllers\InstitucionesController.cs" />
     <Compile Include="Areas\ADMIN\Controllers\TetniaController.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="Areas\ADMIN\Controllers\TnivelesController.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionWizardVM.cs" />
+    <Compile Include="Areas\General\Controllers\GenMatriculaController.cs" />
     <Compile Include="Areas\General\Controllers\GenPersonaController.cs" />
     <Compile Include="Areas\General\GeneralAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -224,6 +227,7 @@
     <Compile Include="Utilidades\UtilController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Academica\Scripts\AcaMatricula.js" />
     <Content Include="Areas\ADMIN\Scripts\Tetnia.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\AdminInstituciones.js" />
     <Content Include="Areas\ADMIN\Scripts\Instituciones\InsInstitucionWizard.js" />
@@ -2369,11 +2373,18 @@
     <Content Include="Areas\ADMIN\Views\Instituciones\InsInstitucionWizard.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tetnia\Index.cshtml" />
     <Content Include="Areas\ADMIN\Views\Tetnia\TetniaView.cshtml" />
-    <Content Include="Areas\General\Views\web.config" />
+    <Content Include="Areas\General\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\General\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\General\Views\GenPersona\Index.cshtml" />
     <Content Include="Areas\General\Views\GenPersona\GenPersonaView.cshtml" />
     <Content Include="Areas\General\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Academica\Views\web.config" />
+    <Content Include="Areas\Academica\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Academica\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Academica\Views\AcaMatricula\AcaMatriculaView.cshtml" />
+    <Content Include="Areas\Academica\Views\AcaMatricula\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3150,6 +3161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Academica\Models\" />
     <Folder Include="Areas\General\Models\" />
   </ItemGroup>
   <ItemGroup>

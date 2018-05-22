@@ -14,6 +14,13 @@ namespace Model
     
     public partial class Tgrados
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tgrados()
+        {
+            this.AcaGrupo = new HashSet<AcaGrupo>();
+            this.AcaMatricula = new HashSet<AcaMatricula>();
+        }
+    
         public int Id { get; set; }
         public int NivelId { get; set; }
         public string Codigo { get; set; }
@@ -21,6 +28,10 @@ namespace Model
         public int Estado { get; set; }
         public int Numero { get; set; }
     
-        public virtual Tniveles Tniveles { get; set; }
+        public virtual Tniveles Nivel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcaGrupo> AcaGrupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcaMatricula> AcaMatricula { get; set; }
     }
 }

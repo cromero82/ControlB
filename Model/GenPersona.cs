@@ -14,6 +14,14 @@ namespace Model
     
     public partial class GenPersona
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GenPersona()
+        {
+            this.GenEstudiante = new HashSet<GenEstudiante>();
+            this.GenFamilia = new HashSet<GenFamilia>();
+            this.AcaMatricula = new HashSet<AcaMatricula>();
+        }
+    
         public int Id { get; set; }
         public int TdocumentoId { get; set; }
         public string NumDoc { get; set; }
@@ -29,8 +37,15 @@ namespace Model
         public string Telefono2 { get; set; }
         public string ModoRegistro { get; set; }
         public int Estregistro { get; set; }
+        public Nullable<int> ArchivoID { get; set; }
     
-        public virtual Tmunicipios Tmunicipios { get; set; }
-        public virtual Tdocumentos Tdocumentos { get; set; }
+        public virtual Tmunicipios Municipio { get; set; }
+        public virtual Tdocumentos Tipodocumento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GenEstudiante> GenEstudiante { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GenFamilia> GenFamilia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcaMatricula> AcaMatricula { get; set; }
     }
 }

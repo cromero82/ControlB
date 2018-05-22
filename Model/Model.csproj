@@ -59,6 +59,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcaCalendario.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AcaGrupo.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AcaMatricula.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="AspNetRoles.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
@@ -75,6 +84,8 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
+    <Compile Include="BL\Academico\MatriculaVM.cs" />
+    <Compile Include="BL\GenMatriculaVM.cs" />
     <Compile Include="BL\GenPersonaVM.cs" />
     <Compile Include="BL\Tipos\TipoDatoGenericoVM.cs" />
     <Compile Include="BL\Tipos\TetniaVM.cs" />
@@ -88,6 +99,12 @@
     <Compile Include="General\Jresult.cs" />
     <Compile Include="General\UserForGridView.cs" />
     <Compile Include="General\UserGrid.cs" />
+    <Compile Include="GenEstudiante.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenFamilia.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="GenInstituciones.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
@@ -98,6 +115,9 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="GenSedes.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenUnidadOrganizacional.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeloSistema.Context.cs">
@@ -123,6 +143,9 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\IdentityModels.cs" />
+    <Compile Include="SegUserContexto.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
@@ -142,6 +165,9 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Tespecialidades.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestadoMatricula.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Testratos.cs">
@@ -169,6 +195,9 @@
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="TpVictimaConflictoes.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrelacionFamiliar.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Tsisbens.cs">

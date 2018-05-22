@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="712ac4df500f47c8b3bdefb227f298b0" Name="Diagram1" >
+      <Diagram DiagramId="712ac4df500f47c8b3bdefb227f298b0" Name="Diagram1" ZoomLevel="86" >
         <EntityTypeShape EntityType="ControlcBDModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="8.375" />
         <EntityTypeShape EntityType="ControlcBDModel.AspNetRoles" Width="1.5" PointX="3.75" PointY="19.25" />
         <EntityTypeShape EntityType="ControlcBDModel.AspNetUserClaims" Width="1.5" PointX="3" PointY="16.375" />
@@ -26,7 +26,7 @@
         <EntityTypeShape EntityType="ControlcBDModel.Testratos" Width="1.5" PointX="11.75" PointY="11.375" />
         <EntityTypeShape EntityType="ControlcBDModel.Tetnias" Width="1.5" PointX="9.75" PointY="14.375" />
         <EntityTypeShape EntityType="ControlcBDModel.Tgrados" Width="1.5" PointX="7.5" PointY="23" />
-        <EntityTypeShape EntityType="ControlcBDModel.Tjornadas" Width="1.5" PointX="7.5" PointY="11" />
+        <EntityTypeShape EntityType="ControlcBDModel.Tjornadas" Width="1.5" PointX="7.5" PointY="11.5" />
         <EntityTypeShape EntityType="ControlcBDModel.Tmetodologias" Width="1.5" PointX="11.75" PointY="14.375" />
         <EntityTypeShape EntityType="ControlcBDModel.Tmunicipios" Width="1.5" PointX="3" PointY="4.5" />
         <EntityTypeShape EntityType="ControlcBDModel.Tniveles" Width="1.5" PointX="5.25" PointY="0.75" />
@@ -45,13 +45,36 @@
         <AssociationConnector Association="ControlcBDModel.FK_dbo_SegRolesPermisos_dbo_SegPermisos_PermisoId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_Tmunicipios_dbo_Tdepartamentos_DepartamentoId" />
         <AssociationConnector Association="ControlcBDModel.FK_dbo_Tgrados_dbo_Tniveles_NivelId" />
-        <EntityTypeShape EntityType="ControlcBDModel.GenContexto" Width="1.5" PointX="9.5" PointY="8.375" />
-        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId" />
-        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId" />
         <EntityTypeShape EntityType="ControlcBDModel.GenPersona" Width="1.5" PointX="16" PointY="3.875" />
         <AssociationConnector Association="ControlcBDModel.FK_GPER_TMUNIC" />
         <AssociationConnector Association="ControlcBDModel.FK_TDOC_GPER" />
-      </Diagram>
+        <EntityTypeShape EntityType="ControlcBDModel.AcaCalendario" Width="1.5" PointX="12.125" PointY="20.375" />
+        <EntityTypeShape EntityType="ControlcBDModel.AcaGrupo" Width="1.5" PointX="9.5" PointY="19.625" />
+        <EntityTypeShape EntityType="ControlcBDModel.GenEstudiante" Width="1.875" PointX="16.375" PointY="18" />
+        <EntityTypeShape EntityType="ControlcBDModel.GenFamilia" Width="1.5" PointX="18.625" PointY="9.25" />
+        <EntityTypeShape EntityType="ControlcBDModel.GenUnidadOrganizacional" Width="1.5" PointX="15.125" PointY="11.625" />
+        <EntityTypeShape EntityType="ControlcBDModel.SegUserContexto" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ControlcBDModel.TestadoMatricula" Width="1.5" PointX="16.375" PointY="15.5" />
+        <EntityTypeShape EntityType="ControlcBDModel.TrelacionFamiliar" Width="1.5" PointX="16.375" PointY="0.75" />
+        <AssociationConnector Association="ControlcBDModel.AGrupo_Tgrado_FK" />
+        <AssociationConnector Association="ControlcBDModel.FK_ESTUD_CAPEXCEP" />
+        <AssociationConnector Association="ControlcBDModel.FK_ESTUD_DISCAPACIDAD" />
+        <AssociationConnector Association="ControlcBDModel.FK_GenFamilia_GenEstudiante" />
+        <AssociationConnector Association="ControlcBDModel.GEstud_GPersona_FK" />
+        <AssociationConnector Association="ControlcBDModel.FK_GenFamilia_GenPersonaFamiliar" />
+        <AssociationConnector Association="ControlcBDModel.FK_GenFamilia_TrelacionFamiliar" />
+        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_GenSedes_SedeId1" />
+        <AssociationConnector Association="ControlcBDModel.FK_dbo_GenCores_dbo_Tjornadas_JornadaId1" />
+        <EntityTypeShape EntityType="ControlcBDModel.AcaMatricula" Width="1.5" PointX="19" PointY="13" />
+        <AssociationConnector Association="ControlcBDModel.FK_AcaMatricula_Familiar" />
+        <AssociationConnector Association="ControlcBDModel.FK_AcaMatricula_GenEstudiante" />
+        <AssociationConnector Association="ControlcBDModel.FK_AcaMatricula_TestadoMatricula" />
+        <AssociationConnector Association="ControlcBDModel.FK_AcaMatricula_Tgrados" />
+        <EntityTypeShape EntityType="ControlcBDModel.GenContexto" Width="1.875" PointX="11.375" PointY="16.875" />
+        <AssociationConnector Association="ControlcBDModel.GCont_Calen_FK" />
+        <AssociationConnector Association="ControlcBDModel.AGrupo_GContext_FK" />
+        <AssociationConnector Association="ControlcBDModel.FK_ACAMATRICULA_CONTEXTO" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

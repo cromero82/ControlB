@@ -17,6 +17,7 @@ namespace Model
         public string UserId { get; set; }
         public string RoleId { get; set; }
         public string Discriminator { get; set; }
+        public Nullable<int> Id { get; set; }
     
         public virtual AspNetRoles AspNetRoles { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }

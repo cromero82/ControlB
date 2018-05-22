@@ -1,8 +1,6 @@
 ﻿using Kendo.Mvc.Extensions;
 using Model;
-using Model.BL;
 using Model.General;
-using Services.BL;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -24,7 +22,7 @@ namespace Services.BL
                 {
                     Id = r.Id,
                     TdocumentoId = r.TdocumentoId,
-                    Tdocumento = r.Tdocumentos.Nombre,
+                    Tdocumento = r.Tipodocumento.Nombre,
                     NumDoc = r.NumDoc,
                     PrimerNombre = r.PrimerNombre,
                     SegundoNombre = r.SegundoNombre,
@@ -34,8 +32,8 @@ namespace Services.BL
                     Direccion = r.Direccion,
                     Telefono = r.Telefono,
                     TmunicipioId = r.TmunicipioId,
-                    Tmunicipio = r.Tmunicipios.Nombre,
-                    Tdepartamento = r.Tmunicipios.Tdepartamentos.Nombre,
+                    Tmunicipio = r.Municipio.Nombre,
+                    Tdepartamento = r.Municipio.Departamento.Nombre,
                     CorreoElectronico = r.CorreoElectronico,
                     Telefono2 = r.Telefono2,
                     ModoRegistro = r.ModoRegistro
