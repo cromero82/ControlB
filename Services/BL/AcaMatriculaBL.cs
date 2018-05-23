@@ -20,34 +20,14 @@ namespace Services.BL
             {
                 var queryable = db.AcaMatricula.Where(f => f.Estregistro == 1).Select(r => new AcaMatriculaVM
                 {
-                    Id = r.Id
-
-
-                    //GradoId = r.
-                    /*EstudianteId { get; set; }
-        public int PersonaFamiliarId { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public int EstadoMatriculaId { get; set; }
-        public string Observaciones { get; set; }
-        public int Estregistro { get; set; }
-        public int ContextoId { get; set; }
-
-                    = r.TdocumentoId,
-                    Tdocumento = r.Tdocumentos.Nombre,
-                    NumDoc = r.NumDoc,
-                    PrimerNombre = r.PrimerNombre,
-                    SegundoNombre = r.SegundoNombre,
-                    PrimerApellido = r.PrimerApellido,
-                    SegundoApellido = r.SegundoApellido,
-                    FechaNacimiento = r.FechaNacimiento,
-                    Direccion = r.Direccion,
-                    Telefono = r.Telefono,
-                    TmunicipioId = r.TmunicipioId,
-                    Tmunicipio = r.Tmunicipios.Nombre,
-                    Tdepartamento = r.Tmunicipios.Tdepartamentos.Nombre,
-                    CorreoElectronico = r.CorreoElectronico,
-                    Telefono2 = r.Telefono2,
-                    ModoRegistro = r.ModoRegistro*/
+                    Id = r.Id,
+                    Grado = r.Grado.Nombre,
+                    PrimerNombreEstudiante = r.Estudiante.Persona.PrimerNombre,
+                    SegundoNombreEstudiante = r.Estudiante.Persona.SegundoNombre,
+                    PrimerApellidoEstudiante = r.Estudiante.Persona.PrimerApellido,
+                    SegundoApellidoEstudiante = r.Estudiante.Persona.SegundoApellido,
+                    Fecha = r.Fecha,
+                    Observaciones = r.Observaciones                    
                 });
 
                 #region Aplicacion Filtro kendo

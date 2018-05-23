@@ -33,8 +33,7 @@
                     @(Html.Kendo().Grid<AcaMatriculaVM>()
                             .Name("grid")
                             .Columns(columns =>
-                            {
-                                columns.Bound(p => p.).Width(120).Filterable(true);
+                            {                                
                                 columns.Bound(p => p.Grado).Width(120).Filterable(true);
                                 columns.Bound(p => p.PrimerNombreEstudiante).Width(120).Filterable(true);
                                 columns.Bound(p => p.SegundoNombreEstudiante).Width(120).Filterable(true);
