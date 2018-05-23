@@ -18,6 +18,7 @@ namespace Model
         public ControlcBDEntities()
             : base("name=ControlcBDEntities")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
