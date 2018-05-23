@@ -117,6 +117,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\GenEstudianteBL.cs" />
     <Compile Include="BL\ClaseBL.cs" />
     <Compile Include="BL\AcaMatriculaBL.cs" />
     <Compile Include="BL\InstitucionesBL.cs" />

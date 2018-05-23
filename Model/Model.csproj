@@ -86,6 +86,7 @@
     <Compile Include="Auxiliar\DatosAbiertosImport.cs" />
     <Compile Include="BL\Academico\MatriculaVM.cs" />
     <Compile Include="BL\GenMatriculaVM.cs" />
+    <Compile Include="BL\GenEstudianteVM.cs" />
     <Compile Include="BL\GenPersonaVM.cs" />
     <Compile Include="BL\Tipos\TipoDatoGenericoVM.cs" />
     <Compile Include="BL\Tipos\TetniaVM.cs" />

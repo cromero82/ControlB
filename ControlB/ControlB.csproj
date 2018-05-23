@@ -211,6 +211,7 @@
     <Compile Include="Areas\ADMIN\Models\InstitucionesGridVM.cs" />
     <Compile Include="Areas\ADMIN\Models\InstitucionWizardVM.cs" />
     <Compile Include="Areas\General\Controllers\GenMatriculaController.cs" />
+    <Compile Include="Areas\General\Controllers\GenEstudianteController.cs" />
     <Compile Include="Areas\General\Controllers\GenPersonaController.cs" />
     <Compile Include="Areas\General\GeneralAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -243,6 +244,7 @@
     <Content Include="Areas\ADMIN\Scripts\Tniveles\Index.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\InsTnivel.js" />
     <Content Include="Areas\ADMIN\Scripts\Tniveles\UpdTnivel.js" />
+    <Content Include="Areas\General\Scripts\GenEstudiante.js" />
     <Content Include="Areas\General\Scripts\GenPersona.js" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\css\admin-forms.css" />
     <Content Include="Content\admindesigns\assets\admin-tools\admin-forms\js\additional-methods.min.js" />
@@ -2385,6 +2387,7 @@
     <Content Include="Areas\Academica\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Academica\Views\AcaMatricula\AcaMatriculaView.cshtml" />
     <Content Include="Areas\Academica\Views\AcaMatricula\Index.cshtml" />
+    <Content Include="Areas\General\Views\GenEstudiante\GenEstudianteView.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\inicio.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
